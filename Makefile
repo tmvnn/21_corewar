@@ -8,7 +8,12 @@ HEADER_LIBFT = -I ./libft/include -I ./libft/src/ft_printf/include
 FLAGS = -Wall -Wextra -Werror
 
 ASM = asm
-SRC_ASM_NAME = main.c
+SRC_ASM_NAME = main.c \
+				asm_content.c \
+				assemble.c \
+				error.c \
+				filename.c \
+				token.c
 
 OBJ_ASM_NAME = $(SRC_ASM_NAME:.c=.o);
 SRC_ASM = $(addprefix $(OBJDIR)/, $(SRC_ASM_NAME))

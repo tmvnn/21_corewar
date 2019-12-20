@@ -4,7 +4,7 @@ void	assemble(char *filename)
 {
     int             fd;
     t_asm_content   *content;
-    t_token         *token;
+    // t_token         *token;
     
     if ((fd = open(filename, O_RDONLY)) == -1)
         error();

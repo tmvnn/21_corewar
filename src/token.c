@@ -3,7 +3,6 @@
 void	add_token(t_token **token, char *content) {
 	t_token	*copy;
 	t_token	*new;
-	t_token	*end;
 
 	copy = *token;
 	if (!copy)

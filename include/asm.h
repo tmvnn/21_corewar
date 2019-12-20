@@ -13,6 +13,13 @@
 # define EXP_ASM ".s"
 # define EXP_ASM_LEN 2
 
+
+typedef	struct		s_token
+{
+	char			*content;
+	struct s_token	*next;
+}					t_token;
+
 typedef struct		s_asm_content
 {
 	int				fd;
@@ -21,13 +28,6 @@ typedef struct		s_asm_content
 	char			*name;
 	char			*comment;
 }					t_asm_content;
-
-typedef	struct		s_token
-{
-	char			*content;
-	struct s_token	*next;
-}					t_token;
-
 
 /* filename.c */
 int     		valid_filename_asm(const char *filename);
