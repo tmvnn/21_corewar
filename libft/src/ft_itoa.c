@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: artemtulupov <artemtulupov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 17:26:35 by ramory-l          #+#    #+#             */
-/*   Updated: 2019/06/15 17:10:45 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/12/20 17:24:43 by artemtulupo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,11 @@ static	int			ft_intleng(unsigned long long int n)
 
 char				*ft_itoa(unsigned long long int n)
 {
-	int						i;
 	int						leng;
 	char					*str;
 	unsigned long long int	b;
 
 	b = n;
-	i = 0;
 	leng = ft_intleng(b);
 	str = ft_memalloc(leng + 1);
 	while (leng-- && str[leng] != '-')

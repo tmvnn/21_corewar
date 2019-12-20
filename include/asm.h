@@ -10,4 +10,39 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 
+# define EXP_ASM ".s"
+# define EXP_ASM_LEN 2
+
+typedef struct		s_asm_content
+{
+	int				fd;
+	char			*line;
+	t_token			*tokens;
+	char			*name;
+	char			*comment;
+}					t_asm_content;
+
+typedef	struct		s_token
+{
+	char			*content;
+	struct s_token	*next;
+}					t_token;
+
+
+/* filename.c */
+int     		valid_filename_asm(const char *filename);
+
+/* assemble.c */
+void			assemble(char *filename);
+
+/* error.c */
+void			error();
+
+/* asm_content.c */
+t_asm_content	*init_content(int fd);
+int				read_content(int fd, t_asm_content *content);
+
+/* token.c */
+void			add_token(t_token **token, char *content);
+
 #endif
