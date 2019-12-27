@@ -12,10 +12,3 @@ t_asm_content	*init_content(int fd)
 	content->comment = NULL;
 	return (content);
 }
-
-int				read_content(int fd, t_asm_content *content)
-{
-	if (read(fd, content->line, 0) == -1)
-		return (-1);
-	return (1);
-}

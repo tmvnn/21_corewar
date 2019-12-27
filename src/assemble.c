@@ -4,14 +4,13 @@ void	assemble(char *filename)
 {
     int             fd;
     t_asm_content   *content;
-    // t_token         *token;
+    t_token         *token;
     
+    token = NULL;
     if ((fd = open(filename, O_RDONLY)) == -1)
         error();
     content = init_content(fd);
-    while (read_content(fd, content) != -1)
-    {
-        // тут должен быть парсинг
-        ft_strdel(&content->line);
-    }
+    while (get_next_line(fd, &content->line) > 0)
+        tokenizing(&content->line, &token);
+    what_are_tokens(token);
 }
