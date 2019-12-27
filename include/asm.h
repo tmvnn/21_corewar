@@ -49,4 +49,7 @@ void			add_token(t_token **token, char *content);
 void			tokenizing(char **line, t_token **token);
 void			what_are_tokens(t_token *token);
 
+/* helper_for_works.c */
+
+
 #endif

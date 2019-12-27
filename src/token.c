@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 20:33:51 by idunaver          #+#    #+#             */
-/*   Updated: 2019/12/27 21:21:34 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/12/27 21:31:08 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,6 @@ void		clear_buff(char **buff) {
 		ft_strdel(&(*copy++));
 	free(buff);
 	buff = NULL;
-}
-
-void		what_are_tokens(t_token *token) {
-	while (token != NULL) {
-		printf("token:%s\n", token->content);
-		token = token->next;
-	}
 }
 
 void		tokenizing(char **line, t_token **token) {
