@@ -13,8 +13,10 @@ SRC_ASM_NAME = main.c \
 				assemble.c \
 				error.c \
 				filename.c \
-				token.c \
-				helper_for_work.c
+				title.c \
+				tokenizing.c \
+				buffer.c \
+				helper.c
 
 OBJ_ASM_NAME = $(SRC_ASM_NAME:.c=.o);
 SRC_ASM = $(addprefix $(OBJDIR)/, $(SRC_ASM_NAME))

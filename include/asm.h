@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   asm.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
+/*   Updated: 2020/01/18 19:22:46 by idunaver         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef ASM_H
 # define ASM_H
 
@@ -16,7 +28,6 @@
 # define NAME_CHAMP ".name"
 # define COMMENT_CHAMP ".comment"
 
-
 typedef	struct		s_token
 {
 	char			*content;
@@ -33,25 +44,30 @@ typedef struct		s_asm_content
 	char			*comment;
 }					t_asm_content;
 
-/* filename.c */
-int     		valid_filename_asm(const char *filename);
+/* asm_content.c */
+t_asm_content		*init_content(int fd);
 
 /* assemble.c */
-void			assemble(char *filename);
+void				assemble(char *filename);
+
+/* buffer.c */
+void				clear_buff(char **buff);
+char				**create_buff(char **line, t_asm_content **content);
 
 /* error.c */
-void			error();
+void				error(void);
 
-/* asm_content.c */
-t_asm_content	*init_content(int fd);
-int				read_content(int fd, t_asm_content *content);
+/* filename.c */
+int					valid_filename_asm(const char *filename);
 
-/* token.c */
-void			add_token(t_token **token, char *content);
-void			tokenizing(char **line, t_token **token, t_asm_content **content);
-void			what_are_tokens(t_token *token);
+/* helper.c - потом удалить */
+void				what_are_tokens(t_token *token);
 
-/* helper_for_works.c */
+/* title.c */
+int					skip_simple_comment(char **line);
+int					check_name_or_comment(char **buff, t_asm_content **content);
 
+/* tokenizing.c */
+void				tokenizing(char **line, t_token **token, t_asm_content **content);
 
 #endif
