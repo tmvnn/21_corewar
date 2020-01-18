@@ -11,6 +11,7 @@ void	assemble(char *filename)
         error();
     content = init_content(fd);
     while (get_next_line(fd, &content->line) > 0)
-        tokenizing(&content->line, &token);
+        tokenizing(&content->line, &token, &content);
+    printf("name: %s\ncomment: %s\n", content->name, content->comment);
     what_are_tokens(token);
 }

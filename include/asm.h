@@ -13,6 +13,8 @@
 # define EXP_ASM ".s"
 # define EXP_ASM_LEN 2
 # define BUFF_S 2048
+# define NAME_CHAMP ".name"
+# define COMMENT_CHAMP ".comment"
 
 
 typedef	struct		s_token
@@ -46,7 +48,7 @@ int				read_content(int fd, t_asm_content *content);
 
 /* token.c */
 void			add_token(t_token **token, char *content);
-void			tokenizing(char **line, t_token **token);
+void			tokenizing(char **line, t_token **token, t_asm_content **content);
 void			what_are_tokens(t_token *token);
 
 /* helper_for_works.c */

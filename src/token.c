@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 20:33:51 by idunaver          #+#    #+#             */
-/*   Updated: 2019/12/27 21:31:08 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/01/18 16:14:38 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,49 @@ void		clear_buff(char **buff) {
 	buff = NULL;
 }
 
-void		tokenizing(char **line, t_token **token) {
+static int	add_name(char **buff, t_asm_content **content) {
+	(*content)->name = ft_strdup(buff[1]);
+	clear_buff(buff);
+	return (1);
+}
+
+static int	add_comment(char **buff, t_asm_content **content) {
+	(*content)->comment = ft_strdup(buff[1]);
+	clear_buff(buff);
+	return (1);
+}
+
+static int	check_name_or_comment(char **buff, t_asm_content **content) {
+	if (!buff || !*buff || ft_isspace(**buff))
+		return (1);
+	if (ft_strcmp(*buff, NAME_CHAMP) == 0)
+		return(add_name(buff, content));
+	else if (ft_strcmp(*buff, COMMENT_CHAMP) == 0)
+		return(add_comment(buff, content));
+	return (0);
+}
+
+static int	skip_simple_comment(char **line) {
+	if (**line == '#') {
+		ft_strdel(line);
+		return (1);
+	}
+	return (0);
+}
+
+void		tokenizing(char **line, t_token **token, t_asm_content **content) {
 	char	**buff;
 	char	**copy_buff;
 
 	buff = NULL;
+	if (skip_simple_comment(line) == 1)
+		return ;
 	space_replacement(line, ft_strlen(*line));
 	buff = ft_strsplit(*line, ',');
 	copy_buff = buff;
 	ft_strdel(line);
+	if (check_name_or_comment(copy_buff, content) == 1)
+		return ;
 	while (*copy_buff)
 		add_token(token, *copy_buff++);
 	clear_buff(buff);
