@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 20:33:51 by idunaver          #+#    #+#             */
-/*   Updated: 2020/01/18 16:14:38 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/01/18 18:18:20 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		add_token(t_token **token, char *content) {
 	}
 }
 
-static void	space_replacement(char **line, int size) {
+static void	space_replacement(char **line, int size, char c) {
 	char	*copy;
 	int		quotes;
 
@@ -50,7 +50,7 @@ static void	space_replacement(char **line, int size) {
 		if (*copy == '"' && quotes == 0)
 			quotes = 1;
 		if (ft_isspace(*copy) && quotes == 0)
-			*copy = ',';
+			*copy = c;
 		copy++;
 	}
 }
@@ -59,7 +59,7 @@ void		clear_buff(char **buff) {
 	char	**copy;
 
 	copy = buff;
-	if (!buff)
+	if (!buff || !*buff)
 		return ;
 	while (*copy)
 		ft_strdel(&(*copy++));
@@ -68,13 +68,15 @@ void		clear_buff(char **buff) {
 }
 
 static int	add_name(char **buff, t_asm_content **content) {
-	(*content)->name = ft_strdup(buff[1]);
+	if (buff[1])
+		(*content)->name = ft_strdup(buff[1]);
 	clear_buff(buff);
 	return (1);
 }
 
 static int	add_comment(char **buff, t_asm_content **content) {
-	(*content)->comment = ft_strdup(buff[1]);
+	if (buff[1])
+		(*content)->comment = ft_strdup(buff[1]);
 	clear_buff(buff);
 	return (1);
 }
@@ -97,6 +99,21 @@ static int	skip_simple_comment(char **line) {
 	return (0);
 }
 
+static char	**create_buff(char **line, t_asm_content **content) {
+	char	**buff;
+	char	c;
+
+	c = (**line == '.') ? '"' : ',';
+	space_replacement(line, ft_strlen(*line), c);
+	buff = ft_strsplit(*line, c);
+	if (**line == '.') {
+		if (check_name_or_comment(buff, content) == 1)
+			return (NULL);
+	}
+	ft_strdel(line);
+	return (buff);
+}
+
 void		tokenizing(char **line, t_token **token, t_asm_content **content) {
 	char	**buff;
 	char	**copy_buff;
@@ -104,12 +121,9 @@ void		tokenizing(char **line, t_token **token, t_asm_content **content) {
 	buff = NULL;
 	if (skip_simple_comment(line) == 1)
 		return ;
-	space_replacement(line, ft_strlen(*line));
-	buff = ft_strsplit(*line, ',');
-	copy_buff = buff;
-	ft_strdel(line);
-	if (check_name_or_comment(copy_buff, content) == 1)
+	if ((buff = create_buff(line, content)) == NULL)
 		return ;
+	copy_buff = buff;
 	while (*copy_buff)
 		add_token(token, *copy_buff++);
 	clear_buff(buff);
