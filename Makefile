@@ -16,6 +16,7 @@ SRC_ASM_NAME = main.c \
 				title.c \
 				tokenizing.c \
 				buffer.c \
+				string.c \
 				helper.c
 
 OBJ_ASM_NAME = $(SRC_ASM_NAME:.c=.o);

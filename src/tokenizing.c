@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 20:33:51 by idunaver          #+#    #+#             */
-/*   Updated: 2020/01/18 19:19:49 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/01/21 21:43:52 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,21 @@ static void	add_token(t_token **token, char *content)
 	}
 }
 
-void		tokenizing(char **line, t_token **token, t_asm_content **content)
+void		tokenizing(char **line, t_strings **row, t_asm_content **content)
 {
 	char	**buff;
 	char	**copy_buff;
+	t_token	*tokens;
 
+	tokens = NULL;
 	buff = NULL;
-	if (skip_simple_comment(line) == 1)
+	if (skip_simple_comment_emptyline(line) == 1)
 		return ;
 	if ((buff = create_buff(line, content)) == NULL)
 		return ;
 	copy_buff = buff;
 	while (*copy_buff)
-		add_token(token, *copy_buff++);
+		add_token(&tokens, *copy_buff++);
+	add_string(&tokens, row);
 	clear_buff(buff);
 }

@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/27 21:30:23 by idunaver          #+#    #+#             */
-/*   Updated: 2020/01/21 21:44:24 by idunaver         ###   ########.fr       */
+/*   Created: 2020/01/21 21:13:59 by idunaver          #+#    #+#             */
+/*   Updated: 2020/01/21 21:28:33 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* 
-* К функциональности проекта не относится.
-*/
-
 #include "asm.h"
 
-static void	what_are_tokens(t_token *token)
+void    add_string(t_token **tokens, t_strings **row)
 {
-	while (token != NULL)
-	{
-		printf("%s ", token->content);
-		token = token->next;
-	}
-}
+	t_strings *copy;
+	t_strings *new;
 
-void		what_are_strings(t_strings *rows)
-{
-	while (rows != NULL)
+	copy = *row;
+	if (!copy)
 	{
-		printf("row: ");
-		what_are_tokens(rows->string);
-		printf("\n");
-		rows = rows->next;
+		if (!(*row = (t_strings *)ft_memalloc(sizeof(t_strings))))
+			error();
+		(*row)->string = *tokens;
+		(*row)->next = NULL;
+	}
+	else
+	{
+		if (!(new = (t_strings *)ft_memalloc(sizeof(t_strings))))
+			error();
+		new->string = *tokens;
+		new->next = NULL;
+		while (copy->next)
+			copy = copy->next;
+		copy->next = new;
 	}
 }
