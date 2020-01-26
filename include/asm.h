@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/01/21 21:43:59 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/01/26 15:31:46 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@
 # define LLDI "lldi"
 # define LFORK "lfork"
 # define AFF "aff"
+
+# define LABEL "LABEL"
 
 typedef	struct			s_token
 {	
@@ -95,5 +97,8 @@ void				tokenizing(char **line, t_strings **row, t_asm_content **content);
 
 /* string.c */
 void    			add_string(t_token **tokens, t_strings **row);
+
+/* interpretation.c */
+void				interpretation(t_token **tokens);
 
 #endif

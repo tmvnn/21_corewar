@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 16:05:49 by ramory-l          #+#    #+#             */
-/*   Updated: 2019/12/27 21:13:04 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/01/26 14:45:06 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ size_t size, int len);
 int					ft_fill_zeroes(char *buffer, char mode,
 size_t size, int len);
 int					ft_isspace(int c);
+void				ft_right_trim(char *str);
 
 #endif

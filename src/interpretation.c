@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   interpretation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/27 21:11:53 by idunaver          #+#    #+#             */
-/*   Updated: 2020/01/26 14:37:43 by idunaver         ###   ########.fr       */
+/*   Created: 2020/01/26 13:35:43 by idunaver          #+#    #+#             */
+/*   Updated: 2020/01/26 15:35:31 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "asm.h"
 
-int	ft_isspace(int c)
+static void	check_label(t_token **tokens)
 {
-	if (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t' ||
-	c == '\v')
-		return (1);
-	return (0);
+	char	*copy;
+
+	copy = (*tokens)->content;
+	ft_right_trim(copy);
+	if (*(copy + ft_strlen(copy) - 1) == ':')
+		(*tokens)->type = ft_strdup(LABEL);
+}
+
+void	interpretation(t_token **tokens)
+{
+	check_label(tokens);
 }

@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 21:30:23 by idunaver          #+#    #+#             */
-/*   Updated: 2020/01/21 21:44:24 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/01/26 13:33:32 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	what_are_tokens(t_token *token)
 {
 	while (token != NULL)
 	{
-		printf("%s ", token->content);
+		printf("%s [%s] ", token->content, token->type);
 		token = token->next;
 	}
 }
