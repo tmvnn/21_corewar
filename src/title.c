@@ -6,15 +6,25 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:45:27 by idunaver          #+#    #+#             */
-/*   Updated: 2020/01/21 21:43:43 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/01/26 13:25:43 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
+static int	line_is_space(char *line)
+{
+	while (ft_isspace(*line))
+		line++;
+	if (*line == '\0')
+		return (1);
+	else
+		return (0);
+}
+
 int			skip_simple_comment_emptyline(char **line)
 {
-	if (**line == '#' || **line == ';' || ft_strlen(*line) == 0)
+	if (**line == '#' || ft_strlen(*line) == 0 || line_is_space(*line) == 1)
 	{
 		ft_strdel(line);
 		return (1);
