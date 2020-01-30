@@ -18,10 +18,13 @@
 
 static void	what_are_tokens(t_token *token)
 {
+
 	while (token != NULL)
 	{
-		printf("%s [%s] ", token->content, token->type);
+		printf("%s [%s]", token->content, token->type);
 		token = token->next;
+		if (token)
+			printf(", ");
 	}
 }
 
@@ -31,7 +34,7 @@ void		what_are_strings(t_strings *rows)
 	{
 		printf("row: ");
 		what_are_tokens(rows->string);
-		printf("\n");
+		printf(";\n");
 		rows = rows->next;
 	}
 }

@@ -13,6 +13,15 @@
 #ifndef ASM_H
 # define ASM_H
 
+# define PATTERN_T_REG "^r[0-9]{1,2}$"
+# define PATTERN_T_DIR "^%-?0*[0-9]+$|^%:[0-9a-z_]+$"
+# define PATTERN_T_IND "^-?[0-9]+$|^:[0-9A-Z_]+$"
+# define INSTRACTION "^live$|^ld$|^st$|^add$|^sub$|^and$|^or$|^xor$|^zjmp$|^ldi$|^sti$|^fork$|^lld$|^lldi$|^lfork$|^aff$"
+# define LABEL "^[0-9a-z_]+:$"
+# define REGISTER "^r[0-9]{1,2}$"
+# define DIRECT_LABEL "^%:[0-9a-z_]+$"
+# define DIRECT "^%-?0*[0-9]+$"
+
 # include "libft.h"
 # include "op.h"
 # include <unistd.h>
@@ -22,6 +31,7 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/uio.h>
+# include <regex.h>
 
 # define EXP_ASM ".s"
 # define EXP_ASM_LEN 2
@@ -44,7 +54,11 @@
 # define LFORK "lfork"
 # define AFF "aff"
 
-# define LABEL "LABEL"
+# define LABEL_NAME "LABEL"
+# define INSTRACTION_NAME "INSTRACTION"
+# define REGISTER_NAME "REGISTER"
+# define DIRECT_LABEL_NAME "DIRECT_LABEL"
+# define DIRECT_NAME "DIRECT"
 
 typedef	struct			s_token
 {	
@@ -99,6 +113,6 @@ void				tokenizing(char **line, t_strings **row, t_asm_content **content);
 void    			add_string(t_token **tokens, t_strings **row);
 
 /* interpretation.c */
-void				interpretation(t_token **tokens);
+void				interpretation(t_token *tokens);
 
 #endif
