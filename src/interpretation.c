@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-int parse(char* str, char *pattern){
+int parse(char *str, char *pattern){
     int err;
     regex_t reg1;
 

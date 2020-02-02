@@ -12,6 +12,10 @@
 
 #include "asm.h"
 
+void check_valid(char *str){
+	if ()
+}
+
 void	assemble(char *filename)
 {
 	int				fd;
@@ -22,8 +26,10 @@ void	assemble(char *filename)
 	if ((fd = open(filename, O_RDONLY)) == -1)
 		error();
 	content = init_content(fd);
-	while (get_next_line(fd, &content->line) > 0)
+	while (get_next_line(fd, &content->line) > 0){
 		tokenizing(&content->line, &rows, &content);
+		check_valid(content->line);
+	}
 	printf("name: %s\ncomment: %s\n", content->name, content->comment);
 	what_are_strings(rows);
 }

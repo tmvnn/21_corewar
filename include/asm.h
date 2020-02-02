@@ -15,7 +15,7 @@
 
 # define PATTERN_T_REG "^r[0-9]{1,2}$"
 # define PATTERN_T_DIR "^%-?0*[0-9]+$|^%:[0-9a-z_]+$"
-# define PATTERN_T_IND "^-?[0-9]+$|^:[0-9A-Z_]+$"
+# define PATTERN_T_IND "^-?[0-9]+$|^:[0-9a-z_]+$"
 # define INSTRACTION "^live$|^ld$|^st$|^add$|^sub$|^and$|^or$|^xor$|^zjmp$|^ldi$|^sti$|^fork$|^lld$|^lldi$|^lfork$|^aff$"
 # define LABEL "^[0-9a-z_]+:$"
 # define REGISTER "^r[0-9]{1,2}$"
@@ -114,5 +114,6 @@ void    			add_string(t_token **tokens, t_strings **row);
 
 /* interpretation.c */
 void				interpretation(t_token *tokens);
+int					parse(char *str, char *pattern);
 
 #endif
