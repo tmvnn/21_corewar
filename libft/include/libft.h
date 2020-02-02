@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 16:05:49 by ramory-l          #+#    #+#             */
-/*   Updated: 2019/12/27 21:13:04 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/02 21:16:18 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct		s_num_base 
+{
+	int				sign;
+	unsigned int	res;
+	size_t			len;
+}					t_num_base;
+
 
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strnew(size_t size);
@@ -94,5 +102,7 @@ size_t size, int len);
 int					ft_fill_zeroes(char *buffer, char mode,
 size_t size, int len);
 int					ft_isspace(int c);
+char				*ft_itoabase(int value, int base);
+size_t				ft_strlen_base(int value, int base);
 
 #endif

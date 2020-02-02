@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/01/21 21:43:59 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/02 19:43:21 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define EXP_ASM ".s"
 # define EXP_ASM_LEN 2
 # define BUFF_S 2048
+# define NULL_BYTECODE "00000000"
 
 # define LIVE "live"
 # define LD "ld"
@@ -65,6 +66,7 @@ typedef struct			s_asm_content
 	t_strings			**tokens;
 	char				*name;
 	char				*comment;
+	header_t			*header;
 }						t_asm_content;
 
 /* asm_content.c */
@@ -95,5 +97,8 @@ void				tokenizing(char **line, t_strings **row, t_asm_content **content);
 
 /* string.c */
 void    			add_string(t_token **tokens, t_strings **row);
+
+/* in_bytecode.c */
+void    			in_bytecode(t_asm_content **content);
 
 #endif
