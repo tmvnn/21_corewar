@@ -1,7 +1,10 @@
+
+
+   
 #deassembler par msa 1.8, made by joe
     ;     fdkghdkfh
-.name "Tching tching(Intercepteur), Bouh!Bouh!(bruits d'anti-jeu)" #j
 .comment "" #sdfjs ; dsfhksjd
+.name "Tching tching(Intercepteur), Bouh!Bouh!(bruits d'anti-jeu)" #j
 
 ; fdkghdkfh
 
@@ -14,7 +17,7 @@
 	 ld    %0,r2              		# 7,28,253
 	 ld    %0    ,   r4              		# 7,35,246
 	 zjmp  %:label03          		# 3,42,239
-			
+
 label02: ld    %4,r2              		# 7,45,236
 	 ld    %0,r4              		# 7,52,229
 	 zjmp  %:label03          		# 3,59,222
