@@ -15,19 +15,18 @@ int main(int ac, char **av){
 	regex_t reg1;
 	if (ac != 2)
 		return (0);
-	err = regcomp(&reg1, PATTERN_SPACE_OR_EMPTY_LINE, REG_EXTENDED);
+	err = regcomp(&reg1, PATTERN_NAME_COMMENT, REG_EXTENDED);
 	if (err != 0){
-		// printf("error with regex in file interpretation.c\n");
+		printf("error with regex in file interpretation.c\n");
 		return (0);
 	}
-	// printf("%lu\n", strlen(*(av + 1)));
+	printf("%lu\n", strlen(*(av + 1)));
 	regmatch_t pm;
 	if (!regexec(&reg1, *(av + 1), 0, &pm, 0)){
-		// printf("good match\n");
+		printf("good match\n");
 		return (1);
+	} else{
+		printf("bad match\n");
 	}
-	// } else{
-	// 	printf("bad match\n");
-	// }
 	return (0);
 }
