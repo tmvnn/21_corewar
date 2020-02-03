@@ -8,14 +8,14 @@
 #define PATTERN_COMMENT "^ *[#;].*$"
 #define PATTERN_SPACE_OR_EMPTY_LINE "^[ 	]*$"
 #define PATTERN "^[ 	]*([a-z0-9_]+:)?[ 	]*((live|zjmp|fork|lfork)[ 	]*(%-?0*[0-9]+|%:[0-9a-z_]+)|(ld|lld)[ 	]*(%-?0*[0-9]+|%:[0-9a-z_]+|-?[0-9]+|:[0-9a-z_]+)[ 	]*,[ 	]*r[0-9]{1,2}|st *r[0-9]{1,2}[ 	]*,[ 	]*(r[0-9]{1,2}|-?[0-9]+|:[0-9a-z_]+)|(add|sub)[ 	]*r[0-9]{1,2}[ 	]*,[ 	]*r[0-9]{1,2}[ 	]*,[ 	]*r[0-9]{1,2}|(and|or|xor)[ 	]*(r[0-9]{1,2}|%-?0*[0-9]+|%:[0-9a-z_]+|-?[0-9]+|:[0-9a-z_]+)[ 	]*,[ 	]*(r[0-9]{1,2}|%-?0*[0-9]+|%:[0-9a-z_]+|-?[0-9]+|:[0-9a-z_]+)[ 	]*,[ 	]*r[0-9]{1,2}|(ldi|lldi)[ 	]*(r[0-9]{1,2}|%-?0*[0-9]+|%:[0-9a-z_]+|-?[0-9]+|:[0-9a-z_]+)[ 	]*,[ 	]*(r[0-9]{1,2}|%-?0*[0-9]+$|^%:[0-9a-z_]+)[ 	]*,[ 	]*r[0-9]{1,2}|sti[ 	]*r[0-9]{1,2}[ 	]*,[ 	]*(r[0-9]{1,2}|%-?0*[0-9]+|%:[0-9a-z_]+|-?[0-9]+|:[0-9a-z_]+)[ 	]*,[ 	]*(r[0-9]{1,2}|%-?0*[0-9]+|%:[0-9a-z_]+))?[ 	]*([#;].*)?$"
-
+#define PATTERN_NAME_CHAMPS_FIRST_STAGE "^[ 	]*[.](name|comment)[ 	]*\".*$"
 
 int main(int ac, char **av){
 	int err;
 	regex_t reg1;
 	if (ac != 2)
 		return (0);
-	err = regcomp(&reg1, PATTERN_NAME_COMMENT, REG_EXTENDED);
+	err = regcomp(&reg1, PATTERN_NAME_CHAMPS_FIRST_STAGE, REG_EXTENDED);
 	if (err != 0){
 		printf("error with regex in file interpretation.c\n");
 		return (0);

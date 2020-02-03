@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-int help_check_name_champs(t_asm_content *content, int fd)
+char *help_check_name_champs(t_asm_content *content, int fd)
 {
 	char *temp;
 
@@ -22,41 +22,40 @@ int help_check_name_champs(t_asm_content *content, int fd)
 		if (parse(temp, PATTERN_NAME_CHAMPS))
 		{
 			content->flag_name = 1;
-			return (1);
+			return (temp);
 		}
-	} while (get_next_line(&content->line, fd) > 0);
-	return (0);
-}
-
-int help_check_comment_champs(t_asm_content *content, int fd)
-{
-	char *temp;
-
-	temp = "\0";
-	do {
-		temp = ft_strjoin(temp, content->line);
-		if (parse(temp, PATTERN_NAME_CHAMPS))
+		else if (parse(temp, PATTERN_COMMENT_CHAMPS))
 		{
 			content->flag_comment = 1;
-			return (1);
+			return (temp);
 		}
 	} while (get_next_line(&content->line, fd) > 0);
-	return (0);
+	return (NULL);
 }
 
-int check_valid(t_asm_content *content, int fd)
+// int help_check_comment_champs(t_asm_content *content, int fd)
+// {
+// 	char *temp;
+
+// 	temp = "\0";
+// 	do {
+// 		temp = ft_strjoin(temp, content->line);
+		
+// 	} while (get_next_line(&content->line, fd) > 0);
+// 	return (0);
+// }
+
+char *check_valid(t_asm_content *content, int fd)
 {
 	if (content->flag_name && content->flag_comment && parse(content->line, PATTERN))
-		return (1);
-	else if (parse(content->line, PATTERN_NAME_CHAMPS_FIRST_STAGE))
+		return (content->line);
+	else if (parse(content->line, PATTERN_NAME_OR_COMMENT_CHAMPS_FIRST_STAGE))
 		return (help_check_name_champs(content, fd));
-	else if (parse(content->line, PATTERN_COMMENT_CHAMPS_FIRST_STAGE))
-		return (help_check_comment_champs(content, fd));
 	else if (parse(content->line, PATTERN_COMMENT))
-		return (1);
+		return (content->line);
 	else if (parse(content->line, PATTERN_SPACE_OR_EMPTY_LINE))
-		return (1);
-	return (0);
+		return (content->line);
+	return (NULL);
 }
 
 void	assemble(char *filename)
@@ -71,7 +70,7 @@ void	assemble(char *filename)
 		error();
 	content = init_content(fd);
 	while (get_next_line(fd, &content->line) > 0){
-		if (!check_valid(content, fd)){
+		if (!(content->line = check_valid(content, fd))){
 			printf("%s not valid, error in %d line\n",content->line, count);
 			return ;
 		}
