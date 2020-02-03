@@ -12,8 +12,9 @@
 
 #include "asm.h"
 
-int parse(char *str, char *pattern){
-    int err;
+int parse(char *str, char *pattern)
+{
+    int     err;
     regex_t reg1;
 
     err = regcomp(&reg1, pattern, REG_EXTENDED);
