@@ -62,6 +62,25 @@ char	*check_valid(t_asm_content *content, int fd)
 	return (NULL);
 }
 
+// char	*check_all_label(t_strings *rows)
+// {
+// 	t_token *pointer;
+// 	pointer = rows->string;
+// 	while (rows)
+// 	{
+// 		rows->string = pointer;
+// 		while (rows->string)
+// 		{
+// 			if (ft_strcmp(rows->string->type, DIRECT_LABEL_NAME) || ft_strcmp(rows->string->type, INDIRECT_LABEL_NAME))
+// 			{
+
+// 			}
+// 			rows->string->next;
+// 		}
+// 		rows = rows->next;
+// 	}
+// }
+
 void	assemble(char *filename)
 {
 	int				fd;
