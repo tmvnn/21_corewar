@@ -1,7 +1,19 @@
-.name "stayin' alive"
-.comment "Ha, Ha, Ha, stayiiiiin' aliiiiiiiiiive"
+.name "stayin' 
+
+jdskfh
+alive"
+
+    #dsklfjsdkfjlksdj
+
+
+.comment "Ha, Ha, Ha, stayiiiiin' 
+
+sdkfjsdlk
+
+ aliiiiiiiiiive"
+ 
 	
-sti	r1, %:live, %1			;change live by the right value
+
 sti	r1, %:live2, %1			;change live by the right value
 ld	%1, r3
 ld	%33, r6

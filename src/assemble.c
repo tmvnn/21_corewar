@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-char *help_check_name_champs(t_asm_content *content, int fd)
+char	*help_check_name_or_comment_champs(t_asm_content *content, int fd)
 {
 	char *temp;
 
@@ -21,36 +21,28 @@ char *help_check_name_champs(t_asm_content *content, int fd)
 		temp = ft_strjoin(temp, content->line);
 		if (parse(temp, PATTERN_NAME_CHAMPS))
 		{
+			if (content->flag_name == 1)
+				return (NULL);
 			content->flag_name = 1;
 			return (temp);
 		}
 		else if (parse(temp, PATTERN_COMMENT_CHAMPS))
 		{
+			if (content->flag_comment == 1)
+				return (NULL);
 			content->flag_comment = 1;
 			return (temp);
 		}
-	} while (get_next_line(&content->line, fd) > 0);
+	} while (get_next_line(fd, &content->line) > 0);
 	return (NULL);
 }
 
-// int help_check_comment_champs(t_asm_content *content, int fd)
-// {
-// 	char *temp;
-
-// 	temp = "\0";
-// 	do {
-// 		temp = ft_strjoin(temp, content->line);
-		
-// 	} while (get_next_line(&content->line, fd) > 0);
-// 	return (0);
-// }
-
-char *check_valid(t_asm_content *content, int fd)
+char	*check_valid(t_asm_content *content, int fd)
 {
 	if (content->flag_name && content->flag_comment && parse(content->line, PATTERN))
 		return (content->line);
 	else if (parse(content->line, PATTERN_NAME_OR_COMMENT_CHAMPS_FIRST_STAGE))
-		return (help_check_name_champs(content, fd));
+		return (help_check_name_or_comment_champs(content, fd));
 	else if (parse(content->line, PATTERN_COMMENT))
 		return (content->line);
 	else if (parse(content->line, PATTERN_SPACE_OR_EMPTY_LINE))
@@ -77,7 +69,6 @@ void	assemble(char *filename)
 		tokenizing(&content->line, &rows, &content);
 		count++;
 	}
-	printf("good file\n");
-	// printf("name: %s\ncomment: %s\n", content->name, content->comment);
-	// what_are_strings(rows);
+	printf("name: %s\ncomment: %s\n", content->name, content->comment);
+	what_are_strings(rows);
 }
