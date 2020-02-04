@@ -21,7 +21,9 @@
 # define REGISTER "^r[0-9]{1,2}$"
 # define DIRECT_LABEL "^%:[0-9a-z_]+$"
 # define DIRECT "^%-?0*[0-9]+$"
-# define PATTERN_NAME_CHAMPS "^[ 	]*[.]name[ 	]*\".{0,128}\"[ 	]*([#;].*)?$"
+# define INDIRECT_LABEL "^:[0-9a-z_]+$"
+# define INDIRECT "^-?[0-9]+$"
+# define PATTERN_NAME_CHAMPS "^[ 	]*[.]name[ 	]*\".*\"[ 	]*([#;].*)?$"
 # define PATTERN_COMMENT_CHAMPS "^[ 	]*[.]comment[ 	]*\".*\"[ 	]*([#;].*)?$"
 # define PATTERN_COMMENT "^ *[#;].*$"
 # define PATTERN_SPACE_OR_EMPTY_LINE "^[ 	]*$"
@@ -42,6 +44,8 @@
 # define EXP_ASM ".s"
 # define EXP_ASM_LEN 2
 # define BUFF_S 2048
+# define MAX_LEN_NAME_CHAMP 128
+# define MAX_LEN_COMMENT_CHAMP 2048
 
 # define LIVE "live"
 # define LD "ld"
@@ -65,6 +69,8 @@
 # define REGISTER_NAME "REGISTER"
 # define DIRECT_LABEL_NAME "DIRECT_LABEL"
 # define DIRECT_NAME "DIRECT"
+# define INDIRECT_LABEL_NAME "INDIRECT_LABEL"
+# define INDIRECT_NAME "INDIRECT"
 
 typedef	struct			s_token
 {	
@@ -84,6 +90,7 @@ typedef struct			s_asm_content
 	int					fd;
 	int					flag_name;
 	int					flag_comment;
+	int					flag_pattern;
 	char				*line;
 	char				**buff;
 	t_strings			**tokens;
