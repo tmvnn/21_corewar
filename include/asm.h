@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/02 19:43:21 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/06 21:00:46 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,6 @@
 # define BUFF_S 2048
 # define NULL_BYTECODE "00000000"
 
-# define LIVE "live"
-# define LD "ld"
-# define ST "st"
-# define ADD "add"
-# define SUB "sub"
-# define AND "and"
-# define OR "or"
-# define XOR "xor"
-# define ZJMP "zjmp"
-# define LDI "ldi"
-# define STI "sti"
-# define FORK "fork"
-# define LLD "lld"
-# define LLDI "lldi"
-# define LFORK "lfork"
-# define AFF "aff"
-
 typedef	struct			s_token
 {	
 	char				*content;
@@ -60,7 +43,8 @@ typedef struct			s_strings
 
 typedef struct			s_asm_content
 {	
-	int					fd;
+	int					fd_dst;
+	int					fd_src;
 	char				*line;
 	char				**buff;
 	t_strings			**tokens;
@@ -70,10 +54,10 @@ typedef struct			s_asm_content
 }						t_asm_content;
 
 /* asm_content.c */
-t_asm_content		*init_content(int fd);
+t_asm_content		*init_content();
 
 /* assemble.c */
-void				assemble(char *filename);
+void				assemble(char *filename, t_asm_content **content);
 
 /* buffer.c */
 void				clear_buff(char **buff);
@@ -83,7 +67,7 @@ char				**create_buff(char **line, t_asm_content **content);
 void				error(void);
 
 /* filename.c */
-int					valid_filename_asm(const char *filename);
+int					file(const char *filename, t_asm_content **content);
 
 /* helper.c - потом удалить */
 void				what_are_strings(t_strings *rows);

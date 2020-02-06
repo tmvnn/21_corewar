@@ -6,25 +6,22 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:06:42 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/02 19:46:59 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/06 21:01:15 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	assemble(char *filename)
+void	assemble(char *filename, t_asm_content **content)
 {
-	int				fd;
-	t_asm_content	*content;
 	t_strings		*rows;
 
 	rows = NULL;
-	if ((fd = open(filename, O_RDONLY)) == -1)
+	if (((*content)->fd_src = open(filename, O_RDONLY)) == -1)
 		error();
-	content = init_content(fd);
-	while (get_next_line(fd, &content->line) > 0)
-		tokenizing(&content->line, &rows, &content);
-	printf("name: %s\ncomment: %s\n", content->name, content->comment);
+	while (get_next_line((*content)->fd_src, &(*content)->line) > 0)
+		tokenizing(&(*content)->line, &rows, content);
+	printf("name: %s\ncomment: %s\n", (*content)->name, (*content)->comment);
 	what_are_strings(rows);
-	in_bytecode(&content);
+	in_bytecode(content);
 }

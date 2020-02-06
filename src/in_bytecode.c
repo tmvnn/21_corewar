@@ -6,13 +6,29 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 19:07:20 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/02 21:13:49 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:37:19 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void create_header(char *str, header_t **header, int size) {
+static void	convert_text(char **str, char *target, int size) {
+	uint8_t i;
+	size_t	size_target;
+	char	*copy;
+
+	i = 0;
+	size_target = 0;
+	ft_bzero(*str, size);
+	copy = *str;
+	while (size_target--) {
+		*copy = (uint8_t)(*target) & 255;
+		target++;
+		copy++;
+	}
+}
+
+static void create_header(char *str, header_t **header, size_t size) {
 	header_t    *copy;
 	char		*pointer;
 
@@ -23,10 +39,7 @@ static void create_header(char *str, header_t **header, int size) {
 		pointer = copy->comment;
 	if (!str || ft_strlen(str) > size)
 		error();
-	while (pointer && size--) {
-		// тут должен быть перевод двоичного числа в шестнадцатеричное с помощью
-		// itoa_base и еще одной вспомогательной функции
-	}
+	convert_text(&pointer, str, size);
 }
 
 void        in_bytecode(t_asm_content **content) {
