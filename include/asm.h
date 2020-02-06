@@ -44,8 +44,6 @@
 # define EXP_ASM ".s"
 # define EXP_ASM_LEN 2
 # define BUFF_S 2048
-# define MAX_LEN_NAME_CHAMP 128
-# define MAX_LEN_COMMENT_CHAMP 2048
 
 # define LIVE "live"
 # define LD "ld"

@@ -16,7 +16,8 @@ t_asm_content	*init_content(int fd)
 {
 	t_asm_content	*content;
 
-	content = (t_asm_content *)ft_memalloc(sizeof(t_asm_content));
+	if ((content = (t_asm_content *)ft_memalloc(sizeof(t_asm_content))))
+		return (NULL);
 	content->fd = fd;
 	content->flag_name = 0;
 	content->flag_comment = 0;

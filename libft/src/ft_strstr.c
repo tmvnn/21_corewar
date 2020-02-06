@@ -3,40 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramory-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yperra-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/25 17:30:47 by ramory-l          #+#    #+#             */
-/*   Updated: 2018/11/25 17:30:47 by ramory-l         ###   ########.fr       */
+/*   Created: 2018/12/04 11:08:07 by yperra-f          #+#    #+#             */
+/*   Updated: 2018/12/19 16:02:24 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-char	*ft_strstr(const char *haystack, const char *needle)
+static	char	*ft_help(char *s1, char *s2)
 {
-	int i;
-	int find_index;
-	int remember;
+	size_t	i;
+	size_t	j;
+	size_t	k;
 
 	i = 0;
-	if (needle[0] == '\0')
-		return ((char *)haystack);
-	while (haystack[i] != '\0')
+	j = 0;
+	while (s1[i] != '\0')
 	{
-		find_index = 0;
-		if (haystack[i] == needle[find_index])
+		k = i;
+		while (s1[k] == s2[j] && s1[k] != '\0')
 		{
-			remember = i;
-			while (haystack[i] == needle[find_index])
-			{
-				if (needle[find_index + 1] == '\0')
-					return (&((char *)haystack)[remember]);
-				find_index++;
-				i++;
-			}
-			i = remember;
+			j++;
+			k++;
 		}
+		if (s2[j] == '\0')
+			return (s1 + i);
+		else if (s1[k] != s2[j] && s2[j] != '\0')
+			j = 0;
 		i++;
 	}
-	return (0);
+	if (s1[i] == '\0' && s2[j] != '\0')
+		return (NULL);
+	return (s1 + i);
+}
+
+char			*ft_strstr(const char *string1, const char *string2)
+{
+	size_t		i;
+	size_t		j;
+	char		*s1;
+	char		*s2;
+
+	s1 = (char *)string1;
+	s2 = (char *)string2;
+	i = ft_strlen(string1);
+	j = ft_strlen(string2);
+	if (*s1 == '\0' && *s2 == '\0')
+		return (s2);
+	if (*s2 != '\0' && *s1 == '\0')
+		return (NULL);
+	if (*s2 == '\0' && *s1 != '\0')
+		return (s1);
+	if (j > i)
+		return (NULL);
+	return (ft_help(s1, s2));
 }

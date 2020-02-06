@@ -14,18 +14,23 @@
 
 int     parse(char *str, char *pattern)
 {
-    int     err;
-    regex_t reg1;
+    int         err;
+    regex_t     reg1;
+    regmatch_t  pm;
 
     err = regcomp(&reg1, pattern, REG_EXTENDED);
-    if (err != 0){
+    if (err != 0)
+    {
+        regfree(&reg1);
         printf("error with regex in file interpretation.c\n");
         return (0);
     }
-    regmatch_t pm;
-    if (!regexec(&reg1, str, 0, &pm, 0)){
+    if (!regexec(&reg1, str, 0, &pm, 0))
+    {
+        regfree(&reg1);
         return (1);
     }
+    regfree(&reg1);
     return (0);
 }
 

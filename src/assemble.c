@@ -19,10 +19,11 @@ char	*help_check_name_or_comment_champs(t_asm_content *content, int fd)
 	temp = "\0";
 	do {
 		temp = ft_strjoin(temp, content->line);
+		ft_strdel(&content->line);
 		if (parse(temp, PATTERN_NAME_CHAMPS))
 		{
 			// printf("PATTERN_NAME_CHAMPS\n");
-			if (content->flag_name == 1 || strlen(temp) > MAX_LEN_NAME_CHAMP)
+			if (content->flag_name == 1 || strlen(temp) > PROG_NAME_LENGTH)
 				return (NULL);
 			content->flag_name = 1;
 			return (temp);
@@ -30,7 +31,7 @@ char	*help_check_name_or_comment_champs(t_asm_content *content, int fd)
 		else if (parse(temp, PATTERN_COMMENT_CHAMPS))
 		{
 			// printf("PATTERN_COMMENT_CHAMPS\n");
-			if (content->flag_comment == 1 || strlen(temp) > MAX_LEN_COMMENT_CHAMP)
+			if (content->flag_comment == 1 || strlen(temp) > COMMENT_LENGTH)
 				return (NULL);
 			content->flag_comment = 1;
 			return (temp);
@@ -62,24 +63,93 @@ char	*check_valid(t_asm_content *content, int fd)
 	return (NULL);
 }
 
-// char	*check_all_label(t_strings *rows)
-// {
-// 	t_token *pointer;
-// 	pointer = rows->string;
-// 	while (rows)
-// 	{
-// 		rows->string = pointer;
-// 		while (rows->string)
-// 		{
-// 			if (ft_strcmp(rows->string->type, DIRECT_LABEL_NAME) || ft_strcmp(rows->string->type, INDIRECT_LABEL_NAME))
-// 			{
+char	*search_label(t_strings *rows, char *content)
+{
+	t_token		*pointer;
+	t_strings	*struct_pointer;
+	char		*temp;
+	char		*temp1;
 
-// 			}
-// 			rows->string->next;
-// 		}
-// 		rows = rows->next;
-// 	}
+	struct_pointer = rows;
+	while (struct_pointer)
+	{
+		pointer = struct_pointer->string;
+		while (pointer)
+		{
+			if (!ft_strcmp(pointer->type, LABEL_NAME) && parse(content, DIRECT_LABEL) && !ft_strcmp((temp = ft_strsub(pointer->content, 0, strlen(pointer->content) - 1)), (temp1 = ft_strsub(content, 2, strlen(content)))))
+			{
+				ft_strdel(&temp);
+				ft_strdel(&temp1);
+				return (content);
+			}
+			else if (!ft_strcmp(pointer->type, LABEL_NAME) && parse(content, INDIRECT_LABEL) && !ft_strcmp((temp = ft_strsub(pointer->content, 0, strlen(pointer->content) - 1)), (temp1 = ft_strsub(content, 1, strlen(content)))))
+			{
+				ft_strdel(&temp);
+				ft_strdel(&temp1);
+				return (content);
+			}
+			
+			pointer = pointer->next;
+		}
+		struct_pointer = struct_pointer->next;
+	}
+	return (NULL);
+}
+
+char	*clean_memory_t_strings(t_strings *rows)
+{
+	t_token *pointer;
+	t_token *previous;
+
+	while (rows)
+	{
+		pointer = rows->string;
+		while (pointer)
+		{
+			ft_strdel(&pointer->content);
+			ft_strdel(&pointer->type);
+			previous = pointer;
+			pointer = pointer->next;
+			free(previous);
+		}
+		rows = rows->next;
+	}
+	return(NULL);
+}
+
+// char	*clean_memory_t_asm_content(t_asm_content *content)
+// {
+// 	ft_strdel(&content->line)
 // }
+
+char	*clean_memory(t_strings *rows)
+{
+	//  && clean_memoty_t_asm_content(content)
+	return (clean_memory_t_strings(rows));
+}
+
+char	*check_all_label(t_strings *rows)
+{
+	t_token		*pointer;
+	t_strings	*struct_pointer;
+
+	struct_pointer = rows;
+	while (struct_pointer)
+	{
+		pointer = struct_pointer->string;
+		while (pointer)
+		{
+			if (!ft_strcmp(pointer->type, DIRECT_LABEL_NAME) || !ft_strcmp(pointer->type, INDIRECT_LABEL_NAME))
+			{
+				if (!search_label(rows, pointer->content))
+					return (clean_memory_t_strings(rows));
+			}
+			pointer = pointer->next;
+		}
+		struct_pointer = struct_pointer->next;
+	}
+	return ("very good");
+}
 
 void	assemble(char *filename)
 {
@@ -89,10 +159,10 @@ void	assemble(char *filename)
 	int				count;
 
 	rows = NULL;
+	content = NULL;
 	count = 1;
-	if ((fd = open(filename, O_RDONLY)) == -1)
+	if (!(fd = open(filename, O_RDONLY)) || !(content = init_content(fd)))
 		error();
-	content = init_content(fd);
 	while (get_next_line(fd, &content->line) > 0)
 	{
 		if (!(content->line = check_valid(content, fd))){
@@ -103,7 +173,7 @@ void	assemble(char *filename)
 		// printf("line:%d\n", count);
 		count++;
 	}
-	if (!content->flag_pattern)
+	if (!content->flag_pattern || !check_all_label(rows))
 	{
 		printf("not valid file\n");
 		return ;
@@ -111,4 +181,5 @@ void	assemble(char *filename)
 	printf("good file\n");
 	printf("name: %s\ncomment: %s\n", content->name, content->comment);
 	what_are_strings(rows);
+	clean_memory(rows);
 }
