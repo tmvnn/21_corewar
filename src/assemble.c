@@ -151,6 +151,144 @@ char	*check_all_label(t_strings *rows)
 	return ("very good");
 }
 
+void	fill_write_code_instraction(char *content, int fd)
+{
+	char c;
+
+	c = 0;
+	if (!ft_strcmp(content, "live"))
+		c |= LIVE;
+	else if (!ft_strcmp(content, "ld"))
+		c |= LD;
+	else if (!ft_strcmp(content, "st"))
+		c |= ST;
+	else if (!ft_strcmp(content, "add"))
+		c |= ADD;
+	else if (!ft_strcmp(content, "and"))
+		c |= AND;
+	else if (!ft_strcmp(content, "or"))
+		c |= OR;
+	write(fd, &c, 1);
+}
+
+int		check(t_token *pointer)
+{
+	if (!ft_strcmp(pointer->type, INSTRACTION_NAME) && (!ft_strcmp(pointer->content, LIVE_NAME) || !ft_strcmp(pointer->content, FORK_NAME) || !ft_strcmp(pointer->content, LFORK_NAME) || !ft_strcmp(pointer->content, ZJMP_NAME)))
+		return (0);
+	return (1);
+}
+
+char	fill_t_reg(int iter, char c)
+{
+	if (iter == 1)
+		c |= 64;
+	else if (iter == 2)
+		c |= 16;
+	else if (iter == 3)
+		c |= 4;
+	return (c);
+}
+
+char	fill_t_dir(int iter, char c)
+{
+	if (iter == 1)
+		c |= 128;
+	else if (iter == 2)
+		c |= 32;
+	else if (iter == 3)
+		c |= 8;
+	return (c);
+}
+
+char	fill_t_ind(int iter, char c)
+{
+	if (iter == 1)
+		c |= 192;
+	else if (iter == 2)
+		c |= 48;
+	else if (iter == 3)
+		c |= 12;
+	return (c);
+}
+
+void	fill_write_code_arg(t_token *pointer, int fd)
+{
+	int		iter;
+	char	c;
+
+	c = 0;
+	iter = 1;
+	while (pointer)
+	{
+		if (!ft_strcmp(pointer->type, DIRECT) || !ft_strcmp(pointer->type, DIRECT_LABEL))
+			c = fill_t_dir(iter, c);
+		else if (!ft_strcmp(pointer->type, INDIRECT) || !ft_strcmp(pointer->type, INDIRECT_LABEL))
+			c = fill_t_ind(iter, c);
+		else if (!ft_strcmp(pointer->type, REGISTER))
+			c = fill_t_reg(iter, c);
+		iter++;
+		pointer = pointer->next;
+	}
+	write(fd, &c, 1);
+}
+
+void	write_args(int flag, char *content, char *type)
+{
+	if 
+}
+
+void	fill_write_arg(t_token *pointer, int fd)
+{
+	t_token	*pointer_start;
+	int		flag;
+
+	pointer_start = pointer;
+	flag = 0;
+	while (pointer)
+	{
+		if (!ft_strcmp(pointer->type, INSTRACTION) && (!ft_strcmp(pointer->content, ZJMP) || !ft_strcmp(pointer->content, LDI) || !ft_strcmp(pointer->content, STI) || !ft_strcmp(pointer->content, FORK) || !ft_strcmp(pointer->content, LLDI) || !ft_strcmp(pointer->content, LFORK)))
+			flag = 1;
+		else if (!ft_strcmp(pointer->type, REGISTER))
+			write_args(flag, atoi(ft_strsub(pointer->content, 1, strlen(pointer->content)), pointer->type);
+		else if (!ft_strcmp(pointer->type, DIRECT))
+			write_args(flag, atoi(ft_strsub(pointer->content, 1, strlen(pointer->content))), pointer->type);
+		else if (!ft_strcmp(pointer->type, DIRECT_LABEL))
+			write_args(flag, search_instraction(ft_strsub(pointer->content, 2, strlen(pointer->content))) - pointer->memory_size, pointer->type);
+		else if (!ft_strcmp(pointer->type, INDIRECT_LABEL))
+			write_args(flag, search_instraction(ft_strsub(pointer->content, 1, strlen(pointer->content))) - pointer->memory_size, pointer->type);
+		else if (!ft_strcmp(pointer->type, INDIRECT))
+			write_args(flag, atoi(pointer->content), pointer->type);
+		pointer = pointer->next;
+	}
+}
+
+void	fill_write(t_token *pointer, char *filename)
+{
+	int fd;
+
+	fd = open(ft_strjoin(ft_strsub(filename, 0, ft_strlen(filename) - 2), ".cor"), O_CREAT | O_RDWR | O_APPEND, 664);
+	fill_write_code_instraction(pointer->content, fd);
+	if (check(pointer))
+		fill_write_code_arg(pointer, fd);
+	fill_write_arg(pointer, fd);
+}
+
+void	fill_file(t_strings *rows, char *filename)
+{
+	t_token *pointer;
+	while (rows)
+	{
+		pointer = rows->string;
+		while (pointer)
+		{
+			if (!ft_strcmp(pointer->type, INSTRACTION))
+				fill_write(pointer, filename);
+			pointer = pointer->next;
+		}
+		rows = rows->next;
+	}
+}
+
 void	assemble(char *filename)
 {
 	int				fd;
@@ -180,6 +318,7 @@ void	assemble(char *filename)
 	}
 	printf("good file\n");
 	printf("name: %s\ncomment: %s\n", content->name, content->comment);
+	fill_file(rows, filename);
 	what_are_strings(rows);
-	clean_memory(rows);
+	// clean_memory(rows);
 }
