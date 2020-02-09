@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 19:07:20 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/06 20:37:19 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/09 17:00:22 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,8 @@ static void create_header(char *str, header_t **header, size_t size) {
 void        in_bytecode(t_asm_content **content) {
 	create_header((*content)->name, &(*content)->header, PROG_NAME_LENGTH + 1);
 	create_header((*content)->comment, &(*content)->header, COMMENT_LENGTH + 1);
+	(*content)->bytecode_header = (char *)ft_memalloc(HEADER_SIZE * sizeof(char));
+	write((*content)->fd_dst, (*content)->name, PROG_NAME_LENGTH);
+	ft_strdel(&(*content)->bytecode_header);
+	printf("\n%d\n", HEADER_SIZE);
 }

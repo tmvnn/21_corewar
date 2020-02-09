@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/06 21:00:46 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:57:54 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,12 @@
 # include <sys/uio.h>
 
 # define EXP_ASM ".s"
+# define EXP_COR ".cor"
 # define EXP_ASM_LEN 2
 # define BUFF_S 2048
 # define NULL_BYTECODE "00000000"
+# define OCTET_SIZE 8
+# define HEADER_SIZE (PROG_NAME_LENGTH + COMMENT_LENGTH + (4 * OCTET_SIZE)) 
 
 typedef	struct			s_token
 {	
@@ -51,6 +54,7 @@ typedef struct			s_asm_content
 	char				*name;
 	char				*comment;
 	header_t			*header;
+	char				*bytecode_header;
 }						t_asm_content;
 
 /* asm_content.c */
