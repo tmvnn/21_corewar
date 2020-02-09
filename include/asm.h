@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/09 16:57:54 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/09 19:17:03 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@
 # define BUFF_S 2048
 # define NULL_BYTECODE "00000000"
 # define OCTET_SIZE 8
-# define HEADER_SIZE (PROG_NAME_LENGTH + COMMENT_LENGTH + (4 * OCTET_SIZE)) 
+# define HEADER_SIZE (PROG_NAME_LENGTH + COMMENT_LENGTH + (4 * OCTET_SIZE))
+# define FOURTH_BYTE 3 
 
 typedef	struct			s_token
 {	
@@ -55,6 +56,7 @@ typedef struct			s_asm_content
 	char				*comment;
 	header_t			*header;
 	char				*bytecode_header;
+	unsigned int		exec_code_size;
 }						t_asm_content;
 
 /* asm_content.c */
