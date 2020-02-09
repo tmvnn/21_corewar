@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   in_bytecode.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 19:07:20 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/09 20:01:48 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/09 21:31:20 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,13 @@ static void	convert_text(char **dst, char *src, size_t size) {
 	char	*copy;
 
 	copy = *dst;
-	src = NULL;
-	ft_bzero(copy, size);
 	while (size--) {
 		if (*src)
-			*copy = (uint8_t)(*src);
+			*copy++ = (uint8_t)(*src++);
 		else
-			*copy = '\0';
-		src++;
-		copy++;
+			*copy++ = 0;
+		//src++; ERROR put to 3rd line above this line
+		//copy++;
 	}
 }
 
@@ -50,7 +48,7 @@ static void create_header(char *src, header_t **header, size_t size) {
 	if (size == PROG_NAME_LENGTH + 1)
 		pointer = copy->prog_name;
 	else
-		pointer = copy->comment;
+		 pointer = copy->comment;
 	if (!src || ft_strlen(src) > size)
 		error();
 	convert_text(&pointer, src, size);
@@ -59,10 +57,14 @@ static void create_header(char *src, header_t **header, size_t size) {
 static void header(t_asm_content **content) {
 	convert_four_byte(content, COREWAR_EXEC_MAGIC, 0);
 	create_header((*content)->name, &(*content)->header, PROG_NAME_LENGTH + 1);
-	ft_memcpy((*content)->bytecode_header + 4, (*content)->name, PROG_NAME_LENGTH);
-	// convert_four_byte(content, (*content)->exec_code_size, 4 + PROG_NAME_LENGTH);
+	ft_memcpy((*content)->bytecode_header + 4, (*content)->header->prog_name, PROG_NAME_LENGTH);
+	//Before: ft_memcpy((*content)->bytecode_header + 4, (*content)->name, PROG_NAME_LENGTH);
+	
+	convert_four_byte(content, (*content)->exec_code_size, 4 + PROG_NAME_LENGTH);
 	create_header((*content)->comment, &(*content)->header, COMMENT_LENGTH + 1);
-	// ft_memcpy((*content)->bytecode_header + 8 + PROG_NAME_LENGTH, (*content)->name, PROG_NAME_LENGTH);
+	
+	ft_memcpy((*content)->bytecode_header + 8 + PROG_NAME_LENGTH, (*content)->header->comment, PROG_NAME_LENGTH);
+	//Before: ft_memcpy((*content)->bytecode_header + 8 + PROG_NAME_LENGTH, (*content)->name, PROG_NAME_LENGTH);
 }
 
 void        in_bytecode(t_asm_content **content) {
