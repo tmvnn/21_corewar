@@ -79,7 +79,9 @@
 # define LFORK_NAME "lfork"
 # define AFF_NAME "aff"
 
-
+# define ONE_BYTE 1
+# define TWO_BYTE 2
+# define FOUR_BYTE 4
 
 # define LABEL_NAME "LABEL"
 # define INSTRACTION_NAME "INSTRACTION"

@@ -156,18 +156,36 @@ void	fill_write_code_instraction(char *content, int fd)
 	char c;
 
 	c = 0;
-	if (!ft_strcmp(content, "live"))
+	if (!ft_strcmp(content, LIVE_NAME))
 		c |= LIVE;
-	else if (!ft_strcmp(content, "ld"))
+	else if (!ft_strcmp(content, LD_NAME))
 		c |= LD;
-	else if (!ft_strcmp(content, "st"))
+	else if (!ft_strcmp(content, ST_NAME))
 		c |= ST;
-	else if (!ft_strcmp(content, "add"))
+	else if (!ft_strcmp(content, ADD_NAME))
 		c |= ADD;
-	else if (!ft_strcmp(content, "and"))
+	else if (!ft_strcmp(content, AND_NAME))
 		c |= AND;
-	else if (!ft_strcmp(content, "or"))
+	else if (!ft_strcmp(content, OR_NAME))
 		c |= OR;
+	else if (!ft_strcmp(content, XOR_NAME))
+		c |= XOR;
+	else if (!ft_strcmp(content, ZJMP_NAME))
+		c |= ZJMP;
+	else if (!ft_strcmp(content, LDI_NAME))
+		c |= LDI;
+	else if (!ft_strcmp(content, STI_NAME))
+		c |= STI;
+	else if (!ft_strcmp(content, FORK_NAME))
+		c |= FORK;
+	else if (!ft_strcmp(content, LLD_NAME))
+		c |= LLD;
+	else if (!ft_strcmp(content, LLDI_NAME))
+		c |= LLDI;
+	else if (!ft_strcmp(content, LFORK_NAME))
+		c |= LFORK;
+	else if (!ft_strcmp(content, ADD_NAME))
+		c |= ADD;
 	write(fd, &c, 1);
 }
 
@@ -232,12 +250,40 @@ void	fill_write_code_arg(t_token *pointer, int fd)
 	write(fd, &c, 1);
 }
 
-void	write_args(int flag, char *content, char *type)
+void	write_args(int length, int num, int fd)
 {
-	if 
+	char	temp[4];
+	int		i;
+	int		iter;
+
+	i = 0;
+	iter = 0;
+	while (i < length)
+	{
+		temp[i] = (char)(num >> iter);
+		i++;
+		iter += 8;
+	}
+	write(fd, temp, length);
 }
 
-void	fill_write_arg(t_token *pointer, int fd)
+int		search_instraction(char *content, t_strings *rows)
+{
+	t_token *pointer;
+
+	pointer = rows->string;
+	while (rows)
+	{
+		while (pointer)
+		{
+			if (!ft_strcmp(pointer->content, content))
+				return (pointer->memory_size);
+		}
+	}
+	return (0);
+}
+
+void	fill_write_arg(t_token *pointer, int fd, t_strings *rows)
 {
 	t_token	*pointer_start;
 	int		flag;
@@ -249,20 +295,20 @@ void	fill_write_arg(t_token *pointer, int fd)
 		if (!ft_strcmp(pointer->type, INSTRACTION) && (!ft_strcmp(pointer->content, ZJMP) || !ft_strcmp(pointer->content, LDI) || !ft_strcmp(pointer->content, STI) || !ft_strcmp(pointer->content, FORK) || !ft_strcmp(pointer->content, LLDI) || !ft_strcmp(pointer->content, LFORK)))
 			flag = 1;
 		else if (!ft_strcmp(pointer->type, REGISTER))
-			write_args(flag, atoi(ft_strsub(pointer->content, 1, strlen(pointer->content)), pointer->type);
+			write_args(ONE_BYTE, atoi(ft_strsub(pointer->content, 1, strlen(pointer->content))), fd);
 		else if (!ft_strcmp(pointer->type, DIRECT))
-			write_args(flag, atoi(ft_strsub(pointer->content, 1, strlen(pointer->content))), pointer->type);
+			write_args(flag ? TWO_BYTE : FOUR_BYTE, atoi(ft_strsub(pointer->content, 1, strlen(pointer->content))), fd);
 		else if (!ft_strcmp(pointer->type, DIRECT_LABEL))
-			write_args(flag, search_instraction(ft_strsub(pointer->content, 2, strlen(pointer->content))) - pointer->memory_size, pointer->type);
+			write_args(flag ? TWO_BYTE : FOUR_BYTE, search_instraction(ft_strsub(pointer->content, 2, strlen(pointer->content)), rows) - pointer->memory_size, fd);
 		else if (!ft_strcmp(pointer->type, INDIRECT_LABEL))
-			write_args(flag, search_instraction(ft_strsub(pointer->content, 1, strlen(pointer->content))) - pointer->memory_size, pointer->type);
+			write_args(TWO_BYTE, search_instraction(ft_strsub(pointer->content, 1, strlen(pointer->content)), rows) - pointer->memory_size, fd);
 		else if (!ft_strcmp(pointer->type, INDIRECT))
-			write_args(flag, atoi(pointer->content), pointer->type);
+			write_args(TWO_BYTE, atoi(pointer->content), fd);
 		pointer = pointer->next;
 	}
 }
 
-void	fill_write(t_token *pointer, char *filename)
+void	fill_write(t_token *pointer, char *filename, t_strings *rows)
 {
 	int fd;
 
@@ -270,19 +316,22 @@ void	fill_write(t_token *pointer, char *filename)
 	fill_write_code_instraction(pointer->content, fd);
 	if (check(pointer))
 		fill_write_code_arg(pointer, fd);
-	fill_write_arg(pointer, fd);
+	fill_write_arg(pointer, fd, rows);
 }
 
 void	fill_file(t_strings *rows, char *filename)
 {
-	t_token *pointer;
+	t_token		*pointer;
+	t_strings	*rows_start;
+
+	rows_start = rows;
 	while (rows)
 	{
 		pointer = rows->string;
 		while (pointer)
 		{
 			if (!ft_strcmp(pointer->type, INSTRACTION))
-				fill_write(pointer, filename);
+				fill_write(pointer, filename, rows);
 			pointer = pointer->next;
 		}
 		rows = rows->next;
