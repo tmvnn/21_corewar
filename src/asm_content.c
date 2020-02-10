@@ -22,6 +22,7 @@ t_asm_content	*init_content(int fd)
 	content->flag_name = 0;
 	content->flag_comment = 0;
 	content->flag_pattern = 0;
+	content->memory_code_size = 0;
 	content->line = NULL;
 	content->tokens = NULL;
 	content->name = NULL;

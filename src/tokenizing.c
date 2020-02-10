@@ -26,7 +26,9 @@ static void	add_token(t_token **token, char *content)
 			error();
 		(*token)->content = ft_strdup(content);
 		interpretation(*token);
+		(*token)->memory_size = 0;
 		(*token)->next = NULL;
+		(*token)->previous = NULL;
 	}
 	else
 	{
@@ -35,9 +37,11 @@ static void	add_token(t_token **token, char *content)
 		new->content = ft_strdup(content);
 		interpretation(new);
 		new->next = NULL;
+		new->memory_size = 0;
 		while (copy->next)
 			copy = copy->next;
 		copy->next = new;
+		new->previous = copy;
 	}
 }
 

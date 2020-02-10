@@ -124,15 +124,31 @@ char	*clean_memory_t_strings(t_strings *rows)
 
 char	*clean_memory(t_strings *rows)
 {
-	//  && clean_memoty_t_asm_content(content)
+	//  && clean_memory_t_asm_content(content)
 	return (clean_memory_t_strings(rows));
 }
 
-char	*check_all_label(t_strings *rows)
+int		check(t_token *pointer)
+{
+	if (!ft_strcmp(pointer->type, INSTRACTION_NAME) && (!ft_strcmp(pointer->content, LIVE_NAME) || !ft_strcmp(pointer->content, FORK_NAME) || !ft_strcmp(pointer->content, LFORK_NAME) || !ft_strcmp(pointer->content, ZJMP_NAME)))
+		return (0);
+	return (1);
+}
+
+int		check_t_dir_size(t_token *pointer)
+{
+	if (!ft_strcmp(pointer->content, ZJMP_NAME) || !ft_strcmp(pointer->content, LDI_NAME) || !ft_strcmp(pointer->content, STI_NAME) || !ft_strcmp(pointer->content, FORK_NAME) || !ft_strcmp(pointer->content, LLDI_NAME) || !ft_strcmp(pointer->content, LFORK_NAME))
+		return (0);
+	return (1);
+}
+
+char	*check_all_label(t_strings *rows, t_asm_content *struct_content)
 {
 	t_token		*pointer;
 	t_strings	*struct_pointer;
+	int			flag;
 
+	flag = 0;
 	struct_pointer = rows;
 	while (struct_pointer)
 	{
@@ -144,8 +160,26 @@ char	*check_all_label(t_strings *rows)
 				if (!search_label(rows, pointer->content))
 					return (clean_memory_t_strings(rows));
 			}
+			if (!ft_strcmp(pointer->type, INSTRACTION_NAME))
+			{
+				pointer->memory_size = struct_content->memory_code_size;
+				if (check(pointer))
+					struct_content->memory_code_size += ONE_BYTE;
+				if (check_t_dir_size(pointer))
+					flag = 1;
+				struct_content->memory_code_size += ONE_BYTE;
+				printf("%s %d\n", pointer->content, pointer->memory_size);
+			}
+			else if (!ft_strcmp(pointer->type, REGISTER_NAME))
+				struct_content->memory_code_size += ONE_BYTE;
+			else if (!ft_strcmp(pointer->type, INDIRECT_NAME) || !ft_strcmp(pointer->type, INDIRECT_LABEL_NAME))
+				struct_content->memory_code_size += TWO_BYTE;
+			else if (!ft_strcmp(pointer->type, DIRECT_NAME) || !ft_strcmp(pointer->type, DIRECT_LABEL_NAME))
+				struct_content->memory_code_size += flag ? FOUR_BYTE : TWO_BYTE;
+			// printf("%s - %d\n", pointer->content, struct_content->memory_code_size);
 			pointer = pointer->next;
 		}
+		flag = 0;
 		struct_pointer = struct_pointer->next;
 	}
 	return ("very good");
@@ -155,7 +189,7 @@ void	fill_write_code_instraction(char *content, int fd)
 {
 	char c;
 
-	c = 0;
+	c = '\0';
 	if (!ft_strcmp(content, LIVE_NAME))
 		c |= LIVE;
 	else if (!ft_strcmp(content, LD_NAME))
@@ -187,13 +221,6 @@ void	fill_write_code_instraction(char *content, int fd)
 	else if (!ft_strcmp(content, ADD_NAME))
 		c |= ADD;
 	write(fd, &c, 1);
-}
-
-int		check(t_token *pointer)
-{
-	if (!ft_strcmp(pointer->type, INSTRACTION_NAME) && (!ft_strcmp(pointer->content, LIVE_NAME) || !ft_strcmp(pointer->content, FORK_NAME) || !ft_strcmp(pointer->content, LFORK_NAME) || !ft_strcmp(pointer->content, ZJMP_NAME)))
-		return (0);
-	return (1);
 }
 
 char	fill_t_reg(int iter, char c)
@@ -238,13 +265,14 @@ void	fill_write_code_arg(t_token *pointer, int fd)
 	iter = 1;
 	while (pointer)
 	{
-		if (!ft_strcmp(pointer->type, DIRECT) || !ft_strcmp(pointer->type, DIRECT_LABEL))
+		if (!ft_strcmp(pointer->type, DIRECT_NAME) || !ft_strcmp(pointer->type, DIRECT_LABEL_NAME))
 			c = fill_t_dir(iter, c);
-		else if (!ft_strcmp(pointer->type, INDIRECT) || !ft_strcmp(pointer->type, INDIRECT_LABEL))
+		else if (!ft_strcmp(pointer->type, INDIRECT_NAME) || !ft_strcmp(pointer->type, INDIRECT_LABEL_NAME))
 			c = fill_t_ind(iter, c);
-		else if (!ft_strcmp(pointer->type, REGISTER))
+		else if (!ft_strcmp(pointer->type, REGISTER_NAME))
 			c = fill_t_reg(iter, c);
-		iter++;
+		if (ft_strcmp(pointer->type, LABEL_NAME) && ft_strcmp(pointer->type, INSTRACTION_NAME))
+			iter++;
 		pointer = pointer->next;
 	}
 	write(fd, &c, 1);
@@ -283,43 +311,73 @@ int		search_instraction(char *content, t_strings *rows)
 	return (0);
 }
 
+int		search_instraction_two(t_token *pointer)
+{
+	while (pointer)
+	{
+		if (!ft_strcmp(pointer->type, INSTRACTION_NAME))
+			return (pointer->memory_size);
+		pointer = pointer->previous;
+	}
+	return (0);
+}
+
 void	fill_write_arg(t_token *pointer, int fd, t_strings *rows)
 {
-	t_token	*pointer_start;
 	int		flag;
 
-	pointer_start = pointer;
 	flag = 0;
 	while (pointer)
 	{
-		if (!ft_strcmp(pointer->type, INSTRACTION) && (!ft_strcmp(pointer->content, ZJMP) || !ft_strcmp(pointer->content, LDI) || !ft_strcmp(pointer->content, STI) || !ft_strcmp(pointer->content, FORK) || !ft_strcmp(pointer->content, LLDI) || !ft_strcmp(pointer->content, LFORK)))
+		// write(1, "hello", 5);
+		if (!ft_strcmp(pointer->type, INSTRACTION_NAME) && check_t_dir_size(pointer))
 			flag = 1;
-		else if (!ft_strcmp(pointer->type, REGISTER))
+		else if (!ft_strcmp(pointer->type, REGISTER_NAME))
 			write_args(ONE_BYTE, atoi(ft_strsub(pointer->content, 1, strlen(pointer->content))), fd);
-		else if (!ft_strcmp(pointer->type, DIRECT))
-			write_args(flag ? TWO_BYTE : FOUR_BYTE, atoi(ft_strsub(pointer->content, 1, strlen(pointer->content))), fd);
-		else if (!ft_strcmp(pointer->type, DIRECT_LABEL))
-			write_args(flag ? TWO_BYTE : FOUR_BYTE, search_instraction(ft_strsub(pointer->content, 2, strlen(pointer->content)), rows) - pointer->memory_size, fd);
-		else if (!ft_strcmp(pointer->type, INDIRECT_LABEL))
-			write_args(TWO_BYTE, search_instraction(ft_strsub(pointer->content, 1, strlen(pointer->content)), rows) - pointer->memory_size, fd);
-		else if (!ft_strcmp(pointer->type, INDIRECT))
+		else if (!ft_strcmp(pointer->type, DIRECT_NAME))
+			write_args(flag ? FOUR_BYTE : TWO_BYTE, atoi(ft_strsub(pointer->content, 1, strlen(pointer->content))), fd);
+		else if (!ft_strcmp(pointer->type, DIRECT_LABEL_NAME))
+		{
+			write(1, "hello", 5);
+			write_args(flag ? FOUR_BYTE : TWO_BYTE, search_instraction(ft_strsub(pointer->content, 2, strlen(pointer->content)), rows) - search_instraction_two(pointer), fd);
+			write(1, "hello", 5);
+			printf("%d\n", search_instraction(ft_strsub(pointer->content, 2, strlen(pointer->content)), rows) - search_instraction_two(pointer));
+		}
+		else if (!ft_strcmp(pointer->type, INDIRECT_LABEL_NAME))
+		{
+			write(1, "hello", 5);
+			printf("%d\n", search_instraction(ft_strsub(pointer->content, 1, strlen(pointer->content)), rows) - search_instraction_two(pointer));
+			write(1, "hello", 5);
+			write_args(TWO_BYTE, search_instraction(ft_strsub(pointer->content, 1, strlen(pointer->content)), rows) - search_instraction_two(pointer), fd);
+		}
+		else if (!ft_strcmp(pointer->type, INDIRECT_NAME))
 			write_args(TWO_BYTE, atoi(pointer->content), fd);
 		pointer = pointer->next;
 	}
 }
 
-void	fill_write(t_token *pointer, char *filename, t_strings *rows)
+int		fill_write(t_token *pointer, char *filename, t_strings *rows)
 {
-	int fd;
+	int		fd;
+	char	*str;
 
-	fd = open(ft_strjoin(ft_strsub(filename, 0, ft_strlen(filename) - 2), ".cor"), O_CREAT | O_RDWR | O_APPEND, 664);
+	fd = 0;
+	str = ft_strjoin(ft_strsub(filename, 0, ft_strlen(filename) - 2), ".cor");
+	// printf("%s\n", ft_strjoin(ft_strsub(filename, 0, ft_strlen(filename) - 2), ".cor"));
+	if ((fd = open("champions/zork.cor", O_CREAT | O_RDWR | O_APPEND, 0664)) < 0)
+	{
+		printf("%s\n", str);
+		printf("fd: %d\n", fd);
+		return (0);
+	}
 	fill_write_code_instraction(pointer->content, fd);
 	if (check(pointer))
 		fill_write_code_arg(pointer, fd);
 	fill_write_arg(pointer, fd, rows);
+	return (1);
 }
 
-void	fill_file(t_strings *rows, char *filename)
+int		fill_file(t_strings *rows, char *filename)
 {
 	t_token		*pointer;
 	t_strings	*rows_start;
@@ -330,12 +388,16 @@ void	fill_file(t_strings *rows, char *filename)
 		pointer = rows->string;
 		while (pointer)
 		{
-			if (!ft_strcmp(pointer->type, INSTRACTION))
-				fill_write(pointer, filename, rows);
+			if (!ft_strcmp(pointer->type, INSTRACTION_NAME))
+			{
+				if (!fill_write(pointer, filename, rows))
+					return (0);
+			}
 			pointer = pointer->next;
 		}
 		rows = rows->next;
 	}
+	return (1);
 }
 
 void	assemble(char *filename)
@@ -360,14 +422,16 @@ void	assemble(char *filename)
 		// printf("line:%d\n", count);
 		count++;
 	}
-	if (!content->flag_pattern || !check_all_label(rows))
+	if (!content->flag_pattern || !check_all_label(rows, content))
 	{
 		printf("not valid file\n");
 		return ;
 	}
-	printf("good file\n");
-	printf("name: %s\ncomment: %s\n", content->name, content->comment);
-	fill_file(rows, filename);
-	what_are_strings(rows);
+	printf("memory - %d\n", content->memory_code_size);
+	// printf("good file\n");
+	// printf("name: %s\ncomment: %s\n", content->name, content->comment);
+	if (!fill_file(rows, filename))
+		return ;
+	// what_are_strings(rows);
 	// clean_memory(rows);
 }

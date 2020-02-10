@@ -93,9 +93,11 @@
 
 typedef	struct			s_token
 {	
+	int					memory_size;
 	char				*content;
 	char				*type;
 	struct s_token		*next;
+	struct s_token		*previous;
 }						t_token;
 
 typedef struct			s_strings
@@ -110,6 +112,7 @@ typedef struct			s_asm_content
 	int					flag_name;
 	int					flag_comment;
 	int					flag_pattern;
+	int					memory_code_size;
 	char				*line;
 	char				**buff;
 	t_strings			**tokens;
