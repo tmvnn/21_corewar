@@ -49,8 +49,6 @@
 # define HEADER_SIZE (PROG_NAME_LENGTH + COMMENT_LENGTH + (4 * OCTET_SIZE))
 # define FOURTH_BYTE 3 
 
-# define LABEL "LABEL"
-
 # define LIVE 0x01
 # define LD 0x02
 # define ST 0x03
@@ -135,7 +133,7 @@ typedef struct			s_asm_content
 t_asm_content		*init_content();
 
 /* assemble.c */
-void				assemble(char *filename, t_asm_content **content);
+void				assemble(char *filename, t_asm_content *content);
 
 /* buffer.c */
 void				clear_buff(char **buff);

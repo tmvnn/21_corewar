@@ -402,25 +402,26 @@ void	assemble(char *filename, t_asm_content *content)
 	t_strings		*rows;
 
 	rows = NULL;
-	if (content->fd_src = open(filename, O_RDONLY)) == -1)
+	if ((content->fd_src = open(filename, O_RDONLY)) == -1)
 		error();
 	while (get_next_line((content)->fd_src, &content->line) > 0)
 	{
-		if (!content->line = check_valid(content, (content)->fd_src))){
+		if (!(content->line = check_valid(content, (content)->fd_src))){
 			return ;
 		}
-		tokenizing((&content)->line, &rows, &content);
+		tokenizing(&content->line, &rows, &content);
 	}
-	if (!content)->flag_pattern || !check_all_label(rows, content))
+	if (!content->flag_pattern || !check_all_label(rows, content))
 	{
 		printf("not valid file\n");
 		return ;
 	}
 	content->asm_size += content->memory_code_size;
+	content->exec_code_size = content->memory_code_size;
 	content->bytecode = (char *)ft_memalloc(content->asm_size * sizeof(char));
-	ft_bzero(content->bytecode_header, content->asm_size);
-	in_bytecode(content);
-	if (!fill_file(rows, *content))
+	ft_bzero(content->bytecode, content->asm_size);
+	in_bytecode(&content);
+	if (!fill_file(rows, content))
 		return ;
 	// clean_memory(rows);
 }

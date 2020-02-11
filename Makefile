@@ -18,7 +18,8 @@ SRC_ASM_NAME = main.c \
 				buffer.c \
 				string.c \
 				helper.c \
-				in_bytecode.c
+				in_bytecode.c \
+				interpretation.c
 
 OBJ_ASM_NAME = $(SRC_ASM_NAME:.c=.o);
 SRC_ASM = $(addprefix $(OBJDIR)/, $(SRC_ASM_NAME))
