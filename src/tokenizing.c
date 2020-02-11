@@ -25,17 +25,23 @@ static void	add_token(t_token **token, char *content)
 		if (!(*token = (t_token *)ft_memalloc(sizeof(t_token))))
 			error();
 		(*token)->content = ft_strdup(content);
+		interpretation(*token);
+		(*token)->memory_size = 0;
 		(*token)->next = NULL;
+		(*token)->previous = NULL;
 	}
 	else
 	{
 		if (!(new = (t_token *)ft_memalloc(sizeof(t_token))))
 			error();
 		new->content = ft_strdup(content);
+		interpretation(new);
 		new->next = NULL;
+		new->memory_size = 0;
 		while (copy->next)
 			copy = copy->next;
 		copy->next = new;
+		new->previous = copy;
 	}
 }
 
@@ -57,7 +63,6 @@ void		tokenizing(char **line, t_strings **row, t_asm_content **content)
 		if (**copy_buff == ';' || **copy_buff == '#')
 			break ;
 		add_token(&tokens, *copy_buff++);
-		interpretation(&tokens);
 	}
 	add_string(&tokens, row);
 	clear_buff(buff);

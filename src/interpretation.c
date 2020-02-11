@@ -12,17 +12,42 @@
 
 #include "asm.h"
 
-static void	check_label(t_token **tokens)
+int     parse(char *str, char *pattern)
 {
-	char	*copy;
+    int         err;
+    regex_t     reg1;
+    regmatch_t  pm;
 
-	copy = (*tokens)->content;
-	ft_right_trim(copy);
-	if (*(copy + ft_strlen(copy) - 1) == ':')
-		(*tokens)->type = ft_strdup(LABEL);
+    err = regcomp(&reg1, pattern, REG_EXTENDED);
+    if (err != 0)
+    {
+        regfree(&reg1);
+        printf("error with regex in file interpretation.c\n");
+        return (0);
+    }
+    if (!regexec(&reg1, str, 0, &pm, 0))
+    {
+        regfree(&reg1);
+        return (1);
+    }
+    regfree(&reg1);
+    return (0);
 }
 
-void	interpretation(t_token **tokens)
+void	interpretation(t_token *tokens)
 {
-	check_label(tokens);
+	if(parse(tokens->content, LABEL))
+		tokens->type = ft_strdup(LABEL_NAME);
+	else if (parse(tokens->content, INSTRACTION))
+		tokens->type = ft_strdup(INSTRACTION_NAME);
+	else if (parse(tokens->content, REGISTER))
+		tokens->type = ft_strdup(REGISTER_NAME);
+	else if (parse(tokens->content, DIRECT_LABEL))
+		tokens->type = ft_strdup(DIRECT_LABEL_NAME);
+	else if (parse(tokens->content, DIRECT))
+		tokens->type = ft_strdup(DIRECT_NAME);
+    else if (parse(tokens->content, INDIRECT))
+        tokens->type = ft_strdup(INDIRECT_NAME);
+    else if (parse(tokens->content, INDIRECT_LABEL))
+        tokens->type = ft_strdup(INDIRECT_LABEL_NAME);
 }

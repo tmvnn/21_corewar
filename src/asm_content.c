@@ -26,13 +26,17 @@ t_asm_content	*init_content()
 		error();
 	content->fd_dst = 0;
 	content->fd_src = 0;
+	content->flag_name = 0;
+	content->flag_comment = 0;
+	content->flag_pattern = 0;
+	content->memory_code_size = 0;
 	content->line = NULL;
 	content->tokens = NULL;
 	content->name = NULL;
 	content->comment = NULL;
 	content->exec_code_size = 0;
-	content->bytecode_header = NULL;
-	ft_bzero(content->bytecode_header, HEADER_SIZE);
+	content->bytecode = NULL;
+	content->asm_size = HEADER_SIZE;
 	init_header(&content->header);
 	return (content);
 }
