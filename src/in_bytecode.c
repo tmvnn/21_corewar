@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   in_bytecode.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 19:07:20 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/09 21:31:20 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/11 21:48:26 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
 static void convert_four_byte(t_asm_content **content, unsigned int number, int move) {
-	int				size;
-	char 			*copy;
+	int		size;
+	char	*copy;
 
 	size = 4;
 	copy = (*content)->bytecode + move + FOURTH_BYTE;
@@ -41,7 +41,7 @@ static void	convert_text(char **dst, char *src, size_t size) {
 }
 
 static void create_header(char *src, header_t **header, size_t size) {
-	header_t    *copy;
+	header_t	*copy;
 	char		*pointer;
 
 	copy = *header;
@@ -69,6 +69,4 @@ static void header(t_asm_content **content) {
 
 void        in_bytecode(t_asm_content **content) {
 	header(content);
-	write((*content)->fd_dst, (*content)->bytecode, HEADER_SIZE);
-	ft_strdel(&(*content)->bytecode);
 }

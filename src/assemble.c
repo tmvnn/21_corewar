@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:06:42 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/06 21:01:15 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/11 21:47:18 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char	*help_check_name_or_comment_champs(t_asm_content *content, int fd)
 		ft_strdel(&content->line);
 		if (parse(temp, PATTERN_NAME_CHAMPS))
 		{
-			// printf("PATTERN_NAME_CHAMPS\n");
 			if (content->flag_name == 1 || strlen(temp) > PROG_NAME_LENGTH)
 				return (NULL);
 			content->flag_name = 1;
@@ -30,7 +29,6 @@ char	*help_check_name_or_comment_champs(t_asm_content *content, int fd)
 		}
 		else if (parse(temp, PATTERN_COMMENT_CHAMPS))
 		{
-			// printf("PATTERN_COMMENT_CHAMPS\n");
 			if (content->flag_comment == 1 || strlen(temp) > COMMENT_LENGTH)
 				return (NULL);
 			content->flag_comment = 1;
@@ -44,19 +42,16 @@ char	*help_check_name_or_comment_champs(t_asm_content *content, int fd)
 char	*check_valid(t_asm_content *content, int fd)
 {
 	if (parse(content->line, PATTERN_SPACE_OR_EMPTY_LINE)){
-		// printf("PATTERN_SPACE_OR_EMPTY_LINE\n");
 		return (content->line);
 	}
 	else if (parse(content->line, PATTERN_NAME_OR_COMMENT_CHAMPS_FIRST_STAGE))
 		return (help_check_name_or_comment_champs(content, fd));
 	else if (parse(content->line, PATTERN_COMMENT))
 	{
-		// printf("PATTERN_COMMENT\n");
 		return (content->line);
 	}
 	else if (content->flag_name && content->flag_comment && parse(content->line, PATTERN))
 	{
-		// printf("PATTERN\n");
 		content->flag_pattern = 1;
 		return (content->line);
 	}
@@ -117,14 +112,8 @@ char	*clean_memory_t_strings(t_strings *rows)
 	return(NULL);
 }
 
-// char	*clean_memory_t_asm_content(t_asm_content *content)
-// {
-// 	ft_strdel(&content->line)
-// }
-
 char	*clean_memory(t_strings *rows)
 {
-	//  && clean_memory_t_asm_content(content)
 	return (clean_memory_t_strings(rows));
 }
 
@@ -142,7 +131,7 @@ int		check_t_dir_size(t_token *pointer)
 	return (1);
 }
 
-char	*check_all_label(t_strings *rows, t_asm_content *struct_content)
+char	*check_all_label(t_strings *rows, t_asm_content **struct_content)
 {
 	t_token		*pointer;
 	t_strings	*struct_pointer;
@@ -163,20 +152,18 @@ char	*check_all_label(t_strings *rows, t_asm_content *struct_content)
 			if (!ft_strcmp(pointer->type, INSTRACTION_NAME))
 			{
 				if (check(pointer))
-					struct_content->memory_code_size += ONE_BYTE;
+					(*struct_content)->memory_code_size += ONE_BYTE;
 				if (check_t_dir_size(pointer))
 					flag = 1;
-				struct_content->memory_code_size += ONE_BYTE;
-				// printf("%s %d\n", pointer->content, pointer->memory_size);
+				(*struct_content)->memory_code_size += ONE_BYTE;
 			}
 			else if (!ft_strcmp(pointer->type, REGISTER_NAME))
-				struct_content->memory_code_size += ONE_BYTE;
+				(*struct_content)->memory_code_size += ONE_BYTE;
 			else if (!ft_strcmp(pointer->type, INDIRECT_NAME) || !ft_strcmp(pointer->type, INDIRECT_LABEL_NAME))
-				struct_content->memory_code_size += TWO_BYTE;
+				(*struct_content)->memory_code_size += TWO_BYTE;
 			else if (!ft_strcmp(pointer->type, DIRECT_NAME) || !ft_strcmp(pointer->type, DIRECT_LABEL_NAME))
-				struct_content->memory_code_size += flag ? FOUR_BYTE : TWO_BYTE;
-			pointer->memory_size = struct_content->memory_code_size;
-			// printf("%s - %d\n", pointer->content, pointer->memory_size);
+				(*struct_content)->memory_code_size += flag ? FOUR_BYTE : TWO_BYTE;
+			pointer->memory_size = (*struct_content)->memory_code_size;
 			pointer = pointer->next;
 		}
 		flag = 0;
@@ -185,10 +172,12 @@ char	*check_all_label(t_strings *rows, t_asm_content *struct_content)
 	return ("very good");
 }
 
-void	fill_write_code_instraction(char *instraction, t_asm_content *content)
+void	fill_write_code_instraction(char *instraction, t_asm_content **content)
 {
-	char c;
+	char	c;
+	char	*bytecode;
 
+	bytecode = (*content)->bytecode;
 	c = '\0';
 	if (!ft_strcmp(instraction, LIVE_NAME))
 		c |= LIVE;
@@ -220,8 +209,9 @@ void	fill_write_code_instraction(char *instraction, t_asm_content *content)
 		c |= LFORK;
 	else if (!ft_strcmp(instraction, ADD_NAME))
 		c |= ADD;
-	ft_memcpy(content->bytecode + content->asm_size, &c, ONE_BYTE);
-	content->asm_size += ONE_BYTE;
+	bytecode += (*content)->header_size;
+	*bytecode = c;
+	(*content)->header_size += ONE_BYTE;
 }
 
 char	fill_t_reg(int iter, char c)
@@ -257,7 +247,7 @@ char	fill_t_ind(int iter, char c)
 	return (c);
 }
 
-void	fill_write_code_arg(t_token *pointer, t_asm_content *content)
+void	fill_write_code_arg(t_token *pointer, t_asm_content **content)
 {
 	int		iter;
 	char	c;
@@ -276,11 +266,11 @@ void	fill_write_code_arg(t_token *pointer, t_asm_content *content)
 			iter++;
 		pointer = pointer->next;
 	}
-	ft_memcpy(content->bytecode + content->asm_size, &c, ONE_BYTE);
-	content->asm_size += ONE_BYTE;
+	ft_memcpy((*content)->bytecode + (*content)->header_size, &c, ONE_BYTE);
+	(*content)->header_size += ONE_BYTE;
 }
 
-void	write_args(int length, int num, t_asm_content *content)
+void	write_args(int length, int num, t_asm_content **content)
 {
 	char	temp[length];
 	int		iter;
@@ -294,8 +284,8 @@ void	write_args(int length, int num, t_asm_content *content)
 		temp[i] = (char)(num >> iter);
 		iter += 8;
 	}
-	ft_memcpy(content->bytecode + content->asm_size, temp, length);
-	content->asm_size += length;
+	ft_memcpy((*content)->bytecode + (*content)->header_size, temp, length);
+	(*content)->header_size += length;
 }
 
 int		search_instraction(char *content, t_strings *rows)
@@ -320,7 +310,7 @@ int		search_instraction(char *content, t_strings *rows)
 int		size_content(t_token *pointer)
 {
 	if (!ft_strcmp(pointer->type, INSTRACTION_NAME) && check(pointer))
-		return(TWO_BYTE );
+		return (TWO_BYTE);
 	return (ONE_BYTE);
 }
 
@@ -335,7 +325,7 @@ int		search_instraction_two(t_token *pointer)
 	return (0);
 }
 
-void	fill_write_arg(t_token *pointer, t_strings *rows, t_asm_content *content)
+void	fill_write_arg(t_token *pointer, t_strings *rows, t_asm_content **content)
 {
 	int		flag;
 
@@ -351,21 +341,18 @@ void	fill_write_arg(t_token *pointer, t_strings *rows, t_asm_content *content)
 		else if (!ft_strcmp(pointer->type, DIRECT_LABEL_NAME))
 		{
 			write_args(flag ? FOUR_BYTE : TWO_BYTE, search_instraction(ft_strjoin(ft_strsub(pointer->content, 2, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer), content);
-			// printf("direct_label %d\n", (search_instraction(ft_strjoin(ft_strsub(pointer->content, 2, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer)));
 		}
 		else if (!ft_strcmp(pointer->type, INDIRECT_LABEL_NAME))
 		{
-			// printf("indirect_label %d\n", search_instraction(ft_strjoin(ft_strsub(pointer->content, 1, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer));
 			write_args(TWO_BYTE, (search_instraction(ft_strjoin(ft_strsub(pointer->content, 1, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer)), content);
 		}
 		else if (!ft_strcmp(pointer->type, INDIRECT_NAME))
 			write_args(TWO_BYTE, atoi(pointer->content), content);
-		// printf("%s\n", pointer->content);
 		pointer = pointer->next;
 	}
 }
 
-int		fill_write(t_token *pointer, t_strings *rows, t_asm_content *content)
+int		fill_write(t_token *pointer, t_strings *rows, t_asm_content **content)
 {
 	fill_write_code_instraction(pointer->content, content);
 	if (check(pointer))
@@ -374,7 +361,7 @@ int		fill_write(t_token *pointer, t_strings *rows, t_asm_content *content)
 	return (1);
 }
 
-int		fill_file(t_strings *rows,  t_asm_content *content)
+int		fill_file(t_strings *rows, t_asm_content **content)
 {
 	t_token		*pointer;
 	t_strings	*rows_start;
@@ -397,31 +384,30 @@ int		fill_file(t_strings *rows,  t_asm_content *content)
 	return (1);
 }
 
-void	assemble(char *filename, t_asm_content *content)
+void	assemble(char *filename, t_asm_content **content)
 {
 	t_strings		*rows;
 
 	rows = NULL;
-	if ((content->fd_src = open(filename, O_RDONLY)) == -1)
+	if (((*content)->fd_src = open(filename, O_RDONLY)) == -1)
 		error();
-	while (get_next_line((content)->fd_src, &content->line) > 0)
+	while (get_next_line((*content)->fd_src, &(*content)->line) > 0)
 	{
-		if (!(content->line = check_valid(content, (content)->fd_src))){
+		if (!((*content)->line = check_valid((*content), (*content)->fd_src))){
 			return ;
 		}
-		tokenizing(&content->line, &rows, &content);
+		tokenizing(&(*content)->line, &rows, content);
 	}
-	if (!content->flag_pattern || !check_all_label(rows, content))
+	if (!(*content)->flag_pattern || !check_all_label(rows, content))
 	{
 		printf("not valid file\n");
-		return ;
+		error() ;
 	}
-	content->asm_size += content->memory_code_size;
-	content->exec_code_size = content->memory_code_size;
-	content->bytecode = (char *)ft_memalloc(content->asm_size * sizeof(char));
-	ft_bzero(content->bytecode, content->asm_size);
-	in_bytecode(&content);
+	(*content)->exec_code_size = (*content)->memory_code_size;
+	(*content)->asm_size = (*content)->exec_code_size + (*content)->header_size;
+	(*content)->bytecode = (char *)ft_memalloc((*content)->asm_size * sizeof(char));
+	ft_bzero((*content)->bytecode, (*content)->asm_size);
+	in_bytecode(content);
 	if (!fill_file(rows, content))
 		return ;
-	// clean_memory(rows);
 }

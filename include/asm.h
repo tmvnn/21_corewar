@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/09 19:17:03 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/11 21:41:36 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,14 +126,15 @@ typedef struct			s_asm_content
 	header_t			*header;
 	char				*bytecode;
 	unsigned int		exec_code_size;
-	int					asm_size;
+	unsigned int		asm_size;
+	unsigned int		header_size;
 }						t_asm_content;
 
 /* asm_content.c */
 t_asm_content		*init_content();
 
 /* assemble.c */
-void				assemble(char *filename, t_asm_content *content);
+void				assemble(char *filename, t_asm_content **content);
 
 /* buffer.c */
 void				clear_buff(char **buff);

@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:01:11 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/09 18:58:48 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/11 21:11:22 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ t_asm_content	*init_content()
 	content->comment = NULL;
 	content->exec_code_size = 0;
 	content->bytecode = NULL;
-	content->asm_size = HEADER_SIZE;
+	content->asm_size = 0;
+	content->header_size = HEADER_SIZE;
 	init_header(&content->header);
 	return (content);
 }
