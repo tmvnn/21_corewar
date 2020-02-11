@@ -23,5 +23,6 @@ void	assemble(char *filename, t_asm_content **content)
 		tokenizing(&(*content)->line, &rows, content);
 	printf("name: %s\ncomment: %s\n", (*content)->name, (*content)->comment);
 	what_are_strings(rows);
+	(*content)->bytecode_header = (char *)ft_memalloc(HEADER_SIZE * sizeof(char));
 	in_bytecode(content);
 }

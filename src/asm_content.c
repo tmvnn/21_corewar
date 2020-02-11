@@ -30,8 +30,8 @@ t_asm_content	*init_content()
 	content->tokens = NULL;
 	content->name = NULL;
 	content->comment = NULL;
-	content->bytecode_header = (char *)ft_memalloc(HEADER_SIZE * sizeof(char));
 	content->exec_code_size = 0;
+	content->bytecode_header = NULL;
 	ft_bzero(content->bytecode_header, HEADER_SIZE);
 	init_header(&content->header);
 	return (content);
