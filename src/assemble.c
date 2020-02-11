@@ -281,18 +281,19 @@ void	fill_write_code_arg(t_token *pointer, int fd)
 void	write_args(int length, int num, int fd)
 {
 	char	temp[4];
-	int		i;
 	int		iter;
+	int		i;
 
-	i = 0;
 	iter = 0;
-	while (i < length)
+	i = length;
+	ft_bzero(temp, 4);
+	while (length--)
 	{
-		temp[i] = (char)(num >> iter);
-		i++;
+		temp[length] = (char)(num >> iter);
 		iter += 8;
 	}
-	write(fd, temp, length);
+
+	write(fd, temp, i);
 }
 
 int		search_instraction(char *content, t_strings *rows)
@@ -306,12 +307,7 @@ int		search_instraction(char *content, t_strings *rows)
 		while (pointer)
 		{
 			if (!ft_strcmp(pointer->type, LABEL_NAME) && !ft_strcmp(pointer->content, content))
-			{
-				// printf("%s\n", content);
-				// printf("%s\n", pointer->content);
-				// printf("memory_size - %d\n", pointer->memory_size);
 				return (pointer->memory_size);
-			}
 			pointer = pointer->next;
 		}
 		rows = rows->next;
@@ -353,12 +349,12 @@ void	fill_write_arg(t_token *pointer, int fd, t_strings *rows)
 		else if (!ft_strcmp(pointer->type, DIRECT_LABEL_NAME))
 		{
 			write_args(flag ? FOUR_BYTE : TWO_BYTE, search_instraction(ft_strjoin(ft_strsub(pointer->content, 2, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer), fd);
-			printf("direct_label %d\n", (search_instraction(ft_strjoin(ft_strsub(pointer->content, 2, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer)));
+			// printf("direct_label %d\n", (search_instraction(ft_strjoin(ft_strsub(pointer->content, 2, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer)));
 		}
 		else if (!ft_strcmp(pointer->type, INDIRECT_LABEL_NAME))
 		{
-			printf("indirect_label %d\n", search_instraction(ft_strjoin(ft_strsub(pointer->content, 1, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer));
-			write_args(TWO_BYTE, (search_instraction(ft_strsub(pointer->content, 1, strlen(pointer->content)), rows) - search_instraction_two(pointer)), fd);
+			// printf("indirect_label %d\n", search_instraction(ft_strjoin(ft_strsub(pointer->content, 1, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer));
+			write_args(TWO_BYTE, (search_instraction(ft_strjoin(ft_strsub(pointer->content, 1, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer)), fd);
 		}
 		else if (!ft_strcmp(pointer->type, INDIRECT_NAME))
 			write_args(TWO_BYTE, atoi(pointer->content), fd);
@@ -374,8 +370,9 @@ int		fill_write(t_token *pointer, char *filename, t_strings *rows)
 
 	fd = 0;
 	str = ft_strjoin(ft_strsub(filename, 0, ft_strlen(filename) - 2), ".cor");
+	// printf("%s\n", str);
 	// printf("%s\n", ft_strjoin(ft_strsub(filename, 0, ft_strlen(filename) - 2), ".cor"));
-	if ((fd = open("champions/zork.cor", O_CREAT | O_RDWR | O_APPEND, 0664)) < 0)
+	if ((fd = open(str, O_CREAT | O_RDWR | O_APPEND, 0644)) < 0)
 	{
 		printf("%s\n", str);
 		printf("fd: %d\n", fd);
