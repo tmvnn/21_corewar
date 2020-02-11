@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:06:42 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/11 21:47:18 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/11 22:36:52 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -410,4 +410,5 @@ void	assemble(char *filename, t_asm_content **content)
 	in_bytecode(content);
 	if (!fill_file(rows, content))
 		return ;
+	write((*content)->fd_dst, (*content)->bytecode, (*content)->asm_size);
 }

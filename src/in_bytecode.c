@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 19:07:20 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/11 21:48:26 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/11 22:29:03 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,9 @@ static void header(t_asm_content **content) {
 	convert_four_byte(content, COREWAR_EXEC_MAGIC, 0);
 	create_header((*content)->name, &(*content)->header, PROG_NAME_LENGTH + 1);
 	ft_memcpy((*content)->bytecode + 4, (*content)->header->prog_name, PROG_NAME_LENGTH);
-	//Before: ft_memcpy((*content)->bytecode + 4, (*content)->name, PROG_NAME_LENGTH);
-	
-	convert_four_byte(content, (*content)->exec_code_size, 4 + PROG_NAME_LENGTH);
+	convert_four_byte(content, (*content)->exec_code_size, 4 + 4 + PROG_NAME_LENGTH);
 	create_header((*content)->comment, &(*content)->header, COMMENT_LENGTH + 1);
-	
-	ft_memcpy((*content)->bytecode + 8 + PROG_NAME_LENGTH, (*content)->header->comment, PROG_NAME_LENGTH);
-	//Before: ft_memcpy((*content)->bytecode + 8 + PROG_NAME_LENGTH, (*content)->name, PROG_NAME_LENGTH);
+	ft_memcpy((*content)->bytecode + 4 + PROG_NAME_LENGTH + 4 + 4, (*content)->header->comment, PROG_NAME_LENGTH);
 }
 
 void        in_bytecode(t_asm_content **content) {
