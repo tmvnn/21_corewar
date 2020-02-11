@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/18 19:17:35 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/06 21:04:59 by idunaver         ###   ########.fr       */
+/*   Created: 2020/02/02 20:42:03 by idunaver          #+#    #+#             */
+/*   Updated: 2020/02/02 21:16:57 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+size_t	ft_strlen_base(int value, int base)
 {
-	t_asm_content	*content;
-	
-	if (argc == 0)
-		error();
-	if (file(*(argv + 1), &content))
-		assemble(*(argv + 1), &content);
-	else
-		error();
-	return (0);
+	size_t len;
+
+	len = (value == 0) ? 1 : 0;
+	while (value)
+	{
+		value /= base;
+		len++;
+	}
+	return (len);
 }

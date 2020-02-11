@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/01/26 15:31:46 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/09 19:17:03 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,12 @@
 # include <sys/uio.h>
 
 # define EXP_ASM ".s"
+# define EXP_COR ".cor"
 # define EXP_ASM_LEN 2
 # define BUFF_S 2048
-
-# define LIVE "live"
-# define LD "ld"
-# define ST "st"
-# define ADD "add"
-# define SUB "sub"
-# define AND "and"
-# define OR "or"
-# define XOR "xor"
-# define ZJMP "zjmp"
-# define LDI "ldi"
-# define STI "sti"
-# define FORK "fork"
-# define LLD "lld"
-# define LLDI "lldi"
-# define LFORK "lfork"
-# define AFF "aff"
+# define OCTET_SIZE 8
+# define HEADER_SIZE (PROG_NAME_LENGTH + COMMENT_LENGTH + (4 * OCTET_SIZE))
+# define FOURTH_BYTE 3 
 
 # define LABEL "LABEL"
 
@@ -61,19 +48,23 @@ typedef struct			s_strings
 
 typedef struct			s_asm_content
 {	
-	int					fd;
+	int					fd_dst;
+	int					fd_src;
 	char				*line;
 	char				**buff;
 	t_strings			**tokens;
 	char				*name;
 	char				*comment;
+	header_t			*header;
+	char				*bytecode_header;
+	unsigned int		exec_code_size;
 }						t_asm_content;
 
 /* asm_content.c */
-t_asm_content		*init_content(int fd);
+t_asm_content		*init_content();
 
 /* assemble.c */
-void				assemble(char *filename);
+void				assemble(char *filename, t_asm_content **content);
 
 /* buffer.c */
 void				clear_buff(char **buff);
@@ -83,7 +74,7 @@ char				**create_buff(char **line, t_asm_content **content);
 void				error(void);
 
 /* filename.c */
-int					valid_filename_asm(const char *filename);
+int					file(const char *filename, t_asm_content **content);
 
 /* helper.c - потом удалить */
 void				what_are_strings(t_strings *rows);
@@ -98,7 +89,7 @@ void				tokenizing(char **line, t_strings **row, t_asm_content **content);
 /* string.c */
 void    			add_string(t_token **tokens, t_strings **row);
 
-/* interpretation.c */
-void				interpretation(t_token **tokens);
+/* in_bytecode.c */
+void    			in_bytecode(t_asm_content **content);
 
 #endif
