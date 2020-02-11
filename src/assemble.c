@@ -257,7 +257,7 @@ char	fill_t_ind(int iter, char c)
 	return (c);
 }
 
-void	fill_write_code_arg(t_token *pointer, int fd)
+void	fill_write_code_arg(t_token *pointer, t_asm_content *content)
 {
 	int		iter;
 	char	c;
@@ -276,25 +276,26 @@ void	fill_write_code_arg(t_token *pointer, int fd)
 			iter++;
 		pointer = pointer->next;
 	}
-	write(fd, &c, 1);
+	ft_memcpy(content->bytecode + content->asm_size, &c, ONE_BYTE);
+	content->asm_size += ONE_BYTE;
 }
 
-void	write_args(int length, int num, int fd)
+void	write_args(int length, int num, t_asm_content *content)
 {
-	char	temp[4];
+	char	temp[length];
 	int		iter;
 	int		i;
 
 	iter = 0;
 	i = length;
 	ft_bzero(temp, 4);
-	while (length--)
+	while (i--)
 	{
-		temp[length] = (char)(num >> iter);
+		temp[i] = (char)(num >> iter);
 		iter += 8;
 	}
-
-	write(fd, temp, i);
+	ft_memcpy(content->bytecode + content->asm_size, temp, length);
+	content->asm_size += length;
 }
 
 int		search_instraction(char *content, t_strings *rows)
@@ -334,7 +335,7 @@ int		search_instraction_two(t_token *pointer)
 	return (0);
 }
 
-void	fill_write_arg(t_token *pointer, int fd, t_strings *rows)
+void	fill_write_arg(t_token *pointer, t_strings *rows, t_asm_content *content)
 {
 	int		flag;
 
@@ -344,37 +345,36 @@ void	fill_write_arg(t_token *pointer, int fd, t_strings *rows)
 		if (!ft_strcmp(pointer->type, INSTRACTION_NAME) && check_t_dir_size(pointer))
 			flag = 1;
 		else if (!ft_strcmp(pointer->type, REGISTER_NAME))
-			write_args(ONE_BYTE, atoi(ft_strsub(pointer->content, 1, strlen(pointer->content))), fd);
+			write_args(ONE_BYTE, atoi(ft_strsub(pointer->content, 1, strlen(pointer->content))), content);
 		else if (!ft_strcmp(pointer->type, DIRECT_NAME))
-			write_args(flag ? FOUR_BYTE : TWO_BYTE, atoi(ft_strsub(pointer->content, 1, strlen(pointer->content))), fd);
+			write_args(flag ? FOUR_BYTE : TWO_BYTE, atoi(ft_strsub(pointer->content, 1, strlen(pointer->content))), content);
 		else if (!ft_strcmp(pointer->type, DIRECT_LABEL_NAME))
 		{
-			write_args(flag ? FOUR_BYTE : TWO_BYTE, search_instraction(ft_strjoin(ft_strsub(pointer->content, 2, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer), fd);
+			write_args(flag ? FOUR_BYTE : TWO_BYTE, search_instraction(ft_strjoin(ft_strsub(pointer->content, 2, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer), content);
 			// printf("direct_label %d\n", (search_instraction(ft_strjoin(ft_strsub(pointer->content, 2, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer)));
 		}
 		else if (!ft_strcmp(pointer->type, INDIRECT_LABEL_NAME))
 		{
 			// printf("indirect_label %d\n", search_instraction(ft_strjoin(ft_strsub(pointer->content, 1, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer));
-			write_args(TWO_BYTE, (search_instraction(ft_strjoin(ft_strsub(pointer->content, 1, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer)), fd);
+			write_args(TWO_BYTE, (search_instraction(ft_strjoin(ft_strsub(pointer->content, 1, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer)), content);
 		}
 		else if (!ft_strcmp(pointer->type, INDIRECT_NAME))
-			write_args(TWO_BYTE, atoi(pointer->content), fd);
+			write_args(TWO_BYTE, atoi(pointer->content), content);
 		// printf("%s\n", pointer->content);
 		pointer = pointer->next;
 	}
 }
 
-int		fill_write(t_token *pointer, char *filename, t_strings *rows, t_asm_content *content)
+int		fill_write(t_token *pointer, t_strings *rows, t_asm_content *content)
 {
 	fill_write_code_instraction(pointer->content, content);
 	if (check(pointer))
 		fill_write_code_arg(pointer, content);
-	// rows = NULL;
-	fill_write_arg(pointer, content, rows);
+	fill_write_arg(pointer, rows, content);
 	return (1);
 }
 
-int		fill_file(t_strings *rows, char *filename, t_asm_content *content)
+int		fill_file(t_strings *rows,  t_asm_content *content)
 {
 	t_token		*pointer;
 	t_strings	*rows_start;
@@ -387,8 +387,7 @@ int		fill_file(t_strings *rows, char *filename, t_asm_content *content)
 		{
 			if (!ft_strcmp(pointer->type, INSTRACTION_NAME))
 			{
-				// filename = NULL;
-				if (!fill_write(pointer, filename, rows_start, content))
+				if (!fill_write(pointer, rows_start, content))
 					return (0);
 			}
 			pointer = pointer->next;
@@ -419,9 +418,9 @@ void	assemble(char *filename, t_asm_content *content)
 	}
 	content->asm_size += content->memory_code_size;
 	content->bytecode = (char *)ft_memalloc(content->asm_size * sizeof(char));
-	ft_bzero(content->bytecode_header, HEADER_SIZE);
+	ft_bzero(content->bytecode_header, content->asm_size);
 	in_bytecode(content);
-	if (!fill_file(rows, filename, *content))
+	if (!fill_file(rows, *content))
 		return ;
 	// clean_memory(rows);
 }
