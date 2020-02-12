@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/09 19:17:03 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/12 16:27:10 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,23 @@
 # define EXP_ASM ".s"
 # define EXP_COR ".cor"
 # define EXP_ASM_LEN 2
+# define EXP_COR_LEN 4
 # define BUFF_S 2048
 # define NULL_BYTECODE "00000000"
 # define OCTET_SIZE 8
 # define HEADER_SIZE (PROG_NAME_LENGTH + COMMENT_LENGTH + (4 * OCTET_SIZE))
-# define FOURTH_BYTE 3 
+# define FOURTH_BYTE 3
+# define ASSEMBLE 'c'
+# define DISASSEMBLE 's'
+# define MAGIC_NUMBER_SIZE 4
+# define NULL_SIZE 4
+# define CHMP_CODE_VAR_SIZE 4
+
+# define NAME_CMD_LEN 5
+# define COMMENT_CMD_LEN 8
+# define SPACE_LEN 1
+# define D_QUOTE_LEN 1
+# define SLASH_N_LEN 1
 
 typedef	struct			s_token
 {	
@@ -49,6 +61,7 @@ typedef struct			s_asm_content
 {	
 	int					fd_dst;
 	int					fd_src;
+	char				asm_dsm_flag;
 	char				*line;
 	char				**buff;
 	t_strings			**tokens;
@@ -60,10 +73,13 @@ typedef struct			s_asm_content
 }						t_asm_content;
 
 /* asm_content.c */
-t_asm_content		*init_content();
+t_asm_content		*init_content(char ad_flag);
 
 /* assemble.c */
 void				assemble(char *filename, t_asm_content **content);
+
+/* assemble.c */
+void				disassemble(char *filename, t_asm_content **content);
 
 /* buffer.c */
 void				clear_buff(char **buff);
