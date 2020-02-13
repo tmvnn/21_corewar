@@ -12,6 +12,7 @@ SRC_ASM_NAME = main.c \
 				asm_content.c \
 				assemble.c \
 				disassemble.c \
+				parse_chmp_exec_code.c \
 				error.c \
 				file.c \
 				title.c \
