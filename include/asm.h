@@ -135,6 +135,7 @@ t_asm_content		*init_content();
 
 /* assemble.c */
 void				assemble(t_asm_content **content);
+char				*clean_memory_t_strings(t_strings *rows);
 
 /* buffer.c */
 void				clear_buff(char **buff);
@@ -161,8 +162,33 @@ void    			add_string(t_token **tokens, t_strings **row);
 
 /* in_bytecode.c */
 void    			in_bytecode(t_asm_content **content);
+
 /* interpretation.c */
 void				interpretation(t_token *tokens);
 int					parse(char *str, char *pattern);
+
+/*validation.c*/
+char				*help_check_name_or_comment_champs(t_asm_content *content, int fd);
+char				*check_valid(t_asm_content *content, int fd);
+char				*search_label(t_strings *rows, char *content);
+char				*check_all_label(t_strings *rows, t_asm_content **struct_content);
+
+/*fill_file.c*/
+int					check(t_token *pointer);
+int					fill_write(t_token *pointer, t_strings *rows, t_asm_content **content);
+int					fill_file(t_strings *rows, t_asm_content **content);
+
+/*fill_write_arg.c*/
+int					search_instraction_two(t_token *pointer);
+int					search_instraction(char *content, t_strings *rows);
+void				write_args(int length, int num, t_asm_content **content);
+int					check_t_dir_size(t_token *pointer);
+void				fill_write_arg(t_token *pointer, t_strings *rows, t_asm_content **content);
+
+/*fill_write_code_arg.c*/
+void				fill_write_code_arg(t_token *pointer, t_asm_content **content);
+
+/*fill_write_code_instraction.c*/
+void				fill_write_code_instraction(char *instraction, t_asm_content **content);
 
 #endif

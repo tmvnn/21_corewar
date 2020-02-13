@@ -1,5 +1,5 @@
 .name "🎂"
-.comment "q🎂"
+.comment "🎂"
 
 wall:
 	ld		%0, r10

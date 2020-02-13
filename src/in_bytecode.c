@@ -32,11 +32,9 @@ static void	convert_text(char **dst, char *src, size_t size) {
 	copy = *dst;
 	while (size--) {
 		if (*src)
-			*copy++ = *src++;//это кастование бесмысленно, так как ты записываешь здесь по байтово
+			*copy++ = *src++;
 		else
 			*copy++ = '\0';
-		//src++; ERROR put to 3rd line above this line
-		//copy++;
 	}
 }
 
