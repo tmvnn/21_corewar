@@ -211,6 +211,8 @@ void	fill_write_code_instraction(char *instraction, t_asm_content **content)
 		c |= LFORK;
 	else if (!ft_strcmp(instraction, ADD_NAME))
 		c |= ADD;
+	else if (!ft_strcmp(instraction, AFF_NAME))
+		c |= AFF;
 	bytecode += (*content)->header_size;
 	*bytecode = c;
 	(*content)->header_size += ONE_BYTE;
@@ -409,7 +411,6 @@ void	assemble(t_asm_content **content)
 	(*content)->bytecode = (char *)ft_memalloc((*content)->asm_size * sizeof(char));
 	ft_bzero((*content)->bytecode, (*content)->asm_size);
 	in_bytecode(content);
-	write(1, "hello", 5);
 	if (!fill_file(rows, content))
 		return ;
 	write((*content)->fd_dst, (*content)->bytecode, (*content)->asm_size);

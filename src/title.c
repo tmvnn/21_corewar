@@ -36,6 +36,10 @@ static int	add_name(char **buff, t_asm_content **content)
 {
 	if (buff[1])
 		(*content)->name = ft_strdup(buff[1]);
+	else if (!buff[1]) {
+		(*content)->name = (char *)ft_memalloc(sizeof(char));
+		*(*content)->name = '\0';
+	}
 	if (!(*content)->name)
 		error();
 	clear_buff(buff);
@@ -46,6 +50,10 @@ static int	add_comment(char **buff, t_asm_content **content)
 {
 	if (buff[1])
 		(*content)->comment = ft_strdup(buff[1]);
+	else if (!buff[1]) {
+		(*content)->comment = (char *)ft_memalloc(sizeof(char));
+		*(*content)->comment = '\0';
+	}
 	clear_buff(buff);
 	return (1);
 }
