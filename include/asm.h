@@ -134,7 +134,7 @@ typedef struct			s_asm_content
 t_asm_content		*init_content();
 
 /* assemble.c */
-void				assemble(char *filename, t_asm_content **content);
+void				assemble(t_asm_content **content);
 
 /* buffer.c */
 void				clear_buff(char **buff);

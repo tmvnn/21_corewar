@@ -32,7 +32,7 @@ static void	convert_text(char **dst, char *src, size_t size) {
 	copy = *dst;
 	while (size--) {
 		if (*src)
-			*copy++ = (uint8_t)(*src++);
+			*copy++ = (uint8_t)(*src++);//это кастование бесмысленно, так как ты записываешь здесь по байтово
 		else
 			*copy++ = 0;
 		//src++; ERROR put to 3rd line above this line
@@ -49,8 +49,8 @@ static void create_header(char *src, header_t **header, size_t size) {
 		pointer = copy->prog_name;
 	else
 		 pointer = copy->comment;
-	if (!src || ft_strlen(src) > size)
-		error();
+	if (!src || ft_strlen(src) > size)//проверка на длину не нужна я проверяю ее в валидности, src не может быть равен NULL, так как я в валидности проверяю хотя бы наличие "", то есть это строка с \0
+		error();///нужно удалить это и там где ты делаешь выделение памяти под коммент учесть что комментарий и имя может быть "" и выделить соответственную память под один "\0"
 	convert_text(&pointer, src, size);
 }
 

@@ -187,6 +187,8 @@ void	fill_write_code_instraction(char *instraction, t_asm_content **content)
 		c |= ST;
 	else if (!ft_strcmp(instraction, ADD_NAME))
 		c |= ADD;
+	else if (!ft_strcmp(instraction, SUB_NAME))
+		c |= SUB;
 	else if (!ft_strcmp(instraction, AND_NAME))
 		c |= AND;
 	else if (!ft_strcmp(instraction, OR_NAME))
@@ -384,16 +386,15 @@ int		fill_file(t_strings *rows, t_asm_content **content)
 	return (1);
 }
 
-void	assemble(char *filename, t_asm_content **content)
+void	assemble(t_asm_content **content)
 {
 	t_strings		*rows;
 
 	rows = NULL;
-	if (((*content)->fd_src = open(filename, O_RDONLY)) == -1)
-		error();
 	while (get_next_line((*content)->fd_src, &(*content)->line) > 0)
 	{
 		if (!((*content)->line = check_valid((*content), (*content)->fd_src))){
+			printf("not valid file\n");
 			return ;
 		}
 		tokenizing(&(*content)->line, &rows, content);
@@ -408,6 +409,7 @@ void	assemble(char *filename, t_asm_content **content)
 	(*content)->bytecode = (char *)ft_memalloc((*content)->asm_size * sizeof(char));
 	ft_bzero((*content)->bytecode, (*content)->asm_size);
 	in_bytecode(content);
+	write(1, "hello", 5);
 	if (!fill_file(rows, content))
 		return ;
 	write((*content)->fd_dst, (*content)->bytecode, (*content)->asm_size);

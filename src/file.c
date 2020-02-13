@@ -26,6 +26,8 @@ int	file(const char *filename, t_asm_content **content)
 	ft_strcat(ft_memcpy(filename_dot_cor, filename, filename_len - 2), EXP_COR);
 	if (!((*content)->fd_dst = open(filename_dot_cor, O_CREAT | O_RDWR, 0644)))
 		error();
+	if (((*content)->fd_src = open(filename, O_RDONLY)) == -1)
+		error();
 	ft_strdel(&filename_dot_cor);
 	return (1);
 }

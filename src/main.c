@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 	if (argc == 0)
 		error();
 	if (file(*(argv + 1), &content))
-		assemble(*(argv + 1), &content);
+		assemble(&content);
 	else
 		error();
 	return (0);
