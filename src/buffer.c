@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:37:38 by idunaver          #+#    #+#             */
-/*   Updated: 2020/01/18 19:08:47 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/13 22:19:03 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,38 @@ void		clear_buff(char **buff)
 	buff = NULL;
 }
 
+static void	sticky_line(char **line, int diff_size, int size)
+{
+	char	*new_line;
+	
+	if (!(new_line = (char *)ft_memalloc((size + 1) * sizeof(char))))
+		error();
+	new_line[size] = '\0';
+	ft_memcpy(new_line, *line, diff_size - 1);
+	new_line[diff_size - 1] = ',';
+	ft_memcpy(new_line + diff_size, *line + diff_size - 1, diff_size + 1);
+	ft_strdel(line);
+	*line = new_line;
+}
+
 static void	space_replacement(char **line, int size, char c)
 {
 	char	*copy;
 	int		quotes;
+	int		size_line;
 
+	size_line = ft_strlen(*line);
 	quotes = 0;
 	copy = *line;
 	while (*copy && --size != -1)
 	{
+		if (*copy == '%') {
+			if (!ft_isspace(*(copy - 1)) && *(copy - 1) != ',') {
+				sticky_line(line, size_line - size, size_line + 1);
+				copy = *line;
+				copy = copy + (size_line - size);
+			}
+		}
 		if (*copy == '"' && quotes == 1)
 			quotes = 0;
 		if (*copy == '"' && quotes == 0)

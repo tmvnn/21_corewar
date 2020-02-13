@@ -1,3 +1,5 @@
 .DS_Store
 *.cor
 launch.json
+my_file
+not_my_file
