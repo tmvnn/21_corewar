@@ -28,7 +28,6 @@
 # define EXP_ASM_LEN 2
 # define EXP_COR_LEN 4
 # define BUFF_S 2048
-# define NULL_BYTECODE "00000000"
 # define OCTET_SIZE 8
 # define HEADER_SIZE (PROG_NAME_LENGTH + COMMENT_LENGTH + (4 * OCTET_SIZE))
 # define FOURTH_BYTE 3
