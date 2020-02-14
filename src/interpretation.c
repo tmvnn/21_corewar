@@ -50,4 +50,6 @@ void	interpretation(t_token *tokens)
         tokens->type = ft_strdup(INDIRECT_NAME);
     else if (parse(tokens->content, INDIRECT_LABEL))
         tokens->type = ft_strdup(INDIRECT_LABEL_NAME);
+    else
+        tokens->type = ft_strdup(UNCERTAIN_NAME);
 }

@@ -30,7 +30,7 @@
 # define PATTERN "^[ 	]*([a-z0-9_]+:)?[ 	]*((live|zjmp|fork|lfork)[ 	]*(%-?0*[0-9]+|%:[0-9a-z_]+)|(ld|lld)([ 	]*(%-?0*[0-9]+|%:[0-9a-z_]+)|[ 	]+(-?[0-9]+|:[0-9a-z_]+))[ 	]*,[ 	]*r[0-9]{1,2}|st[ 	]+r[0-9]{1,2}[ 	]*,[ 	]*(r[0-9]{1,2}|-?[0-9]+|:[0-9a-z_]+)|(add|sub)[ 	]+r[0-9]{1,2}[ 	]*,[ 	]*r[0-9]{1,2}[ 	]*,[ 	]*r[0-9]{1,2}|(and|or|xor)([ 	]+(r[0-9]{1,2}|-?[0-9]+|:[0-9a-z_]+)|[ 	]*(%-?0*[0-9]+|%:[0-9a-z_]+))[ 	]*,[ 	]*(r[0-9]{1,2}|%-?0*[0-9]+|%:[0-9a-z_]+|-?[0-9]+|:[0-9a-z_]+)[ 	]*,[ 	]*r[0-9]{1,2}|(ldi|lldi)([ 	]+(r[0-9]{1,2}|-?[0-9]+|:[0-9a-z_]+)|[ 	]*(%-?0*[0-9]+|%:[0-9a-z_]+))[ 	]*,[ 	]*(r[0-9]{1,2}|%-?0*[0-9]+|%:[0-9a-z_]+)[ 	]*,[ 	]*r[0-9]{1,2}|sti[ 	]+r[0-9]{1,2}[ 	]*,[ 	]*(r[0-9]{1,2}|%-?0*[0-9]+|%:[0-9a-z_]+|-?[0-9]+|:[0-9a-z_]+)[ 	]*,[ 	]*(r[0-9]{1,2}|%-?0*[0-9]+|%:[0-9a-z_]+)|aff[ 	]+r[0-9]{1,2})?[ 	]*([#;].*)?$"
 # define PATTERN_NAME_OR_COMMENT_CHAMPS_FIRST_STAGE "^[ 	]*[.](name|comment)[ 	]*\".*$"
 # define PATTERN_HELP_VALIDATION_FIRST_CASE "^[ 	]*([a-z0-9_]+:)?[ 	]*(live|ld|and|or|xor|zjmp|ldi|fork|lld|lldi|lfork)(%-?0*[0-9]+|%:[0-9a-z_]+).*$"
-# define PATTERN_HELP_VALIDATION_SECOND_CASE "^[ 	]*[a-z0-9_]+:(live|ld|and|or|xor|zjmp|ldi|fork|lld|lldi|lfork)[ 	]+(%-?0*[0-9]+|%:[0-9a-z_]+).*$"
+# define PATTERN_HELP_VALIDATION_SECOND_CASE "^[ 	]*[a-z0-9_]+:(live|ld|st|add|sub|and|or|xor|zjmp|ldi|sti|fork|lld|lldi|lfork|aff).*$"
 
 # include "libft.h"
 # include "op.h"
@@ -89,6 +89,7 @@
 # define TWO_BYTE 2
 # define FOUR_BYTE 4
 
+# define UNCERTAIN_NAME "UNCERTAIN"
 # define LABEL_NAME "LABEL"
 # define INSTRACTION_NAME "INSTRACTION"
 # define REGISTER_NAME "REGISTER"
@@ -192,5 +193,8 @@ void				fill_write_code_arg(t_token *pointer, t_asm_content **content);
 
 /*fill_write_code_instraction.c*/
 void				fill_write_code_instraction(char *instraction, t_asm_content **content);
+
+/*helper.c*/
+void				what_are_strings(t_strings *rows);
 
 #endif

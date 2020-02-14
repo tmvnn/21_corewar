@@ -27,6 +27,46 @@ char	*help_check_name_or_comment_champs(t_asm_content *content, int fd)
 	return (NULL);
 }
 
+char	*rebase_str_first_case(char *content)
+{
+	char *result;
+    char *str_cat;
+	char *temp;
+    char *temp1;
+	
+	result = NULL;
+    str_cat = NULL;
+	temp = NULL;
+    temp1 = NULL;
+	temp = ft_strchr(content, 37);
+    temp1 = ft_strsub(content, 0, strlen(content) - strlen(temp));
+    str_cat = ft_strjoin(temp1, ",");
+    result = ft_strjoin(str_cat, temp);
+    ft_strdel(&temp1);
+    ft_strdel(&str_cat);
+	return (result);
+}
+
+char	*rebase_str_second_case(char *content)
+{
+	char *result;
+    char *str_cat;
+	char *temp;
+    char *temp1;
+	
+	result = NULL;
+    str_cat = NULL;
+	temp = NULL;
+    temp1 = NULL;
+	temp = ft_strchr(content, 58) + 1;
+    temp1 = ft_strsub(content, 0, strlen(content) - strlen(temp));
+    str_cat = ft_strjoin(temp1, ",");
+    result = ft_strjoin(str_cat, temp);
+    ft_strdel(&temp1);
+    ft_strdel(&str_cat);
+	return (result);
+}
+
 char	*help_validation(char *content)
 {
 	if (parse(content, PATTERN_HELP_VALIDATION_FIRST_CASE))
@@ -51,6 +91,7 @@ char	*check_valid(t_asm_content *content, int fd)
 	{
 		content->flag_pattern = 1;
 		content->line = help_validation(content->line);
+		// printf("%s\n", content->line);
 		return (content->line);
 	}
 	return (NULL);
@@ -129,4 +170,3 @@ char	*check_all_label(t_strings *rows, t_asm_content **struct_content)
 	}
 	return ("very good");
 }
-
