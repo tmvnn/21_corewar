@@ -879,11 +879,11 @@ else
     echo "KO"
 fi
 rm -rf my_file not_my_file champions/*.cor
-echo "Noldea.s"
-./asm champions/Noldea.s
-hexdump -vC champions/Noldea.cor > my_file
-./resources/vm_champs/asm champions/Noldea.s
-hexdump -vC champions/Noldea.cor > not_my_file
+echo "Noidea.s"
+./asm champions/Noidea.s
+hexdump -vC champions/Noidea.cor > my_file
+./resources/vm_champs/asm champions/Noidea.s
+hexdump -vC champions/Noidea.cor > not_my_file
 if (diff my_file not_my_file)
 then
     echo "OK"

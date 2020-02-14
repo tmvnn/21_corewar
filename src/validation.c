@@ -27,6 +27,15 @@ char	*help_check_name_or_comment_champs(t_asm_content *content, int fd)
 	return (NULL);
 }
 
+char	*help_validation(char *content)
+{
+	if (parse(content, PATTERN_HELP_VALIDATION_FIRST_CASE))
+		content = rebase_str_first_case(content);
+	if (parse(content, PATTERN_HELP_VALIDATION_SECOND_CASE))
+		content = rebase_str_second_case(content);
+	return (content);
+}
+
 char	*check_valid(t_asm_content *content, int fd)
 {
 	if (parse(content->line, PATTERN_SPACE_OR_EMPTY_LINE)){
@@ -41,6 +50,7 @@ char	*check_valid(t_asm_content *content, int fd)
 	else if (content->flag_name && content->flag_comment && parse(content->line, PATTERN))
 	{
 		content->flag_pattern = 1;
+		content->line = help_validation(content->line);
 		return (content->line);
 	}
 	return (NULL);
