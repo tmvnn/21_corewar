@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:06:42 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/13 19:11:20 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/14 15:01:25 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,12 @@ int		parse_name(char *buff, int *b_pos, int fd)
 	i = *b_pos;
 	while (i < NAME_CMD_LEN + 2 + PROG_NAME_LENGTH)
 	{
-		//printf("i = %d\n", i - NAME_CMD_LEN - 2);
 		if (read(fd, &rbyte, 1) <= 0)
 			error();
 		if (rbyte)
 			buff[(*b_pos)++] = rbyte;
 		i++;
 	}
-	//printf("i = %d\n", i);
 	buff[(*b_pos)++] = '"';
 	buff[(*b_pos)++] = '\n';
 	return (1);
@@ -73,12 +71,7 @@ int		parse_comment(char *buff, int *b_pos, int fd)
 	while (i < start_pos + COMMENT_LENGTH)
 	{
 		if (read(fd, &rbyte, 1) <= 0)
-		{
-			printf("%lu\n", ft_strlen(buff));
-			printf("%d\n", i);
-			printf("%s\n", buff);
 			error();
-		}
 		if (rbyte)
 			buff[(*b_pos)++] = rbyte;
 		i++;
@@ -121,29 +114,25 @@ void	parse_chmp_exec_code_size(t_asm_content **content)
 		rez += tmp;
 	}
 	(*content)->exec_code_size = rez;
-	printf("code_size = %d\n", rez);
 }
 
 void	disassemble(char *filename, t_asm_content **content)
 {
-	char			buff[NAME_CMD_LEN + PROG_NAME_LENGTH + COMMENT_CMD_LEN + COMMENT_LENGTH + 
-						4 * D_QUOTE_LEN + 2 * SPACE_LEN + 3 * SLASH_N_LEN + 1];
-	int				b_pos;
-	
+	//(*content)->buf = (char *)ft_memalloc((NAME_CMD_LEN + PROG_NAME_LENGTH + COMMENT_CMD_LEN + COMMENT_LENGTH + 
+	//					4 * D_QUOTE_LEN + 2 * SPACE_LEN + 3 * SLASH_N_LEN  + 1) * sizeof(char));
+	(*content)->buf = (char *)ft_memalloc((10000) * sizeof(char));
 	if (((*content)->fd_src = open(filename, O_RDONLY)) == -1)
 		error();
 	if (file_is_binary((*content)->fd_src))
 	{
-		parse_name(buff, &b_pos, (*content)->fd_src);
+		parse_name((*content)->buf, &((*content)->b_pos), (*content)->fd_src);
 		skip_NULL_bytes(content);
 		parse_chmp_exec_code_size(content);
-		parse_comment(buff, &b_pos, (*content)->fd_src);
+		parse_comment((*content)->buf, &((*content)->b_pos), (*content)->fd_src);
 		skip_NULL_bytes(content);
-		parse_chmp_exec_code(buff, &b_pos, content);
-		
-		buff[b_pos] = 0;
-		printf("output_len = %lu\n",ft_strlen(buff));
-		printf("%s\n", buff);
+		parse_chmp_exec_code(content);
+		(*content)->buf[((*content)->b_pos)] = 0;
+		printf("%s\n", (*content)->buf);
 	}
 	else
 		error();
