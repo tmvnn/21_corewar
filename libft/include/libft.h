@@ -105,5 +105,6 @@ int					ft_isspace(int c);
 void				ft_right_trim(char *str);
 char				*ft_itoabase(int value, int base);
 size_t				ft_strlen_base(int value, int base);
+char    			*ft_left_trim(char **str);
 
 #endif
