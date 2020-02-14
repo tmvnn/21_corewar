@@ -8,8 +8,7 @@ Dieu est la plus belle invention.
 Tapis dans l'ombre je veille. - Minou
 J'te KHABBAR"
 
-gomugomu:
-	fork%:gear_second
+gomugomu:fork%:gear_second
 	live %252645135
 	fork %:gear_fourth
 	ld %190056971, r9
@@ -40,7 +39,7 @@ gear_fourth:
 	ld %151783691, r13
 	ld %507, r16
 	ld %190055695, r2
-	ld %5, r15
+	ld 5, r15
 	ld %190055183, r5
 	ld %190055951, r3
 	ld %190055439, r6
@@ -70,9 +69,13 @@ gear_second:
 	ld 23, r1
 	ld %11, r8
 	xor r12, r12, r12
+	or r4,r4,r4
 	zjmp %:haki_of_kings
 	live %42
 	sti r15, r1, r1
+	sub r16,r4,r4
+	add r4,r4,r4
+	st r4,r4
 gear_third:
 	st r1, -9
 	ld %1879114239, r1

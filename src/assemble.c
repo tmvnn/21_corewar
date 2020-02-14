@@ -51,6 +51,7 @@ void	assemble(t_asm_content **content)
 		}
 		tokenizing(&(*content)->line, &rows, content);
 	}
+	// what_are_strings(rows);
 	if (!(*content)->flag_pattern || !check_all_label(rows, content))
 	{
 		printf("not valid file\n");
