@@ -42,6 +42,8 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <regex.h>
+# include <stdint.h>
+# include <inttypes.h>
 
 # define EXP_ASM ".s"
 # define EXP_COR ".cor"

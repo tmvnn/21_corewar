@@ -19,7 +19,7 @@ static void convert_four_byte(t_asm_content **content, unsigned int number, int 
 	size = 4;
 	copy = (*content)->bytecode + move + FOURTH_BYTE;
 	while (size--) {
-		*copy = (uint8_t)number;
+		*copy = (u_int8)number;
 		number >>= 8;
 		if (size)
 			copy--;
