@@ -6,7 +6,7 @@ char	*help_check_name_or_comment_champs(t_asm_content *content, int fd)
 
 	temp = "\0";
 	do {
-		temp = ft_strjoin(temp, content->line);
+		temp = ft_strjoinwcm(temp, content->line);
 		ft_strdel(&content->line);
 		if (parse(temp, PATTERN_NAME_CHAMPS))
 		{
@@ -22,7 +22,7 @@ char	*help_check_name_or_comment_champs(t_asm_content *content, int fd)
 			content->flag_comment = 1;
 			return (temp);
 		}
-		temp = ft_strjoin(temp, "\n");
+		temp = ft_strjoinwcm(temp, "\n");
 	} while (get_next_line(fd, &content->line) > 0);
 	return (NULL);
 }
@@ -39,11 +39,9 @@ char	*rebase_str_first_case(char *content)
 	temp = NULL;
     temp1 = NULL;
 	temp = ft_strchr(content, 37);
-    temp1 = ft_strsub(content, 0, strlen(content) - strlen(temp));
-    str_cat = ft_strjoin(temp1, ",");
-    result = ft_strjoin(str_cat, temp);
-    ft_strdel(&temp1);
-    ft_strdel(&str_cat);
+    temp1 = ft_strsubwcm(content, 0, ft_strlen(content) - ft_strlen(temp));
+    str_cat = ft_strjoinwcm(temp1, ",");
+    result = ft_strjoinwcm(str_cat, temp);
 	return (result);
 }
 
@@ -59,11 +57,9 @@ char	*rebase_str_second_case(char *content)
 	temp = NULL;
     temp1 = NULL;
 	temp = ft_strchr(content, 58) + 1;
-    temp1 = ft_strsub(content, 0, strlen(content) - strlen(temp));
-    str_cat = ft_strjoin(temp1, ",");
-    result = ft_strjoin(str_cat, temp);
-    ft_strdel(&temp1);
-    ft_strdel(&str_cat);
+    temp1 = ft_strsubwcm(content, 0, ft_strlen(content) - ft_strlen(temp));
+    str_cat = ft_strjoinwcm(temp1, ",");
+    result = ft_strjoinwcm(str_cat, temp);
 	return (result);
 }
 
@@ -91,7 +87,6 @@ char	*check_valid(t_asm_content *content, int fd)
 	{
 		content->flag_pattern = 1;
 		content->line = help_validation(content->line);
-		// printf("%s\n", content->line);
 		return (content->line);
 	}
 	return (NULL);
@@ -110,13 +105,13 @@ char	*search_label(t_strings *rows, char *content)
 		pointer = struct_pointer->string;
 		while (pointer)
 		{
-			if (!ft_strcmp(pointer->type, LABEL_NAME) && parse(content, DIRECT_LABEL) && !ft_strcmp((temp = ft_strsub(pointer->content, 0, strlen(pointer->content) - 1)), (temp1 = ft_strsub(content, 2, strlen(content)))))
+			if (!ft_strcmp(pointer->type, LABEL_NAME) && parse(content, DIRECT_LABEL) && !ft_strcmp((temp = ft_strsub(pointer->content, 0, ft_strlen(pointer->content) - 1)), (temp1 = ft_strsub(content, 2, ft_strlen(content)))))
 			{
 				ft_strdel(&temp);
 				ft_strdel(&temp1);
 				return (content);
 			}
-			else if (!ft_strcmp(pointer->type, LABEL_NAME) && parse(content, INDIRECT_LABEL) && !ft_strcmp((temp = ft_strsub(pointer->content, 0, strlen(pointer->content) - 1)), (temp1 = ft_strsub(content, 1, strlen(content)))))
+			else if (!ft_strcmp(pointer->type, LABEL_NAME) && parse(content, INDIRECT_LABEL) && !ft_strcmp((temp = ft_strsub(pointer->content, 0, ft_strlen(pointer->content) - 1)), (temp1 = ft_strsub(content, 1, ft_strlen(content)))))
 			{
 				ft_strdel(&temp);
 				ft_strdel(&temp1);
@@ -146,7 +141,7 @@ char	*check_all_label(t_strings *rows, t_asm_content **struct_content)
 			if (!ft_strcmp(pointer->type, DIRECT_LABEL_NAME) || !ft_strcmp(pointer->type, INDIRECT_LABEL_NAME))
 			{
 				if (!search_label(rows, pointer->content))
-					return (clean_memory_t_strings(rows));
+					return (clean_memory(struct_content));
 			}
 			if (!ft_strcmp(pointer->type, INSTRACTION_NAME))
 			{

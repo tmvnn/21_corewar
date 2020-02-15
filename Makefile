@@ -24,7 +24,8 @@ SRC_ASM_NAME =  asm_content.c \
 				string.c \
 				title.c \
 				tokenizing.c \
-				validation.c
+				validation.c \
+				clean_memory.c
 
 OBJ_ASM_NAME = $(SRC_ASM_NAME:.c=.o);
 SRC_ASM = $(addprefix $(OBJDIR)/, $(SRC_ASM_NAME))

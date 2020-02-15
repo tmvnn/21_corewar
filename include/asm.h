@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: s39f4lt <s39f4lt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/11 22:34:30 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/15 21:25:18 by s39f4lt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,5 +198,8 @@ void				fill_write_code_instraction(char *instraction, t_asm_content **content);
 
 /*helper.c*/
 void				what_are_strings(t_strings *rows);
+
+/* clean_memory.c */
+char				*clean_memory(t_asm_content **content);
 
 #endif

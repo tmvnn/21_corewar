@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: s39f4lt <s39f4lt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 16:05:49 by ramory-l          #+#    #+#             */
-/*   Updated: 2020/02/02 21:16:18 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/15 22:51:58 by s39f4lt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,8 @@ void				ft_right_trim(char *str);
 char				*ft_itoabase(int value, int base);
 size_t				ft_strlen_base(int value, int base);
 char    			*ft_left_trim(char **str);
+char    			*ft_strjoinwcm(char *s1, char *s2);
+char    			*ft_strsubwcm(char *s, unsigned int start, size_t len);
+int					ft_atoiwcm(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: s39f4lt <s39f4lt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:37:38 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/15 17:35:18 by s39f4lt          ###   ########.fr       */
+/*   Updated: 2020/02/16 01:19:35 by s39f4lt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 void		clear_buff(char **buff)
 {
 	char	**copy;
+	int		len;
 
+	len = 0;
 	copy = buff;
 	if (!buff || !*buff)
 		return ;
-	while (*copy)
-		ft_strdel(&(*copy++));
-	free(buff);
-	buff = NULL;
+	while (*copy++)
+		len++;
+	while (len)
+		ft_strdel(&buff[--len]);
 }
 
 static void	space_replacement(char **line, int size, char c)
@@ -56,7 +58,11 @@ char		**create_buff(char **line, t_asm_content **content)
 	if (**line == '.')
 	{
 		if (check_name_or_comment(buff, content) == 1)
+		{
+			ft_strdel(line);
+			clear_buff(buff);
 			return (NULL);
+		}
 	}
 	ft_strdel(line);
 	return (buff);
