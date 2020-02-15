@@ -6,7 +6,7 @@
 /*   By: s39f4lt <s39f4lt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:37:38 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/15 17:31:22 by s39f4lt          ###   ########.fr       */
+/*   Updated: 2020/02/15 17:35:18 by s39f4lt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,6 @@ void		clear_buff(char **buff)
 		ft_strdel(&(*copy++));
 	free(buff);
 	buff = NULL;
-}
-
-static void	sticky_line(char **line, int diff_size, int size)
-{
-	char	*new_line;
-	
-	if (!(new_line = (char *)ft_memalloc((size + 1) * sizeof(char))))
-		error();
-	new_line[size] = '\0';
-	ft_memcpy(new_line, *line, diff_size - 1);
-	new_line[diff_size - 1] = ',';
-	ft_memcpy(new_line + diff_size, *line + diff_size - 1, diff_size + 1);
-	ft_strdel(line);
-	*line = new_line;
 }
 
 static void	space_replacement(char **line, int size, char c)
