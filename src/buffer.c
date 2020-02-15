@@ -6,7 +6,7 @@
 /*   By: s39f4lt <s39f4lt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:37:38 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/15 16:41:42 by s39f4lt          ###   ########.fr       */
+/*   Updated: 2020/02/15 17:31:22 by s39f4lt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,11 @@ static void	space_replacement(char **line, int size, char c)
 {
 	char	*copy;
 	int		quotes;
-	int		size_line;
 
-	size_line = ft_strlen(*line);
 	quotes = 0;
 	copy = *line;
 	while (*copy && --size != -1)
 	{
-		if (*copy == '%') {
-			if (!ft_isspace(*(copy - 1)) && *(copy - 1) != ',') {
-				sticky_line(line, size_line - size, size_line + 1);
-				copy = *line;
-				copy = copy + (size_line - size);
-			}
-		}
 		if (*copy == '"' && quotes == 1)
 			quotes = 0;
 		if (*copy == '"' && quotes == 0)
