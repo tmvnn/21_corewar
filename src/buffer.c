@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   buffer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: s39f4lt <s39f4lt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:37:38 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/13 22:19:03 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/15 16:41:42 by s39f4lt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char		**create_buff(char **line, t_asm_content **content)
 	char	**buff;
 	char	c;
 
+	*line = ft_left_trim(line);
 	c = (**line == '.') ? '"' : ',';
 	space_replacement(line, ft_strlen(*line), c);
 	buff = ft_strsplit(*line, c);
