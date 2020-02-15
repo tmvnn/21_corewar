@@ -13,6 +13,8 @@ SRC_ASM_NAME = main.c \
 				assemble.c \
 				disassemble.c \
 				parse_chmp_exec_code.c \
+				write_args.c \
+				parse_name_comt_cs.c \
 				error.c \
 				file.c \
 				title.c \
@@ -31,7 +33,7 @@ all: libft $(ASM)
 $(ASM): $(OBJ_ASM)
 	@gcc $(FLAGS) $^ -o $@ $(HEADER_LIBFT) $(HEADER) -L libft -lft
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c include/asm.h
+$(OBJDIR)/%.o: $(SRCDIR)/%.c include/asm.h include/dasm.h
 	@mkdir -p $(OBJDIR)
 	@gcc $(FLAGS) $(HEADER_LIBFT) $(HEADER) -o $@ -c $<
 

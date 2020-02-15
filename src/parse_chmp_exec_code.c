@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 18:08:16 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/02/14 15:24:12 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/15 18:27:07 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void				get_args_types(t_asm_content **content, int *i,
 	{
 		rbyte >>= 2;
 		op_tab[cur_op].args_types[j] = 3 & rbyte;
-		//printf("arg%d = %d ", j, op_tab[cur_op].args_types[j]);
 	}
 }
 
@@ -78,38 +77,11 @@ void				write_curr_op(t_asm_content **content, int *i,
 	{
 		num = 0;
 		if (op_tab[cur_op].args_types[j] == REG_CODE)
-		{
-			(*content)->buf[(*content)->b_pos++] = 'r';
-			num = ft_itoa(get_num_from_1byte(content, i));
-			ft_strcpy((*content)->buf + (*content)->b_pos, num);
-			(*content)->b_pos += ft_strlen(num);
-			j + 1 != op_tab[cur_op].args_num ?
-								(*content)->buf[(*content)->b_pos++] = ',' : 0;
-			(*content)->buf[(*content)->b_pos++] = ' ';
-			free(num);
-		}
+			write_reg(content, cur_op, i, j);
 		else if (op_tab[cur_op].args_types[j] == DIR_CODE)
-		{
-			(*content)->buf[(*content)->b_pos++] = '%';
-			num = ft_itoa(get_num_from_nbyte(content, i,
-												op_tab[cur_op].t_dir_size));
-			ft_strcpy((*content)->buf + (*content)->b_pos, num);
-			(*content)->b_pos += ft_strlen(num);
-			j + 1 != op_tab[cur_op].args_num ?
-								(*content)->buf[(*content)->b_pos++] = ',' : 0;
-			(*content)->buf[(*content)->b_pos++] = ' ';
-			free(num);
-		}
+			write_dir(content, cur_op, i, j);
 		else if (op_tab[cur_op].args_types[j] == IND_CODE)
-		{
-			num = ft_itoa(get_num_from_nbyte(content, i, IND_SIZE));
-			ft_strcpy((*content)->buf + (*content)->b_pos, num);
-			(*content)->b_pos += ft_strlen(num);
-			j + 1 != op_tab[cur_op].args_num ?
-								(*content)->buf[(*content)->b_pos++] = ',' : 0;
-			(*content)->buf[(*content)->b_pos++] = ' ';
-			free(num);
-		}
+			write_ind(content, cur_op, i, j);
 		j++;
 	}
 	(*content)->buf[(*content)->b_pos++] = '\n';
@@ -127,7 +99,5 @@ void				parse_chmp_exec_code(t_asm_content **content)
 		if (op_tab[cur_op].args_types_code)
 			get_args_types(content, &i, cur_op);
 		write_curr_op(content, &i, cur_op);
-		//(*content)->buf[((*content)->b_pos)] = 0;
-		//printf("\n\n%s\n\n", (*content)->buf);
 	}
 }
