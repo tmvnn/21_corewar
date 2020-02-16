@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:12:24 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/16 20:42:13 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/16 20:42:58 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	file(const char *filename, t_asm_content **content)
 	*content = init_content();
 	filename_dot_cor = (char *)ft_memalloc((filename_len + 3) * sizeof(char));
 	ft_strcat(ft_memcpy(filename_dot_cor, filename, filename_len - 2), EXP_COR);
-	check_slashn_end(filename, content);
+	// check_slashn_end(filename, content);
 	if (!((*content)->fd_dst = open(filename_dot_cor, O_CREAT | O_RDWR, 0644)))
 		error(*content);
 	if (((*content)->fd_src = open(filename, O_RDONLY)) == -1)
