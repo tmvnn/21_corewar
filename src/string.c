@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 21:13:59 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/16 16:53:41 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/16 19:25:22 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void    add_string(t_token **tokens, t_strings **row, t_asm_content *content)
 			error(content);
 		(*row)->string = *tokens;
 		(*row)->next = NULL;
+		content->tokens = row;
 	}
 	else
 	{

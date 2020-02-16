@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:37:38 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/16 17:39:43 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/16 19:46:06 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ char		**create_buff(char **line, t_asm_content **content)
 		{
 			ft_strdel(line);
 			clear_buff(buff);
+			free(buff);
 			return (NULL);
 		}
 	}
