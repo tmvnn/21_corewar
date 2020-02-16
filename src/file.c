@@ -3,24 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:12:24 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/16 18:18:31 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/16 19:07:32 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int create_f(const char *filename, int only_name_len, char *file_type, 
+int	create_f(const char *filename, int only_name_len, char *file_type,
 														t_asm_content **content)
 {
 	char	*new_filename;
 	int		type_len;
-	
+
 	type_len = file_type[1] == 's' ? EXP_ASM_LEN : EXP_COR_LEN;
 	*content = init_content(file_type[1]);
-	new_filename = (char *)ft_memalloc((only_name_len + type_len + 1) * sizeof(char));
+	new_filename = (char *)ft_memalloc((only_name_len + type_len + 1) *
+																sizeof(char));
 	ft_strcat(ft_memcpy(new_filename, filename, only_name_len), file_type);
 	if (!((*content)->fd_dst = open(new_filename, O_CREAT | O_RDWR, 0644)))
 		error();
@@ -41,7 +42,8 @@ int	file(const char *filename, t_asm_content **content)
 	{
 		create_f(filename, only_name_len, EXP_COR, content);
 	}
-	else if (!ft_strcmp((filename + only_name_len), EXP_COR) && only_name_len > 0)
+	else if (!ft_strcmp((filename + only_name_len), EXP_COR) &&
+															only_name_len > 0)
 	{
 		create_f(filename, only_name_len, EXP_ASM, content);
 	}

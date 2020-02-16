@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   disassemble.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:06:42 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/16 14:57:57 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/16 19:08:09 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	disassemble(char *filename, t_asm_content **content)
 	if (file_is_binary((*content)->fd_src))
 	{
 		parse_name((*content)->buf, &((*content)->b_pos), (*content)->fd_src);
-		skip_NULL_bytes(content);
+		skip_null_bytes(content);
 		parse_chmp_exec_code_size(content);
-		parse_comment((*content)->buf, &((*content)->b_pos), (*content)->fd_src);
-		skip_NULL_bytes(content);
+		parse_comment((*content)->buf, &((*content)->b_pos),
+															(*content)->fd_src);
+		skip_null_bytes(content);
 		parse_chmp_exec_code(content);
 		(*content)->buf[(*content)->b_pos] = 0;
-		printf("%s\n", (*content)->buf); //DELETE
 		write((*content)->fd_dst, (*content)->buf, (*content)->b_pos);
 		close((*content)->fd_dst);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assemble.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:06:42 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/13 15:15:47 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/16 19:17:39 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ void	assemble(char *filename, t_asm_content **content)
 		tokenizing(&(*content)->line, &rows, content);
 	printf("name: %s\ncomment: %s\n", (*content)->name, (*content)->comment);
 	what_are_strings(rows);
-	//(*content)->bytecode_header = (char *)ft_memalloc(HEADER_SIZE * sizeof(char));
 	in_bytecode(content);
 }

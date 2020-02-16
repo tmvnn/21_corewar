@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_chmp_exec_code.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 18:08:16 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/02/16 17:53:56 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/16 19:01:22 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 u_int8_t			get_num_from_1byte(t_asm_content **content, int *i)
 {
-	unsigned char 	rbyte;
-	
+	unsigned char	rbyte;
+
 	if (read((*content)->fd_src, &rbyte, 1) < 0)
-			error();
+		error();
 	(*i)++;
 	return ((u_int8_t)rbyte);
 }
 
-int			get_num_from_nbyte(t_asm_content **content,
-							int *i, u_int8_t t_dir_size)
+int					get_num_from_nbyte(t_asm_content **content, int *i,
+														u_int8_t t_dir_size)
 {
-	int 			tmp;
-	int 			rez;
-	int 			j;
+	int				tmp;
+	int				rez;
+	int				j;
 	unsigned char	rbyte;
 
 	j = -1;
@@ -45,15 +45,14 @@ int			get_num_from_nbyte(t_asm_content **content,
 	return (t_dir_size == 2 ? (short int)rez : rez);
 }
 
-
 void				get_args_types(t_asm_content **content, int *i,
 														u_int8_t cur_op)
 {
-	int 			j;
+	int				j;
 	unsigned char	rbyte;
-	
+
 	if (read((*content)->fd_src, &rbyte, 1) < 0)
-			error();
+		error();
 	(*i)++;
 	j = ARGS_TYPES_COUNT;
 	while (j-- > 0)
@@ -89,9 +88,9 @@ void				write_curr_op(t_asm_content **content, int *i,
 
 void				parse_chmp_exec_code(t_asm_content **content)
 {
-	int 			i;
-	u_int8_t		cur_op;				
-	
+	int				i;
+	u_int8_t		cur_op;
+
 	i = 0;
 	while (i < (int)(*content)->exec_code_size)
 	{

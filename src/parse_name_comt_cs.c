@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_name_comt_cs.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 18:44:59 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/02/16 16:59:27 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/16 19:06:16 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 int		file_is_binary(int fd)
 {
 	unsigned char	rbyte;
-	int 			tmp;
-	int 			rez;
-	int 			i;
-	
+	int				tmp;
+	int				rez;
+	int				i;
+
 	i = -1;
 	tmp = 0;
 	rez = 0;
@@ -30,7 +30,6 @@ int		file_is_binary(int fd)
 			tmp <<= 8 * (MAGIC_NUMBER_SIZE - i - 1);
 		rez += tmp;
 	}
-	//printf("REZ = %d\n", rez);
 	return (rez == COREWAR_EXEC_MAGIC ? 1 : 0);
 }
 
@@ -83,10 +82,10 @@ int		parse_comment(char *buff, int *b_pos, int fd)
 	return (1);
 }
 
-void	skip_NULL_bytes(t_asm_content **content)
+void	skip_null_bytes(t_asm_content **content)
 {
 	unsigned char	rbyte;
-	int 			i;
+	int				i;
 
 	i = -1;
 	while (++i < NULL_SIZE)
@@ -99,10 +98,10 @@ void	skip_NULL_bytes(t_asm_content **content)
 void	parse_chmp_exec_code_size(t_asm_content **content)
 {
 	unsigned char	rbyte;
-	int 			tmp;
-	int 			rez;
-	int 			i;
-	
+	int				tmp;
+	int				rez;
+	int				i;
+
 	i = -1;
 	tmp = 0;
 	rez = 0;

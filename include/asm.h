@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/16 17:44:41 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/16 19:05:30 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define FOURTH_BYTE 3
 
 typedef	struct			s_token
-{	
+{
 	char				*content;
 	char				*type;
 	struct s_token		*next;
@@ -49,7 +49,7 @@ typedef struct			s_strings
 }						t_strings;
 
 typedef struct			s_asm_content
-{	
+{
 	int					fd_dst;
 	int					fd_src;
 	char				asm_dsm_flag;
@@ -80,7 +80,7 @@ u_int8_t			get_num_from_1byte(t_asm_content **content, int *i);
 int					get_num_from_nbyte(t_asm_content **content, int *i,
 														u_int8_t t_dir_size);
 void				get_args_types(t_asm_content **content, int *i,
-															u_int8_t cur_op);												
+															u_int8_t cur_op);
 void				write_curr_op(t_asm_content **content, int *i,
 															u_int8_t cur_op);
 
@@ -95,7 +95,7 @@ void				write_ind(t_asm_content **content, u_int8_t cur_op, int *i,
 int					file_is_binary(int fd);
 int					parse_name(char *buff, int *b_pos, int fd);
 int					parse_comment(char *buff, int *b_pos, int fd);
-void				skip_NULL_bytes(t_asm_content **content);
+void				skip_null_bytes(t_asm_content **content);
 void				parse_chmp_exec_code_size(t_asm_content **content);
 
 /* buffer.c */

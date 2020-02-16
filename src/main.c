@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:17:35 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/11 17:53:10 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/16 19:18:03 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_asm_content	*content;
-	
+
 	if (argc == 0)
 		error();
 	if (file(*(argv + 1), &content))

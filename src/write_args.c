@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   write_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <lbellona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/15 17:39:49 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/02/16 17:32:54 by timuryakubo      ###   ########.fr       */
+/*   Created: 2020/02/16 18:40:47 by lbellona          #+#    #+#             */
+/*   Updated: 2020/02/16 18:43:33 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void		write_reg(t_asm_content **content, u_int8_t cur_op, int *i, int j)
 	char	*num;
 
 	num = 0;
-	i +=0;
 	(*content)->buf[(*content)->b_pos++] = 'r';
 	num = ft_itoa(get_num_from_1byte(content, i));
 	ft_strcpy((*content)->buf + (*content)->b_pos, num);
@@ -31,7 +30,7 @@ void		write_reg(t_asm_content **content, u_int8_t cur_op, int *i, int j)
 void		write_dir(t_asm_content **content, u_int8_t cur_op, int *i, int j)
 {
 	char	*num;
-	
+
 	(*content)->buf[(*content)->b_pos++] = '%';
 	num = ft_itoa(get_num_from_nbyte(content, i,
 										op_tab[cur_op].t_dir_size));
