@@ -3,37 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramory-l <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/25 17:25:43 by ramory-l          #+#    #+#             */
-/*   Updated: 2019/05/18 14:55:48 by ramory-l         ###   ########.fr       */
+/*   Created: 2018/12/02 22:37:47 by lbellona          #+#    #+#             */
+/*   Updated: 2019/12/27 13:21:07 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+int						ft_atoi(const char *str)
 {
-	int n;
-	int neg;
+	int					s;
+	int					sign;
+	unsigned long long	rez;
+	size_t				s_len;
 
-	n = 0;
-	neg = 1;
-	while (*str == ' ' || *str == '\f' ||
-			*str == '\n' || *str == '\t' ||
-			*str == '\r' || *str == '\v')
-		str++;
-	if (*str == '-')
+	s = 0;
+	while (str[s] == 32 || (str[s] >= 9 && str[s] <= 13))
+		s++;
+	sign = 1;
+	if (str[s] == 43 || str[s] == 45)
 	{
-		neg = -1;
-		str++;
+		if (str[s] == 45)
+			sign = -1;
+		s++;
 	}
-	else if (*str == '+')
-		str++;
-	while (*str >= '0' && *str <= '9')
+	rez = 0;
+	s_len = 0;
+	while (str[s] >= 48 && str[s] <= 57)
 	{
-		n = n * 10 + *str - '0';
-		str++;
+		rez = rez * 10 + str[s] - 48;
+		s++;
+		if (rez > LLONG_MAX || (rez < ULLONG_MAX && ++s_len >= 20))
+			return (sign == 1 ? -1 : 0);
 	}
-	return (n * neg);
+	return (sign * (int)rez);
 }

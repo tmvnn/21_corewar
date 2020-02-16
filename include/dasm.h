@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 16:52:05 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/02/15 18:49:13 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/16 15:08:34 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define SLASH_N_LEN 1
 # define ARGS_TYPES_COUNT 3
 # define BUFF_SIZE_FOR_DIS 4096
+# define OP_TAB_SIZE 17
 // # define BUFF_SIZE_FOR_DIS NAME_CMD_LEN + PROG_NAME_LENGTH + COMMENT_CMD_LEN +\
 // 		COMMENT_LENGTH + 4 * D_QUOTE_LEN + 2 * SPACE_LEN + 3 * SLASH_N_LEN  +\
 // 		CHAMP_MAX_SIZE + 1

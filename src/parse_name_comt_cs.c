@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 18:44:59 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/02/15 18:53:29 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/16 16:59:27 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		file_is_binary(int fd)
 			tmp <<= 8 * (MAGIC_NUMBER_SIZE - i - 1);
 		rez += tmp;
 	}
+	//printf("REZ = %d\n", rez);
 	return (rez == COREWAR_EXEC_MAGIC ? 1 : 0);
 }
 
