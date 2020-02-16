@@ -6,13 +6,13 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 20:33:51 by idunaver          #+#    #+#             */
-/*   Updated: 2020/01/26 15:32:15 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/16 16:55:44 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void	add_token(t_token **token, char *content)
+static void	add_token(t_token **token, char *content, t_asm_content *content_asm)
 {
 	t_token	*copy;
 	t_token	*new;
@@ -23,7 +23,7 @@ static void	add_token(t_token **token, char *content)
 	if (!copy)
 	{
 		if (!(*token = (t_token *)ft_memalloc(sizeof(t_token))))
-			error();
+			error(content_asm);
 		(*token)->content = ft_strdup(content);
 		interpretation(*token);
 		(*token)->memory_size = 0;
@@ -33,7 +33,7 @@ static void	add_token(t_token **token, char *content)
 	else
 	{
 		if (!(new = (t_token *)ft_memalloc(sizeof(t_token))))
-			error();
+			error(content_asm);
 		new->content = ft_strdup(content);
 		interpretation(new);
 		new->next = NULL;
@@ -62,8 +62,8 @@ void		tokenizing(char **line, t_strings **row, t_asm_content **content)
 	{
 		if (**copy_buff == ';' || **copy_buff == '#')
 			break ;
-		add_token(&tokens, *copy_buff++);
+		add_token(&tokens, *copy_buff++, *content);
 	}
-	add_string(&tokens, row);
+	add_string(&tokens, row, *content);
 	clear_buff(buff);
 }

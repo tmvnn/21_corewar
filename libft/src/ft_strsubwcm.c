@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strsubwcm.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/18 19:08:59 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/16 16:48:37 by idunaver         ###   ########.fr       */
+/*   Created: 2020/02/16 16:29:48 by idunaver          #+#    #+#             */
+/*   Updated: 2020/02/16 16:30:53 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "libft.h"
 
-void	error(t_asm_content *content)
+char    *ft_strsubwcm(char *s, unsigned int start, size_t len)
 {
-	write(1, "error\n", 6);
-	clean_memory(&content);
-	exit(-1);
+	char    *new;
+
+	new = ft_strsub(s, start, len);
+	if (*s)
+		ft_strdel(&s);
+	return (new);
 }

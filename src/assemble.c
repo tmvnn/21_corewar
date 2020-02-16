@@ -6,37 +6,11 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:06:42 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/13 20:04:42 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/16 16:51:47 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-char	*clean_memory_t_strings(t_strings *rows)
-{
-	t_token *pointer;
-	t_token *previous;
-
-	while (rows)
-	{
-		pointer = rows->string;
-		while (pointer)
-		{
-			ft_strdel(&pointer->content);
-			ft_strdel(&pointer->type);
-			previous = pointer;
-			pointer = pointer->next;
-			free(previous);
-		}
-		rows = rows->next;
-	}
-	return(NULL);
-}
-
-char	*clean_memory(t_strings *rows)
-{
-	return (clean_memory_t_strings(rows));
-}
 
 void	assemble(t_asm_content **content)
 {
@@ -55,7 +29,7 @@ void	assemble(t_asm_content **content)
 	if (!(*content)->flag_pattern || !check_all_label(rows, content))
 	{
 		printf("not valid file\n");
-		error() ;
+		error(*content) ;
 	}
 	(*content)->exec_code_size = (*content)->memory_code_size;
 	(*content)->asm_size = (*content)->exec_code_size + (*content)->header_size;
@@ -65,4 +39,5 @@ void	assemble(t_asm_content **content)
 	if (!fill_file(rows, content))
 		return ;
 	write((*content)->fd_dst, (*content)->bytecode, (*content)->asm_size);
+	clean_memory(content);
 }

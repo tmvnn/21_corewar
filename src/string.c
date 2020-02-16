@@ -6,13 +6,13 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 21:13:59 by idunaver          #+#    #+#             */
-/*   Updated: 2020/01/21 21:28:33 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/16 16:53:41 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void    add_string(t_token **tokens, t_strings **row)
+void    add_string(t_token **tokens, t_strings **row, t_asm_content *content)
 {
 	t_strings *copy;
 	t_strings *new;
@@ -21,14 +21,14 @@ void    add_string(t_token **tokens, t_strings **row)
 	if (!copy)
 	{
 		if (!(*row = (t_strings *)ft_memalloc(sizeof(t_strings))))
-			error();
+			error(content);
 		(*row)->string = *tokens;
 		(*row)->next = NULL;
 	}
 	else
 	{
 		if (!(new = (t_strings *)ft_memalloc(sizeof(t_strings))))
-			error();
+			error(content);
 		new->string = *tokens;
 		new->next = NULL;
 		while (copy->next)

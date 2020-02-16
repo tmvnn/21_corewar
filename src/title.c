@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   title.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: s39f4lt <s39f4lt@student.42.fr>            +#+  +:+       +#+        */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:45:27 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/15 16:37:06 by s39f4lt          ###   ########.fr       */
+/*   Updated: 2020/02/16 16:54:35 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	add_name(char **buff, t_asm_content **content)
 		*(*content)->name = '\0';
 	}
 	if (!(*content)->name)
-		error();
+		error(*content);
 	clear_buff(buff);
 	return (1);
 }

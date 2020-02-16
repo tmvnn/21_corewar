@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/11 22:34:30 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/16 16:54:17 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ void				clear_buff(char **buff);
 char				**create_buff(char **line, t_asm_content **content);
 
 /* error.c */
-void				error(void);
+void				error(t_asm_content *content);
 
 /* filename.c */
 int					file(const char *filename, t_asm_content **content);
@@ -166,7 +166,7 @@ int					check_name_or_comment(char **buff, t_asm_content **content);
 void				tokenizing(char **line, t_strings **row, t_asm_content **content);
 
 /* string.c */
-void    			add_string(t_token **tokens, t_strings **row);
+void    			add_string(t_token **tokens, t_strings **row, t_asm_content *content);
 
 /* in_bytecode.c */
 void    			in_bytecode(t_asm_content **content);
@@ -201,5 +201,6 @@ void				fill_write_code_instraction(char *instraction, t_asm_content **content);
 
 /*helper.c*/
 void				what_are_strings(t_strings *rows);
+char				*clean_memory(t_asm_content **content);
 
 #endif

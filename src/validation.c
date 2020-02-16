@@ -6,7 +6,7 @@ char	*help_check_name_or_comment_champs(t_asm_content *content, int fd)
 
 	temp = "\0";
 	do {
-		temp = ft_strjoin(temp, content->line);
+		temp = ft_strjoinwcm(temp, content->line);
 		ft_strdel(&content->line);
 		if (parse(temp, PATTERN_NAME_CHAMPS))
 		{
@@ -22,7 +22,7 @@ char	*help_check_name_or_comment_champs(t_asm_content *content, int fd)
 			content->flag_comment = 1;
 			return (temp);
 		}
-		temp = ft_strjoin(temp, "\n");
+		temp = ft_strjoinwcm(temp, "\n");
 	} while (get_next_line(fd, &content->line) > 0);
 	return (NULL);
 }
@@ -40,10 +40,9 @@ char	*rebase_str_first_case(char *content)
     temp1 = NULL;
 	temp = ft_strchr(content, 37);
     temp1 = ft_strsub(content, 0, strlen(content) - strlen(temp));
-    str_cat = ft_strjoin(temp1, ",");
-    result = ft_strjoin(str_cat, temp);
-    ft_strdel(&temp1);
-    ft_strdel(&str_cat);
+    str_cat = ft_strjoinwcm(temp1, ",");
+    result = ft_strjoinwcm(str_cat, temp);
+    ft_strdel(&content);
 	return (result);
 }
 
@@ -60,10 +59,9 @@ char	*rebase_str_second_case(char *content)
     temp1 = NULL;
 	temp = ft_strchr(content, 58) + 1;
     temp1 = ft_strsub(content, 0, strlen(content) - strlen(temp));
-    str_cat = ft_strjoin(temp1, ",");
-    result = ft_strjoin(str_cat, temp);
-    ft_strdel(&temp1);
-    ft_strdel(&str_cat);
+    str_cat = ft_strjoinwcm(temp1, ",");
+    result = ft_strjoinwcm(str_cat, temp);
+    ft_strdel(&content);
 	return (result);
 }
 
@@ -80,10 +78,9 @@ char	*rebase_str_third_case(char *content)
     temp1 = NULL;
 	temp = ft_strchr(content, 35);
     temp1 = ft_strsub(content, 0, strlen(content) - strlen(temp));
-    str_cat = ft_strjoin(temp1, ",");
-    result = ft_strjoin(str_cat, temp);
-    ft_strdel(&temp1);
-    ft_strdel(&str_cat);
+    str_cat = ft_strjoinwcm(temp1, ",");
+    result = ft_strjoinwcm(str_cat, temp);
+    ft_strdel(&content);
 	return (result);
 }
 
@@ -100,10 +97,9 @@ char	*rebase_str_fourth_case(char *content)
     temp1 = NULL;
 	temp = ft_strchr(content, 59);
     temp1 = ft_strsub(content, 0, strlen(content) - strlen(temp));
-    str_cat = ft_strjoin(temp1, ",");
-    result = ft_strjoin(str_cat, temp);
-    ft_strdel(&temp1);
-    ft_strdel(&str_cat);
+    str_cat = ft_strjoinwcm(temp1, ",");
+    result = ft_strjoinwcm(str_cat, temp);
+    ft_strdel(&content);
 	return (result);
 }
 
@@ -120,10 +116,9 @@ char	*rebase_str_fifth_case(char *content)
     temp1 = NULL;
 	temp = ft_strchr(content, 58) + 1;
     temp1 = ft_strsub(content, 0, strlen(content) - strlen(temp));
-    str_cat = ft_strjoin(temp1, ",");
-    result = ft_strjoin(str_cat, temp);
-    ft_strdel(&temp1);
-    ft_strdel(&str_cat);
+    str_cat = ft_strjoinwcm(temp1, ",");
+    result = ft_strjoinwcm(str_cat, temp);
+    ft_strdel(&content);
 	return (result);
 }
 
@@ -171,6 +166,8 @@ char	*search_label(t_strings *rows, char *content)
 	char		*temp1;
 
 	struct_pointer = rows;
+	temp = NULL;
+	temp1 = NULL;
 	while (struct_pointer)
 	{
 		pointer = struct_pointer->string;
@@ -188,7 +185,8 @@ char	*search_label(t_strings *rows, char *content)
 				ft_strdel(&temp1);
 				return (content);
 			}
-			
+			ft_strdel(&temp);
+			ft_strdel(&temp1);
 			pointer = pointer->next;
 		}
 		struct_pointer = struct_pointer->next;
@@ -212,7 +210,7 @@ char	*check_all_label(t_strings *rows, t_asm_content **struct_content)
 			if (!ft_strcmp(pointer->type, DIRECT_LABEL_NAME) || !ft_strcmp(pointer->type, INDIRECT_LABEL_NAME))
 			{
 				if (!search_label(rows, pointer->content))
-					return (clean_memory_t_strings(rows));
+					return (clean_memory(struct_content));
 			}
 			if (!ft_strcmp(pointer->type, INSTRACTION_NAME))
 			{

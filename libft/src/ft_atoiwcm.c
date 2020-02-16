@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_atoiwcm.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/18 19:08:59 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/16 16:48:37 by idunaver         ###   ########.fr       */
+/*   Created: 2020/02/16 16:29:58 by idunaver          #+#    #+#             */
+/*   Updated: 2020/02/16 16:30:36 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include <libft.h>
 
-void	error(t_asm_content *content)
+int	ft_atoiwcm(char *str)
 {
-	write(1, "error\n", 6);
-	clean_memory(&content);
-	exit(-1);
+	int	result;
+
+	result = atoi(str);
+	if (*str)
+		ft_strdel(&str);
+	return (result);
 }

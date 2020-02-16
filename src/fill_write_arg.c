@@ -22,7 +22,10 @@ int		search_instraction(char *content, t_strings *rows)
 		while (pointer)
 		{
 			if (!ft_strcmp(pointer->type, LABEL_NAME) && !ft_strcmp(pointer->content, content))
+			{
+				ft_strdel(&content);
 				return (pointer->memory_size);
+			}
 			pointer = pointer->next;
 		}
 		rows = rows->next;
@@ -65,16 +68,16 @@ void	fill_write_arg(t_token *pointer, t_strings *rows, t_asm_content **content)
 		if (!ft_strcmp(pointer->type, INSTRACTION_NAME) && check_t_dir_size(pointer))
 			flag = 1;
 		else if (!ft_strcmp(pointer->type, REGISTER_NAME))
-			write_args(ONE_BYTE, atoi(ft_strsub(pointer->content, 1, strlen(pointer->content))), content);
+			write_args(ONE_BYTE, ft_atoiwcm(ft_strsub(pointer->content, 1, strlen(pointer->content))), content);
 		else if (!ft_strcmp(pointer->type, DIRECT_NAME))
-			write_args(flag ? FOUR_BYTE : TWO_BYTE, atoi(ft_strsub(pointer->content, 1, strlen(pointer->content))), content);
+			write_args(flag ? FOUR_BYTE : TWO_BYTE, ft_atoiwcm(ft_strsub(pointer->content, 1, strlen(pointer->content))), content);
 		else if (!ft_strcmp(pointer->type, DIRECT_LABEL_NAME))
 		{
-			write_args(flag ? FOUR_BYTE : TWO_BYTE, search_instraction(ft_strjoin(ft_strsub(pointer->content, 2, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer), content);
+			write_args(flag ? FOUR_BYTE : TWO_BYTE, search_instraction(ft_strjoinwcm(ft_strsub(pointer->content, 2, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer), content);
 		}
 		else if (!ft_strcmp(pointer->type, INDIRECT_LABEL_NAME))
 		{
-			write_args(TWO_BYTE, (search_instraction(ft_strjoin(ft_strsub(pointer->content, 1, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer)), content);
+			write_args(TWO_BYTE, (search_instraction(ft_strjoinwcm(ft_strsub(pointer->content, 1, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer)), content);
 		}
 		else if (!ft_strcmp(pointer->type, INDIRECT_NAME))
 			write_args(TWO_BYTE, atoi(pointer->content), content);
