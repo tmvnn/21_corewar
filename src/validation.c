@@ -63,12 +63,78 @@ char	*rebase_str_second_case(char *content)
 	return (result);
 }
 
+char	*rebase_str_third_case(char *content)
+{
+	char *result;
+    char *str_cat;
+	char *temp;
+    char *temp1;
+	
+	result = NULL;
+    str_cat = NULL;
+	temp = NULL;
+    temp1 = NULL;
+	temp = ft_strchr(content, 35);
+    temp1 = ft_strsub(content, 0, strlen(content) - strlen(temp));
+    str_cat = ft_strjoin(temp1, ",");
+    result = ft_strjoin(str_cat, temp);
+    ft_strdel(&temp1);
+    ft_strdel(&str_cat);
+	return (result);
+}
+
+char	*rebase_str_fourth_case(char *content)
+{
+	char *result;
+    char *str_cat;
+	char *temp;
+    char *temp1;
+	
+	result = NULL;
+    str_cat = NULL;
+	temp = NULL;
+    temp1 = NULL;
+	temp = ft_strchr(content, 59);
+    temp1 = ft_strsub(content, 0, strlen(content) - strlen(temp));
+    str_cat = ft_strjoin(temp1, ",");
+    result = ft_strjoin(str_cat, temp);
+    ft_strdel(&temp1);
+    ft_strdel(&str_cat);
+	return (result);
+}
+
+char	*rebase_str_fifth_case(char *content)
+{
+	char *result;
+    char *str_cat;
+	char *temp;
+    char *temp1;
+	
+	result = NULL;
+    str_cat = NULL;
+	temp = NULL;
+    temp1 = NULL;
+	temp = ft_strchr(content, 58) + 1;
+    temp1 = ft_strsub(content, 0, strlen(content) - strlen(temp));
+    str_cat = ft_strjoin(temp1, ",");
+    result = ft_strjoin(str_cat, temp);
+    ft_strdel(&temp1);
+    ft_strdel(&str_cat);
+	return (result);
+}
+
 char	*help_validation(char *content)
 {
 	if (parse(content, PATTERN_HELP_VALIDATION_FIRST_CASE))
 		content = rebase_str_first_case(content);
 	if (parse(content, PATTERN_HELP_VALIDATION_SECOND_CASE))
 		content = rebase_str_second_case(content);
+	if (parse(content, PATTERN_HELP_VALIDATION_THIRD_CASE))
+		content = rebase_str_third_case(content);
+	if (parse(content, PATTERN_HELP_VALIDATION_FOURTH_CASE))
+		content = rebase_str_fourth_case(content);
+	if (parse(content, PATTERN_HELP_VALIDATION_FIFTH_CASE))
+		content = rebase_str_fifth_case(content);
 	return (content);
 }
 
