@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assemble.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: s39f4lt <s39f4lt@student.42.fr>            +#+  +:+       +#+        */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:06:42 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/16 01:20:57 by s39f4lt          ###   ########.fr       */
+/*   Updated: 2020/02/16 16:16:39 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	assemble(t_asm_content **content)
 		printf("not valid file\n");
 		error() ;
 	}
+	what_are_strings(rows);
 	(*content)->exec_code_size = (*content)->memory_code_size;
 	(*content)->asm_size = (*content)->exec_code_size + (*content)->header_size;
 	(*content)->bytecode = (char *)ft_memalloc((*content)->asm_size * sizeof(char));
