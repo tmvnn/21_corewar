@@ -6,29 +6,28 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 20:33:51 by idunaver          #+#    #+#             */
-/*   Updated: 2020/01/26 15:32:15 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/16 19:20:39 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void	add_token(t_token **token, char *content)
+static void	add_token(t_token *token, char *content, t_asm_content *content_asm)
 {
-	t_token	*copy;
 	t_token	*new;
-
-	copy = *token;
+	
+	new = NULL;
 	if (*content == ' ' || *content == '\n' || *content == '\0')
 		return ;
-	if (!copy)
+	if (!token)
 	{
-		if (!(*token = (t_token *)ft_memalloc(sizeof(t_token))))
-			error();
-		(*token)->content = ft_strdup(content);
-		interpretation(*token);
-		(*token)->memory_size = 0;
-		(*token)->next = NULL;
-		(*token)->previous = NULL;
+		if (!(token = (t_token *)ft_memalloc(sizeof(t_token))))
+			error(content_asm);
+		token->content = ft_strdup(content);
+		interpretation(token);
+		token->memory_size = 0;
+		token->next = NULL;
+		token->previous = NULL;
 	}
 	else
 	{
@@ -38,14 +37,13 @@ static void	add_token(t_token **token, char *content)
 		interpretation(new);
 		new->next = NULL;
 		new->memory_size = 0;
-		while (copy->next)
-			copy = copy->next;
-		copy->next = new;
-		new->previous = copy;
+		while (token->next)
+			token = token->next;
+		token->next = new;
 	}
 }
 
-void		tokenizing(char **line, t_strings **row, t_asm_content **content)
+void		tokenizing(char *line, t_strings *row, t_asm_content *content)
 {
 	char	**buff;
 	char	**copy_buff;
@@ -62,8 +60,8 @@ void		tokenizing(char **line, t_strings **row, t_asm_content **content)
 	{
 		if (**copy_buff == ';' || **copy_buff == '#')
 			break ;
-		add_token(&tokens, *copy_buff++);
+		add_token(tokens, *copy_buff++, content);
 	}
-	add_string(&tokens, row);
+	add_string(tokens, row, content);
 	clear_buff(buff);
 }

@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 16:05:49 by ramory-l          #+#    #+#             */
-/*   Updated: 2020/01/26 14:45:06 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/16 19:21:05 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,11 @@ int					ft_fill_zeroes(char *buffer, char mode,
 size_t size, int len);
 int					ft_isspace(int c);
 void				ft_right_trim(char *str);
+char				*ft_itoabase(int value, int base);
+size_t				ft_strlen_base(int value, int base);
+char    			*ft_left_trim(char *str);
+int					ft_atoiwcm(char *str);
+char    			*ft_strsubwcm(char *s, unsigned int start, size_t len);
+char    			*ft_strjoinwcm(char *s1, char *s2);
 
 #endif

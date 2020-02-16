@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:45:27 by idunaver          #+#    #+#             */
-/*   Updated: 2020/01/26 13:25:43 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/16 19:20:29 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,35 +22,43 @@ static int	line_is_space(char *line)
 		return (0);
 }
 
-int			skip_simple_comment_emptyline(char **line)
+int			skip_simple_comment_emptyline(char *line)
 {
-	if (**line == '#' || ft_strlen(*line) == 0 || line_is_space(*line) == 1)
+	if (*line == '#' || ft_strlen(line) == 0 || line_is_space(line) == 1)
 	{
-		ft_strdel(line);
+		ft_strdel(&line);
 		return (1);
 	}
 	return (0);
 }
 
-static int	add_name(char **buff, t_asm_content **content)
+static int	add_name(char **buff, t_asm_content *content)
 {
 	if (buff[1])
-		(*content)->name = ft_strdup(buff[1]);
-	if (!(*content)->name)
-		error();
+		content->name = ft_strdup(buff[1]);
+	else if (!buff[1]) {
+		content->name = (char *)ft_memalloc(sizeof(char));
+		*content->name = '\0';
+	}
+	if (!content->name)
+		error(content);
 	clear_buff(buff);
 	return (1);
 }
 
-static int	add_comment(char **buff, t_asm_content **content)
+static int	add_comment(char **buff, t_asm_content *content)
 {
 	if (buff[1])
-		(*content)->comment = ft_strdup(buff[1]);
+		content->comment = ft_strdup(buff[1]);
+	else if (!buff[1]) {
+		content->comment = (char *)ft_memalloc(sizeof(char));
+		*content->comment = '\0';
+	}
 	clear_buff(buff);
 	return (1);
 }
 
-int			check_name_or_comment(char **buff, t_asm_content **content)
+int			check_name_or_comment(char **buff, t_asm_content *content)
 {
 	if (!buff || !*buff || ft_isspace(**buff))
 		return (1);

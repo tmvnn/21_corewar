@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/01/26 15:31:46 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/16 19:20:56 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ typedef struct			s_asm_content
 	int					memory_code_size;
 	char				*line;
 	char				**buff;
-	t_strings			**tokens;
+	t_strings			*tokens;
 	char				*name;
 	char				*comment;
 }						t_asm_content;
@@ -124,11 +124,11 @@ typedef struct			s_asm_content
 t_asm_content		*init_content(int fd);
 
 /* assemble.c */
-void				assemble(char *filename);
+void				assemble(t_asm_content *content);
 
 /* buffer.c */
 void				clear_buff(char **buff);
-char				**create_buff(char **line, t_asm_content **content);
+char				**create_buff(char *line, t_asm_content *content);
 
 /* error.c */
 void				error(void);
@@ -140,17 +140,48 @@ int					valid_filename_asm(const char *filename);
 void				what_are_strings(t_strings *rows);
 
 /* title.c */
-int					skip_simple_comment_emptyline(char **line);
-int					check_name_or_comment(char **buff, t_asm_content **content);
+int					skip_simple_comment_emptyline(char *line);
+int					check_name_or_comment(char **buff, t_asm_content *content);
 
 /* tokenizing.c */
-void				tokenizing(char **line, t_strings **row, t_asm_content **content);
+void				tokenizing(char *line, t_strings *row, t_asm_content *content);
 
 /* string.c */
-void    			add_string(t_token **tokens, t_strings **row);
+void    			add_string(t_token *tokens, t_strings *row, t_asm_content *content);
+
+/* in_bytecode.c */
+void    			in_bytecode(t_asm_content *content);
 
 /* interpretation.c */
 void				interpretation(t_token *tokens);
 int					parse(char *str, char *pattern);
+
+/*validation.c*/
+char				*help_check_name_or_comment_champs(t_asm_content *content, int fd);
+char				*check_valid(t_asm_content *content, int fd);
+char				*search_label(t_strings *rows, char *content);
+char				*check_all_label(t_strings *rows, t_asm_content *struct_content);
+
+/*fill_file.c*/
+int					check(t_token *pointer);
+int					fill_write(t_token *pointer, t_strings *rows, t_asm_content *content);
+int					fill_file(t_strings *rows, t_asm_content *content);
+
+/*fill_write_arg.c*/
+int					search_instraction_two(t_token *pointer);
+int					search_instraction(char *content, t_strings *rows);
+void				write_args(int length, int num, t_asm_content *content);
+int					check_t_dir_size(t_token *pointer);
+void				fill_write_arg(t_token *pointer, t_strings *rows, t_asm_content *content);
+
+/*fill_write_code_arg.c*/
+void				fill_write_code_arg(t_token *pointer, t_asm_content *content);
+
+/*fill_write_code_instraction.c*/
+void				fill_write_code_instraction(char *instraction, t_asm_content *content);
+
+/*helper.c*/
+void				what_are_strings(t_strings *rows);
+char				*clean_memory(t_asm_content *content);
 
 #endif

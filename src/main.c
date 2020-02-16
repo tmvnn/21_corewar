@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mainc.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:17:35 by idunaver          #+#    #+#             */
-/*   Updated: 2020/01/18 19:18:00 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/16 19:20:14 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	main(int argc, char **argv)
 {
 	if (argc == 0)
-		error();
-	if (valid_filename_asm(*(argv + 1)))
-		assemble(*(argv + 1));
+		error(content);
+	if (file(*(argv + 1), &content))
+		assemble(content);
 	else
 		error();
 	return (0);

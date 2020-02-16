@@ -6,13 +6,13 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:06:42 by idunaver          #+#    #+#             */
-/*   Updated: 2020/01/26 15:08:40 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/16 19:21:17 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-char	*help_check_name_or_comment_champs(t_asm_content *content, int fd)
+void	assemble(t_asm_content *content)
 {
 	char *temp;
 
@@ -418,30 +418,27 @@ void	assemble(char *filename)
 	int				count;
 
 	rows = NULL;
-	content = NULL;
-	count = 1;
-	if (!(fd = open(filename, O_RDONLY)) || !(content = init_content(fd)))
-		error();
-	while (get_next_line(fd, &content->line) > 0)
+	while (get_next_line(content->fd_src, &content->line) > 0)
 	{
-		if (!(content->line = check_valid(content, fd))){
-			printf("%s not valid, error in %d line\n",content->line, count);
+		if (!(content->line = check_valid(content, content->fd_src))){
+			printf("not valid file\n");
 			return ;
 		}
-		tokenizing(&content->line, &rows, &content);
-		// printf("line:%d\n", count);
-		count++;
+		tokenizing(content->line, rows, content);
 	}
+	// what_are_strings(rows);
 	if (!content->flag_pattern || !check_all_label(rows, content))
 	{
 		printf("not valid file\n");
-		return ;
+		error(content) ;
 	}
-	// printf("memory - %d\n", content->memory_code_size);
-	// printf("good file\n");
-	// printf("name: %s\ncomment: %s\n", content->name, content->comment);
-	if (!fill_file(rows, filename))
+	content->exec_code_size = content->memory_code_size;
+	content->asm_size = content->exec_code_size + content->header_size;
+	content->bytecode = (char *)ft_memalloc(content->asm_size * sizeof(char));
+	ft_bzero(content->bytecode, content->asm_size);
+	in_bytecode(content);
+	if (!fill_file(rows, content))
 		return ;
-	// what_are_strings(rows);
-	// clean_memory(rows);
+	write(content->fd_dst, content->bytecode, content->asm_size);
+	clean_memory(content);
 }

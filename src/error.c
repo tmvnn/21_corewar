@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:08:59 by idunaver          #+#    #+#             */
-/*   Updated: 2020/01/18 19:12:00 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/16 19:19:49 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 void	error(void)
 {
 	write(1, "error\n", 6);
+	clean_memory(content);
 	exit(-1);
 }

@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:37:38 by idunaver          #+#    #+#             */
-/*   Updated: 2020/01/18 19:08:47 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/16 19:19:39 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void		clear_buff(char **buff)
 	buff = NULL;
 }
 
-static void	space_replacement(char **line, int size, char c)
+static void	space_replacement(char *line, int size, char c)
 {
 	char	*copy;
 	int		quotes;
 
 	quotes = 0;
-	copy = *line;
+	copy = line;
 	while (*copy && --size != -1)
 	{
 		if (*copy == '"' && quotes == 1)
@@ -44,19 +44,23 @@ static void	space_replacement(char **line, int size, char c)
 	}
 }
 
-char		**create_buff(char **line, t_asm_content **content)
+char		**create_buff(char *line, t_asm_content *content)
 {
 	char	**buff;
 	char	c;
 
-	c = (**line == '.') ? '"' : ',';
-	space_replacement(line, ft_strlen(*line), c);
-	buff = ft_strsplit(*line, c);
-	if (**line == '.')
+	line = ft_left_trim(line);
+	c = (*line == '.') ? '"' : ',';
+	space_replacement(line, ft_strlen(line), c);
+	buff = ft_strsplit(line, c);
+	if (*line == '.')
 	{
 		if (check_name_or_comment(buff, content) == 1)
+		{
+			ft_strdel(&line);
+			clear_buff(buff);
 			return (NULL);
 	}
-	ft_strdel(line);
+	ft_strdel(&line);
 	return (buff);
 }
