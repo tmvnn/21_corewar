@@ -70,7 +70,7 @@ int	file(const char *filename, t_asm_content **content)
 	filename_len = 0;
 	if (!filename || (filename_len = ft_strlen(filename)) == 0)
 		error(*content);
-	only_name_len = filename_len - ft_strlen(ft_strstr(filename, ".s"));
+	only_name_len = filename_len - ft_strlen(ft_strrchr(filename, '.'));
 	if (!ft_strcmp((filename + only_name_len), EXP_ASM) && only_name_len > 0)
 	{
 		create_f(filename, only_name_len, EXP_COR, content);
