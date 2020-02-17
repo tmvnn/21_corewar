@@ -6,42 +6,37 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:12:24 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/17 19:09:38 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/17 19:46:53 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-// static int	check_slashn_end(const char *filename, t_asm_content **content)
-// {
-// 	int		fd;
+static int	check_slashn_end(const char *filename, t_asm_content **content)
+{
+	int		fd;
+	int		i;
+	char	slash_n;
 	
-// 	fd = 0;
-// 	if (!(fd = open(filename, O_RDONLY)))
-// 		error(*content);
-// 	while () {
-// 	lseek(fd, -1, SEEK_END);
-// 	read();
-// 	}
-// }
-
-// static int	count_slashn()
-// {
-// 	char	ch;
-
-// 	int		pos;
-// 	int		i;
-
-// 	pos = 0;
-// 	i = 0;
-// 	while ((read(fd, &ch, 1)) > 0)
-// 	{
-// 		if (ch == '\n')
-// 			pos = i;
-// 		i++;
-// 	}
-// 	return (pos);
-// }
+	fd = 0;
+	if (!(fd = open(filename, O_RDONLY)))
+		error(*content);
+	slash_n = 0;
+	i = 0;
+	while (slash_n != '\n' && lseek(fd, --i, SEEK_END) != -1L) 
+	{
+		if (read(fd, &slash_n, 1) < 0)
+			error(*content);
+		if (slash_n != ' ' && slash_n != '\f' &&
+			slash_n != '\n' && slash_n != '\t' &&
+			slash_n != '\r' && slash_n != '\v')
+			{
+				printf("not valid file\n");
+				error(*content);
+			}
+	}
+	return (1);
+}
 
 int	create_f(const char *filename, int only_name_len, char *file_type,
 														t_asm_content **content)
@@ -54,6 +49,7 @@ int	create_f(const char *filename, int only_name_len, char *file_type,
 	new_filename = (char *)ft_memalloc((only_name_len + type_len + 1) *
 																sizeof(char));
 	ft_strcat(ft_memcpy(new_filename, filename, only_name_len), file_type);
+	check_slashn_end(filename, content);
 	if (!((*content)->fd_dst = open(new_filename, O_CREAT | O_RDWR, 0644)))
 		error(*content);
 	if (((*content)->fd_src = open(filename, O_RDONLY)) == -1)
