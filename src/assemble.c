@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assemble.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: s39f4lt <s39f4lt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:06:42 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/16 20:02:13 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/18 00:11:06 by s39f4lt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	assemble(t_asm_content **content)
 	{
 		if (!((*content)->line = check_valid((*content), (*content)->fd_src))){
 			printf("not valid file\n");
-			return ;
+			error(*content);
 		}
 		tokenizing(&(*content)->line, &rows, content);
 	}
@@ -29,7 +29,7 @@ void	assemble(t_asm_content **content)
 	if (!(*content)->flag_pattern || !check_all_label(rows, content))
 	{
 		printf("not valid file\n");
-		error(*content) ;
+		error(*content);
 	}
 	(*content)->exec_code_size = (*content)->memory_code_size;
 	(*content)->asm_size = (*content)->exec_code_size + (*content)->header_size;

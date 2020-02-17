@@ -210,7 +210,7 @@ char	*check_all_label(t_strings *rows, t_asm_content **struct_content)
 			if (!ft_strcmp(pointer->type, DIRECT_LABEL_NAME) || !ft_strcmp(pointer->type, INDIRECT_LABEL_NAME))
 			{
 				if (!search_label(rows, pointer->content))
-					return (clean_memory(struct_content));
+					return (NULL);
 			}
 			if (!ft_strcmp(pointer->type, INSTRACTION_NAME))
 			{
