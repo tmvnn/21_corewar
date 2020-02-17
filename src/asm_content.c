@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm_content.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:01:11 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/16 16:49:25 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:15:51 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		init_header(header_t **header, t_asm_content *content) {
     (*header)->magic = COREWAR_EXEC_MAGIC;
 }
 
-t_asm_content	*init_content()
+t_asm_content	*init_content(char ad_flag)
 {
 	t_asm_content	*content;
 
@@ -26,6 +26,7 @@ t_asm_content	*init_content()
 		error(content);
 	content->fd_dst = 0;
 	content->fd_src = 0;
+	content->asm_dsm_flag = ad_flag;
 	content->flag_name = 0;
 	content->flag_comment = 0;
 	content->flag_pattern = 0;
@@ -37,6 +38,8 @@ t_asm_content	*init_content()
 	content->exec_code_size = 0;
 	content->bytecode = NULL;
 	content->asm_size = 0;
+	content->buf = NULL;
+	content->b_pos = 0;
 	content->header_size = HEADER_SIZE;
 	init_header(&content->header, content);
 	return (content);

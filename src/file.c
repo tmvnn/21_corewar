@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:12:24 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/16 20:42:58 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:23:05 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,44 @@
 // 	return (pos);
 // }
 
-int	file(const char *filename, t_asm_content **content)
+int	create_f(const char *filename, int only_name_len, char *file_type,
+														t_asm_content **content)
 {
-	int		filename_len;
-	char	*filename_dot_cor;
+	char	*new_filename;
+	int		type_len;
 
-	filename_len = 0;
-	if (!filename || (filename_len = ft_strlen(filename)) == 0 ||
-	ft_strcmp((filename + filename_len - EXP_ASM_LEN), EXP_ASM))
-		error(*content);
-	*content = init_content();
-	filename_dot_cor = (char *)ft_memalloc((filename_len + 3) * sizeof(char));
-	ft_strcat(ft_memcpy(filename_dot_cor, filename, filename_len - 2), EXP_COR);
-	// check_slashn_end(filename, content);
-	if (!((*content)->fd_dst = open(filename_dot_cor, O_CREAT | O_RDWR, 0644)))
+	type_len = file_type[1] == 's' ? EXP_ASM_LEN : EXP_COR_LEN;
+	*content = init_content(file_type[1]);
+	new_filename = (char *)ft_memalloc((only_name_len + type_len + 1) *
+																sizeof(char));
+	ft_strcat(ft_memcpy(new_filename, filename, only_name_len), file_type);
+	if (!((*content)->fd_dst = open(new_filename, O_CREAT | O_RDWR, 0644)))
 		error(*content);
 	if (((*content)->fd_src = open(filename, O_RDONLY)) == -1)
 		error(*content);
-	ft_strdel(&filename_dot_cor);
+	ft_strdel(&new_filename);
+	return (1);
+}
+
+int	file(const char *filename, t_asm_content **content)
+{
+	int		filename_len;
+	int		only_name_len;
+
+	filename_len = 0;
+	if (!filename || (filename_len = ft_strlen(filename)) == 0)
+		error(*content);
+	only_name_len = filename_len - ft_strlen(ft_strchr(filename, '.'));
+	if (!ft_strcmp((filename + only_name_len), EXP_ASM) && only_name_len > 0)
+	{
+		create_f(filename, only_name_len, EXP_COR, content);
+	}
+	else if (!ft_strcmp((filename + only_name_len), EXP_COR) &&
+															only_name_len > 0)
+	{
+		create_f(filename, only_name_len, EXP_ASM, content);
+	}
+	else
+		error(*content);
 	return (1);
 }

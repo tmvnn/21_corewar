@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/16 16:54:17 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:35:31 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 
 # include "libft.h"
 # include "op.h"
+# include "dasm.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -48,9 +49,12 @@
 # include <stdint.h>
 # include <inttypes.h>
 
+# define ASSEMBLE 'c'
+# define DISASSEMBLE 's'
 # define EXP_ASM ".s"
 # define EXP_COR ".cor"
 # define EXP_ASM_LEN 2
+# define EXP_COR_LEN 4
 # define BUFF_S 2048
 # define OCTET_SIZE 8
 # define HEADER_SIZE (4 + PROG_NAME_LENGTH + 4 + 4 + COMMENT_LENGTH + 4)
@@ -122,12 +126,15 @@ typedef struct			s_asm_content
 {	
 	int					fd_dst;
 	int					fd_src;
+	char				asm_dsm_flag;
 	int					flag_name;
 	int					flag_comment;
 	int					flag_pattern;
 	int					memory_code_size;
 	char				*line;
 	char				**buff;
+	char				*buf;
+	int					b_pos;
 	t_strings			**tokens;
 	char				*name;
 	char				*comment;
@@ -139,11 +146,40 @@ typedef struct			s_asm_content
 }						t_asm_content;
 
 /* asm_content.c */
-t_asm_content		*init_content();
+t_asm_content		*init_content(char ad_flag);
 
 /* assemble.c */
 void				assemble(t_asm_content **content);
 char				*clean_memory_t_strings(t_strings *rows);
+
+/* disassemble.c */
+void				disassemble(t_asm_content **content);
+
+/* parse_chmp_exec_code.c */
+void				parse_chmp_exec_code(t_asm_content **content);
+u_int8_t			get_num_from_1byte(t_asm_content **content, int *i);
+int					get_num_from_nbyte(t_asm_content **content, int *i,
+														u_int8_t t_dir_size);
+void				get_args_types(t_asm_content **content, int *i,
+															u_int8_t cur_op);
+void				write_curr_op(t_asm_content **content, int *i,
+															u_int8_t cur_op);
+
+/* write_args.c */
+void				write_reg(t_asm_content **content, u_int8_t cur_op, int *i,
+																		int j);
+void				write_dir(t_asm_content **content, u_int8_t cur_op, int *i,
+																		int j);
+void				write_ind(t_asm_content **content, u_int8_t cur_op, int *i,
+																		int j);
+/* parse_name_comt_cs.c */
+int					file_is_binary(int fd, t_asm_content **content);
+int					parse_name(char *buff, int *b_pos, int fd, 
+													t_asm_content **content);
+int					parse_comment(char *buff, int *b_pos, int fd,
+													t_asm_content **content);
+void				skip_null_bytes(t_asm_content **content);
+void				parse_chmp_exec_code_size(t_asm_content **content);
 
 /* buffer.c */
 void				clear_buff(char **buff);

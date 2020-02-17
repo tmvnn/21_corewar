@@ -3,38 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artemtulupov <artemtulupov@student.42.f    +#+  +:+       +#+        */
+/*   By: lbellona <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/25 17:26:35 by ramory-l          #+#    #+#             */
-/*   Updated: 2019/12/20 17:24:43 by artemtulupo      ###   ########.fr       */
+/*   Created: 2018/12/08 16:00:04 by lbellona          #+#    #+#             */
+/*   Updated: 2018/12/09 16:38:08 by lbellona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int			ft_intleng(unsigned long long int n)
+static char		*ft_strmemal(long num, size_t *size_n)
 {
-	int		i;
-
-	i = 0;
-	while (n /= 10)
-		i++;
-	return (i + 1);
+	*size_n = 1;
+	if (num < 0)
+		*size_n = *size_n + 1;
+	while ((num = num / 10))
+		*size_n = *size_n + 1;
+	return (ft_strnew(*size_n));
 }
 
-char				*ft_itoa(unsigned long long int n)
+char			*ft_itoa(int n)
 {
-	int						leng;
-	char					*str;
-	unsigned long long int	b;
+	size_t		size_n;
+	long		num;
+	char		*str;
+	char		*ret;
 
-	b = n;
-	leng = ft_intleng(b);
-	str = ft_memalloc(leng + 1);
-	while (leng-- && str[leng] != '-')
+	if (!(str = ft_strmemal(n, &size_n)))
+		return (NULL);
+	ret = str;
+	if ((num = n) < 0)
 	{
-		str[leng] = '0' + (b % 10);
-		b /= 10;
+		*str++ = '-';
+		num = -num;
+		size_n--;
 	}
-	return (str);
+	while (size_n--)
+	{
+		if (num > 9)
+		{
+			str[size_n] = '0' + num % 10;
+			num /= 10;
+		}
+		else
+			str[size_n] = '0' + num;
+	}
+	return (ret);
 }
