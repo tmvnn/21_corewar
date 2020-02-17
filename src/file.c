@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:12:24 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/17 14:23:05 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/17 19:09:38 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	file(const char *filename, t_asm_content **content)
 	filename_len = 0;
 	if (!filename || (filename_len = ft_strlen(filename)) == 0)
 		error(*content);
-	only_name_len = filename_len - ft_strlen(ft_strchr(filename, '.'));
+	only_name_len = filename_len - ft_strlen(ft_strstr(filename, ".s"));
 	if (!ft_strcmp((filename + only_name_len), EXP_ASM) && only_name_len > 0)
 	{
 		create_f(filename, only_name_len, EXP_COR, content);
