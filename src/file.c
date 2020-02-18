@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:12:24 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/17 19:46:53 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/18 16:35:00 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	create_f(const char *filename, int only_name_len, char *file_type,
 	new_filename = (char *)ft_memalloc((only_name_len + type_len + 1) *
 																sizeof(char));
 	ft_strcat(ft_memcpy(new_filename, filename, only_name_len), file_type);
-	check_slashn_end(filename, content);
+	file_type[1] == 'c' ? check_slashn_end(filename, content) : 1;
 	if (!((*content)->fd_dst = open(new_filename, O_CREAT | O_RDWR, 0644)))
 		error(*content);
 	if (((*content)->fd_src = open(filename, O_RDONLY)) == -1)

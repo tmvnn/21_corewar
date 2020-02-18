@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:06:42 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/18 15:26:21 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/18 16:36:12 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ void	disassemble(t_asm_content **content)
 	else
 		error(*content);
 	free((*content)->buf);
+	clean_memory(content);
 	close((*content)->fd_src);
 }

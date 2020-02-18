@@ -1,6 +1,7 @@
 #deassembler par msa 1.8, made by joe
 .name "Tching tching(Intercepteur), Bouh!Bouh!(bruits d'anti-jeu)"
-.comment ""
+.comment "s"
+.expand
 
 	 fork  %:label00          		# 3,0,281
 	 ld    %-272,r3           		# 7,3,278
@@ -72,4 +73,4 @@ label10: live  %1                 		# 5,259,22
 
 label11: live  %1                 		# 5,270,11
 	 fork  %:label11          		# 3,275,6
-	 zjmp  %:label11          		# 3,278,3
+	 zjmp  %:label01          		# 3,278,3
