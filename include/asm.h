@@ -132,7 +132,6 @@ typedef struct			s_asm_content
 	int					flag_pattern;
 	int					memory_code_size;
 	char				*line;
-	char				**buff;
 	char				*buf;
 	int					b_pos;
 	t_strings			**tokens;
