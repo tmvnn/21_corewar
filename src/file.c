@@ -6,7 +6,7 @@
 /*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:12:24 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/18 19:19:47 by yperra-f         ###   ########.fr       */
+/*   Updated: 2020/02/18 20:27:55 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,28 @@ static int	check_slashn_end(const char *filename, t_asm_content **content)
 	int		fd;
 	int		i;
 	char	slash_n;
-	
+
 	fd = 0;
 	if (!(fd = open(filename, O_RDONLY)))
 		error(*content);
 	slash_n = 0;
 	i = 0;
-	while (slash_n != '\n' && lseek(fd, --i, SEEK_END) != -1L) 
+	while (slash_n != '\n' && lseek(fd, --i, SEEK_END) != -1L)
 	{
 		if (read(fd, &slash_n, 1) < 0)
 			error(*content);
 		if (slash_n != ' ' && slash_n != '\f' &&
 			slash_n != '\n' && slash_n != '\t' &&
 			slash_n != '\r' && slash_n != '\v')
-			{
-				printf("not valid file\n");
-				error(*content);
-			}
+		{
+			printf("not valid file\n");
+			error(*content);
+		}
 	}
 	return (1);
 }
 
-int	create_f(const char *filename, int only_name_len, char *file_type,
+int			create_f(const char *filename, int only_name_len, char *file_type,
 														t_asm_content **content)
 {
 	char	*new_filename;
@@ -54,7 +54,7 @@ int	create_f(const char *filename, int only_name_len, char *file_type,
 	return (1);
 }
 
-int	file(const char *filename, t_asm_content **content)
+int			file(const char *filename, t_asm_content **content)
 {
 	int		filename_len;
 	int		only_name_len;

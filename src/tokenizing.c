@@ -6,13 +6,26 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 20:33:51 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/16 19:42:32 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/18 19:32:47 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void	add_token(t_token **token, char *content, t_asm_content *content_asm)
+static void	add_first_token(t_token **token, char *content,
+t_asm_content *content_asm)
+{
+	if (!(*token = (t_token *)ft_memalloc(sizeof(t_token))))
+		error(content_asm);
+	(*token)->content = ft_strdup(content);
+	interpretation(*token);
+	(*token)->memory_size = 0;
+	(*token)->next = NULL;
+	(*token)->previous = NULL;
+}
+
+static void	add_token(t_token **token, char *content,
+t_asm_content *content_asm)
 {
 	t_token	*copy;
 	t_token	*new;
@@ -21,15 +34,7 @@ static void	add_token(t_token **token, char *content, t_asm_content *content_asm
 	if (*content == ' ' || *content == '\n' || *content == '\0')
 		return ;
 	if (!copy)
-	{
-		if (!(*token = (t_token *)ft_memalloc(sizeof(t_token))))
-			error(content_asm);
-		(*token)->content = ft_strdup(content);
-		interpretation(*token);
-		(*token)->memory_size = 0;
-		(*token)->next = NULL;
-		(*token)->previous = NULL;
-	}
+		add_first_token(token, content, content_asm);
 	else
 	{
 		if (!(new = (t_token *)ft_memalloc(sizeof(t_token))))

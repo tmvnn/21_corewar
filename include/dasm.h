@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dasm.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 16:52:05 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/02/17 14:44:02 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/18 19:55:10 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define OP_TAB_SIZE 17
 
 typedef struct			s_op
-{	
+{
 	char				*op_name;
 	u_int8_t			args_num;
 	u_int8_t			args_types[3];
@@ -38,7 +38,7 @@ typedef struct			s_op
 	u_int8_t			oname_size;
 }						t_op;
 
-static t_op    op_tab[17] =
+static t_op				op_tab[17] =
 {
 	{0, 0, {0}, 0, 0, 0, 0, 0, 0},
 	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 4, 4},

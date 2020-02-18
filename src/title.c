@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:45:27 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/16 16:54:35 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/18 19:28:29 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static int	add_name(char **buff, t_asm_content **content)
 {
 	if (buff[1])
 		(*content)->name = ft_strdup(buff[1]);
-	else if (!buff[1]) {
+	else if (!buff[1])
+	{
 		(*content)->name = (char *)ft_memalloc(sizeof(char));
 		*(*content)->name = '\0';
 	}
@@ -50,7 +51,8 @@ static int	add_comment(char **buff, t_asm_content **content)
 {
 	if (buff[1])
 		(*content)->comment = ft_strdup(buff[1]);
-	else if (!buff[1]) {
+	else if (!buff[1])
+	{
 		(*content)->comment = (char *)ft_memalloc(sizeof(char));
 		*(*content)->comment = '\0';
 	}

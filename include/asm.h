@@ -6,7 +6,7 @@
 /*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/18 19:17:38 by yperra-f         ###   ########.fr       */
+/*   Updated: 2020/02/18 20:28:18 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@
 # define EXP_COR_LEN 4
 # define BUFF_S 2048
 # define OCTET_SIZE 8
-# define HEADER_SIZE (4 + PROG_NAME_LENGTH + 4 + 4 + COMMENT_LENGTH + 4)
-# define FOURTH_BYTE 3 
+# define HEADER_SIZE 2192
+# define FOURTH_BYTE 3
 
 # define LIVE 0x01
 # define LD 0x02
@@ -108,7 +108,7 @@
 # define INDIRECT_NAME "INDIRECT"
 
 typedef	struct			s_token
-{	
+{
 	int					memory_size;
 	char				*content;
 	char				*type;
@@ -123,7 +123,7 @@ typedef struct			s_strings
 }						t_strings;
 
 typedef struct			s_asm_content
-{	
+{
 	int					fd_dst;
 	int					fd_src;
 	char				asm_dsm_flag;
@@ -145,98 +145,69 @@ typedef struct			s_asm_content
 	unsigned int		header_size;
 }						t_asm_content;
 
-/* asm_content.c */
-t_asm_content		*init_content(char ad_flag);
-
-/* assemble.c */
-void				assemble(t_asm_content **content);
-char				*clean_memory_t_strings(t_strings *rows);
-
-/* disassemble.c */
-void				disassemble(t_asm_content **content);
-
-/* parse_chmp_exec_code.c */
-void				parse_chmp_exec_code(t_asm_content **content);
-u_int8_t			get_num_from_1byte(t_asm_content **content, int *i);
-int					get_num_from_nbyte(t_asm_content **content, int *i,
-														u_int8_t t_dir_size);
-void				get_args_types(t_asm_content **content, int *i,
-															u_int8_t cur_op);
-void				write_curr_op(t_asm_content **content, int *i,
-															u_int8_t cur_op);
-
-/* write_args.c */
-void				write_reg(t_asm_content **content, u_int8_t cur_op, int *i,
-																		int j);
-void				write_dir(t_asm_content **content, u_int8_t cur_op, int *i,
-																		int j);
-void				write_ind(t_asm_content **content, u_int8_t cur_op, int *i,
-																		int j);
-/* parse_name_comt_cs.c */
-int					file_is_binary(int fd, t_asm_content **content);
-int					parse_name(char *buff, int *b_pos, int fd, 
-													t_asm_content **content);
-int					parse_comment(char *buff, int *b_pos, int fd,
-													t_asm_content **content);
-void				skip_null_bytes(t_asm_content **content);
-void				parse_chmp_exec_code_size(t_asm_content **content);
-
-/* buffer.c */
-void				clear_buff(char **buff);
-char				**create_buff(char **line, t_asm_content **content);
-
-/* error.c */
-void				error(t_asm_content *content);
-
-/* filename.c */
-int					file(const char *filename, t_asm_content **content);
-
-/* helper.c - потом удалить */
-void				what_are_strings(t_strings *rows);
-
-/* title.c */
-int					skip_simple_comment_emptyline(char **line);
-int					check_name_or_comment(char **buff, t_asm_content **content);
-
-/* tokenizing.c */
-void				tokenizing(char **line, t_strings **row, t_asm_content **content);
-
-/* string.c */
-void    			add_string(t_token **tokens, t_strings **row, t_asm_content *content);
-
-/* in_bytecode.c */
-void    			in_bytecode(t_asm_content **content);
-
-/* interpretation.c */
-void				interpretation(t_token *tokens);
-int					parse(char *str, char *pattern);
-
-/*validation.c*/
-char				*help_check_name_or_comment_champs(t_asm_content *content, int fd);
-char				*check_valid(t_asm_content *content, int fd);
-char				*search_label(t_strings *rows, char *content);
-char				*check_all_label(t_strings *rows, t_asm_content **struct_content);
-
-/*fill_file.c*/
-int					check(t_token *pointer);
-void				fill_write(t_token *pointer, t_strings *rows, t_asm_content **content);
-void				fill_file(t_strings *rows, t_asm_content **content);
-
-/*fill_write_arg.c*/
-int					search_instraction_two(t_token *pointer);
-int					search_instraction(char *content, t_strings *rows);
-void				write_args(int length, int num, t_asm_content **content);
-int					check_t_dir_size(t_token *pointer);
-void				fill_write_arg(t_token *pointer, t_strings *rows, t_asm_content **content);
-
-/*fill_write_code_arg.c*/
-void				fill_write_code_arg(t_token *pointer, t_asm_content **content);
-
-/*fill_write_code_instraction.c*/
-void				fill_write_code_instraction(char *instraction, t_asm_content **content);
-
-/*helper.c*/
-void				what_are_strings(t_strings *rows);
-char				*clean_memory(t_asm_content **content);
+t_asm_content			*init_content(char ad_flag);
+void					assemble(t_asm_content **content);
+char					*clean_memory_t_strings(t_strings *rows);
+void					disassemble(t_asm_content **content);
+void					parse_chmp_exec_code(t_asm_content **content);
+u_int8_t				get_num_from_1byte(t_asm_content **content, int *i);
+int						get_num_from_nbyte(t_asm_content **content, int *i,
+u_int8_t t_dir_size);
+void					get_args_types(t_asm_content **content, int *i,
+u_int8_t cur_op);
+void					write_curr_op(t_asm_content **content, int *i,
+u_int8_t cur_op);
+void					write_reg(t_asm_content **content,
+u_int8_t cur_op, int *i, int j);
+void					write_dir(t_asm_content **content,
+u_int8_t cur_op, int *i, int j);
+void					write_ind(t_asm_content **content,
+u_int8_t cur_op, int *i, int j);
+int						file_is_binary(int fd, t_asm_content **content);
+int						parse_name(char *buff, int *b_pos, int fd,
+t_asm_content **content);
+int						parse_comment(char *buff, int *b_pos, int fd,
+t_asm_content **content);
+void					skip_null_bytes(t_asm_content **content);
+void					parse_chmp_exec_code_size(t_asm_content **content);
+void					clear_buff(char **buff);
+char					**create_buff(char **line, t_asm_content **content);
+void					error(t_asm_content *content);
+int						file(const char *filename, t_asm_content **content);
+void					what_are_strings(t_strings *rows);
+int						skip_simple_comment_emptyline(char **line);
+int						check_name_or_comment(char **buff,
+t_asm_content **content);
+void					tokenizing(char **line, t_strings **row,
+t_asm_content **content);
+void					add_string(t_token **tokens,
+t_strings **row, t_asm_content *content);
+void					in_bytecode(t_asm_content **content);
+void					interpretation(t_token *tokens);
+int						parse(char *str, char *pattern);
+char					*help_check_name_or_comment_champs(t_asm_content
+*content, int fd);
+char					*check_valid(t_asm_content *content, int fd);
+char					*search_label(t_strings *rows, char *content);
+char					*check_all_label(t_strings *rows, t_asm_content
+**struct_content);
+int						check(t_token *pointer);
+void					fill_write(t_token *pointer, t_strings *rows,
+t_asm_content **content);
+void					fill_file(t_strings *rows, t_asm_content
+**content);
+int						search_instraction_two(t_token *pointer);
+int						search_instraction(char *content,
+t_strings *rows);
+void					write_args(int length, int num,
+t_asm_content **content);
+int						check_t_dir_size(t_token *pointer);
+void					fill_write_arg(t_token *pointer,
+t_strings *rows, t_asm_content **content);
+void					fill_write_code_arg(t_token *pointer,
+t_asm_content **content);
+void					fill_write_code_instraction(char *instraction,
+t_asm_content **content);
+char					*clean_memory(t_asm_content **content);
 
 #endif

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/16 16:36:32 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/18 19:20:50 by yperra-f         ###   ########.fr       */
+/*   Created: 2020/02/18 19:15:51 by idunaver          #+#    #+#             */
+/*   Updated: 2020/02/18 20:27:41 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	clean_content(t_asm_content **content)
 	content = NULL;
 }
 
-char	*clean_memory(t_asm_content **content)
+char		*clean_memory(t_asm_content **content)
 {
 	if (*content)
 		clean_content(content);

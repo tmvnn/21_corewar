@@ -6,16 +6,16 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 21:13:59 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/16 19:25:22 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/18 19:27:54 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void    add_string(t_token **tokens, t_strings **row, t_asm_content *content)
+void	add_string(t_token **tokens, t_strings **row, t_asm_content *content)
 {
-	t_strings *copy;
-	t_strings *new;
+	t_strings	*copy;
+	t_strings	*new;
 
 	copy = *row;
 	if (!copy)

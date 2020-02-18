@@ -6,7 +6,7 @@
 /*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:06:42 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/18 19:39:49 by yperra-f         ###   ########.fr       */
+/*   Updated: 2020/02/18 20:26:18 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	disassemble(t_asm_content **content)
 		skip_null_bytes(content);
 		parse_chmp_exec_code(content);
 		(*content)->buf[(*content)->b_pos] = 0;
-		if (!((*content)->fd_dst = open((*content)->new_filename, O_CREAT | O_RDWR, 0644)))
-			error(*content);
 		write((*content)->fd_dst, (*content)->buf, (*content)->b_pos);
 		close((*content)->fd_dst);
 	}

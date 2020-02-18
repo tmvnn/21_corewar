@@ -6,7 +6,7 @@
 /*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:06:42 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/18 20:12:12 by yperra-f         ###   ########.fr       */
+/*   Updated: 2020/02/18 20:27:34 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	assemble(t_asm_content **content)
 			error(*content);	
 		tokenizing(&(*content)->line, &rows, content);
 	}
-	// what_are_strings(rows);
 	if (!(*content)->flag_pattern || !check_all_label(rows, content))
 		error(*content);
 	if (!((*content)->fd_dst = open((*content)->new_filename, O_CREAT | O_RDWR, 0644)))
 		error(*content);
 	(*content)->exec_code_size = (*content)->memory_code_size;
 	(*content)->asm_size = (*content)->exec_code_size + (*content)->header_size;
-	(*content)->bytecode = (char *)ft_memalloc((*content)->asm_size * sizeof(char));
+	(*content)->bytecode =
+	(char *)ft_memalloc((*content)->asm_size * sizeof(char));
 	ft_bzero((*content)->bytecode, (*content)->asm_size);
 	in_bytecode(content);
 	fill_file(rows, content);
