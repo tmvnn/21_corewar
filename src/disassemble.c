@@ -6,7 +6,7 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:06:42 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/17 14:36:07 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/18 15:26:21 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,13 @@ void	disassemble(t_asm_content **content)
 		skip_null_bytes(content);
 		parse_chmp_exec_code(content);
 		(*content)->buf[(*content)->b_pos] = 0;
+		//ATTENTION!!!
+		//ADD HERE OPEN & CREATE FILE FD_DST STRING FROM create_f FUNCTION!!!
 		write((*content)->fd_dst, (*content)->buf, (*content)->b_pos);
 		close((*content)->fd_dst);
 	}
 	else
 		error(*content);
+	free((*content)->buf);
 	close((*content)->fd_src);
 }

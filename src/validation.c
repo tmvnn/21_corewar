@@ -155,6 +155,7 @@ char	*check_valid(t_asm_content *content, int fd)
 		// printf("%s\n", content->line);
 		return (content->line);
 	}
+	free(content->line);
 	return (NULL);
 }
 
