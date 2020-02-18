@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:17:35 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/17 14:07:12 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/18 20:12:55 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ int	main(int argc, char **argv)
 	if (argc == 0)
 		error(content);
 	if (file(*(argv + 1), &content))
+	{
 		if (content->asm_dsm_flag == ASSEMBLE)
 			assemble(&content);
 		else
 			disassemble(&content);
+	}
 	else
 		error(content);
 	return (0);

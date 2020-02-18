@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_memory.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 16:36:32 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/18 15:16:30 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/18 19:20:50 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static void	clean_content(t_asm_content **content)
 	(*content)->name = NULL;
 	ft_strdel(&(*content)->comment);
 	(*content)->comment = NULL;
+	ft_strdel(&(*content)->new_filename);
+	(*content)->new_filename = NULL;
 	free(*content);
 	free((*content)->buf);
 	content = NULL;

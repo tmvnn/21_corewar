@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assemble.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:06:42 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/18 15:02:49 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/18 20:12:12 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ void	assemble(t_asm_content **content)
 	while (get_next_line((*content)->fd_src, &(*content)->line) > 0)
 	{
 		if (!((*content)->line = check_valid((*content), (*content)->fd_src)))
-			error(*content);
+			error(*content);	
 		tokenizing(&(*content)->line, &rows, content);
 	}
 	// what_are_strings(rows);
 	if (!(*content)->flag_pattern || !check_all_label(rows, content))
+		error(*content);
+	if (!((*content)->fd_dst = open((*content)->new_filename, O_CREAT | O_RDWR, 0644)))
 		error(*content);
 	(*content)->exec_code_size = (*content)->memory_code_size;
 	(*content)->asm_size = (*content)->exec_code_size + (*content)->header_size;

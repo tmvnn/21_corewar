@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/17 14:35:31 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/18 19:17:38 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ typedef struct			s_asm_content
 	int					memory_code_size;
 	char				*line;
 	char				*buf;
+	char				*new_filename;
 	int					b_pos;
 	t_strings			**tokens;
 	char				*name;
@@ -218,8 +219,8 @@ char				*check_all_label(t_strings *rows, t_asm_content **struct_content);
 
 /*fill_file.c*/
 int					check(t_token *pointer);
-int					fill_write(t_token *pointer, t_strings *rows, t_asm_content **content);
-int					fill_file(t_strings *rows, t_asm_content **content);
+void				fill_write(t_token *pointer, t_strings *rows, t_asm_content **content);
+void				fill_file(t_strings *rows, t_asm_content **content);
 
 /*fill_write_arg.c*/
 int					search_instraction_two(t_token *pointer);

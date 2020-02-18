@@ -145,14 +145,11 @@ char	*check_valid(t_asm_content *content, int fd)
 	else if (parse(content->line, PATTERN_NAME_OR_COMMENT_CHAMPS_FIRST_STAGE))
 		return (help_check_name_or_comment_champs(content, fd));
 	else if (parse(content->line, PATTERN_COMMENT))
-	{
 		return (content->line);
-	}
 	else if (content->flag_name && content->flag_comment && parse(content->line, PATTERN))
 	{
 		content->flag_pattern = 1;
 		content->line = help_validation(content->line);
-		// printf("%s\n", content->line);
 		return (content->line);
 	}
 	free(content->line);

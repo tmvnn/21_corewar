@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm_content.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:01:11 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/17 14:15:51 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/18 19:13:49 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_asm_content	*init_content(char ad_flag)
 	content->bytecode = NULL;
 	content->asm_size = 0;
 	content->buf = NULL;
+	content->new_filename = NULL;
 	content->b_pos = 0;
 	content->header_size = HEADER_SIZE;
 	init_header(&content->header, content);
