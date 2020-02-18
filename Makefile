@@ -21,7 +21,6 @@ SRC_ASM_NAME =  asm_content.c \
 				fill_write_arg.c \
 				fill_write_code_arg.c \
 				fill_write_code_instraction.c \
-				helper.c \
 				in_bytecode.c \
 				interpretation.c \
 				main.c \

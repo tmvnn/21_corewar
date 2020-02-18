@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assemble.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:06:42 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/18 15:02:49 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/18 19:45:53 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	assemble(t_asm_content **content)
 			error(*content);
 		tokenizing(&(*content)->line, &rows, content);
 	}
-	// what_are_strings(rows);
 	if (!(*content)->flag_pattern || !check_all_label(rows, content))
 		error(*content);
 	(*content)->exec_code_size = (*content)->memory_code_size;
 	(*content)->asm_size = (*content)->exec_code_size + (*content)->header_size;
-	(*content)->bytecode = (char *)ft_memalloc((*content)->asm_size * sizeof(char));
+	(*content)->bytecode =
+	(char *)ft_memalloc((*content)->asm_size * sizeof(char));
 	ft_bzero((*content)->bytecode, (*content)->asm_size);
 	in_bytecode(content);
 	fill_file(rows, content);

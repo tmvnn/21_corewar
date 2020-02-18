@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_name_comt_cs.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 18:44:59 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/02/17 14:35:15 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/18 19:27:33 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

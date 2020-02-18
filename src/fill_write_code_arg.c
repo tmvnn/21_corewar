@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_write_code_arg.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/18 19:40:52 by idunaver          #+#    #+#             */
+/*   Updated: 2020/02/18 19:41:43 by idunaver         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
 char	fill_t_reg(int iter, char c)
@@ -42,13 +54,16 @@ void	fill_write_code_arg(t_token *pointer, t_asm_content **content)
 	iter = 1;
 	while (pointer)
 	{
-		if (!ft_strcmp(pointer->type, DIRECT_NAME) || !ft_strcmp(pointer->type, DIRECT_LABEL_NAME))
+		if (!ft_strcmp(pointer->type, DIRECT_NAME) ||
+		!ft_strcmp(pointer->type, DIRECT_LABEL_NAME))
 			c = fill_t_dir(iter, c);
-		else if (!ft_strcmp(pointer->type, INDIRECT_NAME) || !ft_strcmp(pointer->type, INDIRECT_LABEL_NAME))
+		else if (!ft_strcmp(pointer->type, INDIRECT_NAME) ||
+		!ft_strcmp(pointer->type, INDIRECT_LABEL_NAME))
 			c = fill_t_ind(iter, c);
 		else if (!ft_strcmp(pointer->type, REGISTER_NAME))
 			c = fill_t_reg(iter, c);
-		if (ft_strcmp(pointer->type, LABEL_NAME) && ft_strcmp(pointer->type, INSTRACTION_NAME))
+		if (ft_strcmp(pointer->type, LABEL_NAME) &&
+		ft_strcmp(pointer->type, INSTRACTION_NAME))
 			iter++;
 		pointer = pointer->next;
 	}

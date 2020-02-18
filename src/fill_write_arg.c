@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_write_arg.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/18 19:42:32 by idunaver          #+#    #+#             */
+/*   Updated: 2020/02/18 19:45:05 by idunaver         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
 int		search_instraction_two(t_token *pointer)
@@ -5,7 +17,10 @@ int		search_instraction_two(t_token *pointer)
 	while (pointer)
 	{
 		if (!ft_strcmp(pointer->type, INSTRACTION_NAME))
-			return (pointer->memory_size - (check(pointer) ? TWO_BYTE : ONE_BYTE));
+		{
+			return (pointer->memory_size - (check(pointer) ?
+			TWO_BYTE : ONE_BYTE));
+		}
 		pointer = pointer->previous;
 	}
 	return (0);
@@ -21,7 +36,8 @@ int		search_instraction(char *content, t_strings *rows)
 		pointer = rows->string;
 		while (pointer)
 		{
-			if (!ft_strcmp(pointer->type, LABEL_NAME) && !ft_strcmp(pointer->content, content))
+			if (!ft_strcmp(pointer->type, LABEL_NAME) &&
+			!ft_strcmp(pointer->content, content))
 			{
 				ft_strdel(&content);
 				return (pointer->memory_size);
@@ -47,18 +63,25 @@ void	write_args(int length, int num, t_asm_content **content)
 		temp[i] = (char)(num >> iter);
 		iter += 8;
 	}
-	ft_memcpy((*content)->bytecode + (*content)->header_size, temp, length);
+	ft_memcpy((*content)->bytecode +
+	(*content)->header_size, temp, length);
 	(*content)->header_size += length;
 }
 
 int		check_t_dir_size(t_token *pointer)
 {
-	if (!ft_strcmp(pointer->content, ZJMP_NAME) || !ft_strcmp(pointer->content, LDI_NAME) || !ft_strcmp(pointer->content, STI_NAME) || !ft_strcmp(pointer->content, FORK_NAME) || !ft_strcmp(pointer->content, LLDI_NAME) || !ft_strcmp(pointer->content, LFORK_NAME))
+	if (!ft_strcmp(pointer->content, ZJMP_NAME)
+	|| !ft_strcmp(pointer->content, LDI_NAME)
+	|| !ft_strcmp(pointer->content, STI_NAME)
+	|| !ft_strcmp(pointer->content, FORK_NAME)
+	|| !ft_strcmp(pointer->content, LLDI_NAME)
+	|| !ft_strcmp(pointer->content, LFORK_NAME))
 		return (0);
 	return (1);
 }
 
-void	fill_write_arg(t_token *pointer, t_strings *rows, t_asm_content **content)
+void	fill_write_arg(t_token *pointer, t_strings *rows,
+t_asm_content **content)
 {
 	int		flag;
 

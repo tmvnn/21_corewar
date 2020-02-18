@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   asm_content.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/18 19:01:11 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/17 14:15:51 by timuryakubo      ###   ########.fr       */
+/*   Created: 2020/02/18 19:14:30 by idunaver          #+#    #+#             */
+/*   Updated: 2020/02/18 19:15:09 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void		init_header(header_t **header, t_asm_content *content) {
-    if (!(*header = (header_t *)ft_memalloc(sizeof(header_t))))
+static void		init_header(header_t **header, t_asm_content *content)
+{
+	if (!(*header = (header_t *)ft_memalloc(sizeof(header_t))))
 		error(content);
-    (*header)->magic = COREWAR_EXEC_MAGIC;
+	(*header)->magic = COREWAR_EXEC_MAGIC;
 }
 
 t_asm_content	*init_content(char ad_flag)
