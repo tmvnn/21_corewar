@@ -1429,10 +1429,10 @@ cp champions/* champions_disassemble/
 echo "salamahenagalabadoun.s"
 ./asm champions/salamahenagalabadoun.s
 hexdump -vC champions/salamahenagalabadoun.cor > my_file
-./resources/vm_champs/asm champions_disassemble/alamahenagalabadoun.s
-./asm champions_disassemble/alamahenagalabadoun.cor
-./resources/vm_champs/asm champions_disassemble/alamahenagalabadoun.s
-hexdump -vC champions_disassemble/alamahenagalabadoun.cor > original_after_disassemble
+./resources/vm_champs/asm champions_disassemble/salamahenagalabadoun.s
+./asm champions_disassemble/salamahenagalabadoun.cor
+./resources/vm_champs/asm champions_disassemble/salamahenagalabadoun.s
+hexdump -vC champions_disassemble/salamahenagalabadoun.cor > original_after_disassemble
 ./resources/vm_champs/asm champions/salamahenagalabadoun.s
 hexdump -vC champions/salamahenagalabadoun.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
