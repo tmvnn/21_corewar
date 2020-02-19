@@ -25,7 +25,7 @@ void	assemble(t_asm_content **content)
 	}
 	if (!(*content)->flag_pattern || !check_all_label(rows, content))
 		error(*content);
-	if (!((*content)->fd_dst = open((*content)->new_filename, O_CREAT | O_RDWR, 0644)))
+	if (!((*content)->fd_dst = open((*content)->new_filename, O_TRUNC | O_CREAT | O_RDWR, 0644)))
 		error(*content);
 	(*content)->exec_code_size = (*content)->memory_code_size;
 	(*content)->asm_size = (*content)->exec_code_size + (*content)->header_size;
