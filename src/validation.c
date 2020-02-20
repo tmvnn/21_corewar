@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 19:46:06 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/20 20:37:13 by yperra-f         ###   ########.fr       */
+/*   Updated: 2020/02/20 22:03:43 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*help_check_name_or_comment_champs(t_asm_content *content, int fd)
 	ft_strdel(&content->line);
 	if (parse(temp, PATTERN_NAME_CHAMPS))
 		return (do_w1(content, temp));
-	else if (parse(temp, PATTERN_COMMENT_CHAMPS))
+	else if (parse(temp, content->reg[PATTERN_COMMENT_CHAMPS]))
 		return (do_w2(content, temp));
 	temp = ft_strjoinwcm(temp, "\n");
 	while (get_next_line(fd, &content->line) > 0)
@@ -30,26 +30,26 @@ char	*help_check_name_or_comment_champs(t_asm_content *content, int fd)
 		ft_strdel(&content->line);
 		if (parse(temp, PATTERN_NAME_CHAMPS))
 			return (do_w1(content, temp));
-		else if (parse(temp, PATTERN_COMMENT_CHAMPS))
+		else if (parse(temp, content->reg[PATTERN_COMMENT_CHAMPS]))
 			return (do_w2(content, temp));
 		temp = ft_strjoinwcm(temp, "\n");
 	}
 	return (NULL);
 }
 
-char	*help_validation(char *content)
+char	*help_validation(t_asm_content *content)
 {
-	if (parse(content, PATTERN_HELP_VALIDATION_FIRST_CASE))
-		content = rebase_str_first_case(content);
-	if (parse(content, PATTERN_HELP_VALIDATION_SECOND_CASE))
-		content = rebase_str_second_case(content);
-	if (parse(content, PATTERN_HELP_VALIDATION_THIRD_CASE))
-		content = rebase_str_third_case(content);
-	if (parse(content, PATTERN_HELP_VALIDATION_FOURTH_CASE))
-		content = rebase_str_fourth_case(content);
-	if (parse(content, PATTERN_HELP_VALIDATION_FIFTH_CASE))
-		content = rebase_str_fifth_case(content);
-	return (content);
+	if (parse(content->line, content->reg[PATTERN_HELP_VALIDATION_FIRST_CASE]))
+		content->line = rebase_str_first_case(content->line);
+	if (parse(content->line, content->reg[PATTERN_HELP_VALIDATION_SECOND_CASE]))
+		content->line = rebase_str_second_case(content->line);
+	if (parse(content->line, content->reg[PATTERN_HELP_VALIDATION_THIRD_CASE]))
+		content->line = rebase_str_third_case(content->line);
+	if (parse(content->line, content->reg[PATTERN_HELP_VALIDATION_FOURTH_CASE]))
+		content->line = rebase_str_fourth_case(content->line);
+	if (parse(content->line, PATTERN_HELP_VALIDATION_FIFTH_CASE))
+		content->line = rebase_str_fifth_case(content->line);
+	return (content->line);
 }
 
 char	*check_valid(t_asm_content *content, int fd)
@@ -58,16 +58,16 @@ char	*check_valid(t_asm_content *content, int fd)
 	{
 		return (content->line);
 	}
-	else if (parse(content->line, PATTERN_NAME_OR_COMMENT_CHAMPS_FIRST_STAGE))
+	else if (parse(content->line, \
+	content->reg[PATTERN_NAME_OR_COMMENT_CHAMPS_FIRST_STAGE]))
 		return (help_check_name_or_comment_champs(content, fd));
 	else if (parse(content->line, PATTERN_COMMENT))
 		return (content->line);
 	else if (content->flag_name && content->flag_comment &&
-	parse(content->line, PATTERN))
+	parse(content->line, content->reg[PATTERN]))
 	{
 		content->flag_pattern = 1;
-		content->line = help_validation(content->line);
-		return (content->line);
+		return (help_validation(content));
 	}
 	free(content->line);
 	return (NULL);

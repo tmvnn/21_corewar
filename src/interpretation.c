@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpretation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:35:43 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/20 19:43:55 by yperra-f         ###   ########.fr       */
+/*   Updated: 2020/02/20 21:48:57 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int		parse(char *str, char *pattern)
 	return (0);
 }
 
-void	interpretation(t_token *tokens)
+void	interpretation(t_token *tokens, t_asm_content *content)
 {
 	if (parse(tokens->content, LABEL))
 		tokens->type = ft_strdup(LABEL_NAME);
-	else if (parse(tokens->content, INSTRACTION))
+	else if (parse(tokens->content, content->reg[INSTRACTION]))
 		tokens->type = ft_strdup(INSTRACTION_NAME);
 	else if (parse(tokens->content, REGISTER))
 		tokens->type = ft_strdup(REGISTER_NAME);

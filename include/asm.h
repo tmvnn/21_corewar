@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/20 20:37:44 by yperra-f         ###   ########.fr       */
+/*   Updated: 2020/02/20 21:50:04 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 # define PATTERN_T_REG "^r[0-9]{1,2}$"
 # define PATTERN_T_DIR "^%-?0*[0-9]+$|^%:[0-9a-z_]+$"
 # define PATTERN_T_IND "^-?[0-9]+$|^:[0-9a-z_]+$"
-# define INSTRACTION "^live$|^ld$|^st$|^add$|^sub$|^and$|^or$|^xor$|^zjmp$\
-|^ldi$|^sti$|^fork$|^lld$|^lldi$|^lfork$|^aff$"
+# define INSTRACTION 0
 # define LABEL "^[0-9a-z_]+:$"
 # define REGISTER "^r[0-9]{1,2}$"
 # define DIRECT_LABEL "^%:[0-9a-z_]+$"
@@ -25,55 +24,15 @@
 # define INDIRECT_LABEL "^:[0-9a-z_]+$"
 # define INDIRECT "^-?[0-9]+$"
 # define PATTERN_NAME_CHAMPS "^[ 	]*[.]name[ 	]*\".*\"[ 	]*([#;].*)?$"
-# define PATTERN_COMMENT_CHAMPS "^[ 	]*[.]comment[ 	]*\".*\"[ 	]*\
-([#;].*)?$"
+# define PATTERN_COMMENT_CHAMPS 1
 # define PATTERN_COMMENT "^ *[#;].*$"
 # define PATTERN_SPACE_OR_EMPTY_LINE "^[ 	]*$"
-# define PATTERN "^[ 	]*([a-z0-9_]+:)?[ 	]*((live|zjmp|fork|lfork)[ 	]*\
-(%-?0*[0-9]+|%:[0-9a-z_]+)|(ld|lld)([ 	]*(%-?0*[0-9]+|%:[0-9a-z_]+)|[ 	]+\
-(-?[0-9]+|:[0-9a-z_]+))[ 	]*,[ 	]*r[0-9]{1,2}|st[ 	]+r[0-9]{1,2}[ 	]*,\
-[ 	]*(r[0-9]{1,2}|-?[0-9]+|:[0-9a-z_]+)|(add|sub)[ 	]+r[0-9]{1,2}[ 	]*,\
-[ 	]*r[0-9]{1,2}[ 	]*,[ 	]*r[0-9]{1,2}|(and|or|xor)([ 	]+(r[0-9]{1,2}\
-|-?[0-9]+|:[0-9a-z_]+)|[ 	]*(%-?0*[0-9]+|%:[0-9a-z_]+))[ 	]*,[ 	]*\
-(r[0-9]{1,2}|%-?0*[0-9]+|%:[0-9a-z_]+|-?[0-9]+|:[0-9a-z_]+)[ 	]*,[ 	]\
-*r[0-9]{1,2}|(ldi|lldi)([ 	]+(r[0-9]{1,2}|-?[0-9]+|:[0-9a-z_]+)|[ 	]*\
-(%-?0*[0-9]+|%:[0-9a-z_]+))[ 	]*,[ 	]*(r[0-9]{1,2}|%-?0*\
-[0-9]+|%:[0-9a-z_]+)[ 	]*,[ 	]*r[0-9]{1,2}|sti[ 	]+r[0-9]{1,2}[ 	]*,\
-[ 	]*(r[0-9]{1,2}|%-?0*[0-9]+|%:[0-9a-z_]+|-?[0-9]+|:[0-9a-z_]+)[ 	]\
-*,[ 	]*(r[0-9]{1,2}|%-?0*[0-9]+|%:[0-9a-z_]+)|aff[ 	]+\
-r[0-9]{1,2})?[ 	]*([#;].*)?$"
-# define PATTERN_NAME_OR_COMMENT_CHAMPS_FIRST_STAGE "^[ 	]*[.]\
-(name|comment)[ 	]*\".*$"
-# define PATTERN_HELP_VALIDATION_FIRST_CASE "^[ 	]*([a-z0-9_]+:)?\
-[ 	]*(live|ld|and|or|xor|zjmp|ldi|fork|lld|lldi|lfork)\
-(%-?0*[0-9]+|%:[0-9a-z_]+).*$"
-# define PATTERN_HELP_VALIDATION_SECOND_CASE "^[ 	]*[a-z0-9_]+:(live|ld|st|\
-add|sub|and|or|xor|zjmp|ldi|sti|fork|lld|lldi|lfork|aff).*$"
-# define PATTERN_HELP_VALIDATION_THIRD_CASE "^[ 	]*([a-z0-9_]+:)?[ 	]*((\
-live|zjmp|fork|lfork)[ 	]*(%-?0*[0-9]+|%:[0-9a-z_]+)|(ld|lld)([ 	]*(%-?0*\
-[0-9]+|%:[0-9a-z_]+)|[ 	]+(-?[0-9]+|:[0-9a-z_]+))[ 	]*,[ 	]*r[0-9]{1,2}|\
-st[ 	]+r[0-9]{1,2}[ 	]*,[ 	]*(r[0-9]{1,2}|-?[0-9]+|:[0-9a-z_]+)|(add|\
-sub)[ 	]+r[0-9]{1,2}[ 	]*,[ 	]*r[0-9]{1,2}[ 	]*,[ 	]*r[0-9]{1,2}|(and|\
-or|xor)([ 	]+(r[0-9]{1,2}|-?[0-9]+|:[0-9a-z_]+)|[ 	]*(%-?0*[0-9]+|%:\
-[0-9a-z_]+))[ 	]*,[ 	]*(r[0-9]{1,2}|%-?0*[0-9]+|%:[0-9a-z_]+|-?[0-9]+|:\
-[0-9a-z_]+)[ 	]*,[ 	]*r[0-9]{1,2}|(ldi|lldi)([ 	]+(r[0-9]{1,2}|-?[0-9]+\
-|:[0-9a-z_]+)|[ 	]*(%-?0*[0-9]+|%:[0-9a-z_]+))[ 	]*,[ 	]*(r[0-9]{1,2}\
-|%-?0*[0-9]+|%:[0-9a-z_]+)[ 	]*,[ 	]*r[0-9]{1,2}|sti[ 	]+r[0-9]{1,2}\
-[ 	]*,[ 	]*(r[0-9]{1,2}|%-?0*[0-9]+|%:[0-9a-z_]+|-?[0-9]+|:[0-9a-z_]+)[ 	]*\
-,[ 	]*(r[0-9]{1,2}|%-?0*[0-9]+|%:[0-9a-z_]+)|aff[ 	]+r[0-9]{1,2})#.*$"
-# define PATTERN_HELP_VALIDATION_FOURTH_CASE "^[ 	]*([a-z0-9_]+:)?[ 	]\
-*((live|zjmp|fork|lfork)[ 	]*(%-?0*[0-9]+|%:[0-9a-z_]+)|(ld|lld)([ 	]*\
-(%-?0*[0-9]+|%:[0-9a-z_]+)|[ 	]+(-?[0-9]+|:[0-9a-z_]+))[ 	]*,[ 	]*\
-r[0-9]{1,2}|st[ 	]+r[0-9]{1,2}[ 	]*,[ 	]*(r[0-9]{1,2}|-?[0-9]+|:\
-[0-9a-z_]+)|(add|sub)[ 	]+r[0-9]{1,2}[ 	]*,[ 	]*r[0-9]{1,2}[ 	]*,\
-[ 	]*r[0-9]{1,2}|(and|or|xor)([ 	]+(r[0-9]{1,2}|-?[0-9]+|:[0-9a-z_]+)|\
-[ 	]*(%-?0*[0-9]+|%:[0-9a-z_]+))[ 	]*,[ 	]*(r[0-9]{1,2}|%-?0*[0-9]+|%\
-:[0-9a-z_]+|-?[0-9]+|:[0-9a-z_]+)[ 	]*,[ 	]*r[0-9]{1,2}|(ldi|lldi)([ 	]+\
-(r[0-9]{1,2}|-?[0-9]+|:[0-9a-z_]+)|[ 	]*(%-?0*[0-9]+|%:[0-9a-z_]+))[ 	]*,\
-[ 	]*(r[0-9]{1,2}|%-?0*[0-9]+|%:[0-9a-z_]+)[ 	]*,[ 	]*r[0-9]{1,2}|\
-sti[ 	]+r[0-9]{1,2}[ 	]*,[ 	]*(r[0-9]{1,2}|%-?0*[0-9]+|%:\
-[0-9a-z_]+|-?[0-9]+|:[0-9a-z_]+)[ 	]*,[ 	]*(r[0-9]{1,2}|%-?0*[0-9]+|%:\
-[0-9a-z_]+)|aff[ 	]+r[0-9]{1,2});.*$"
+# define PATTERN 2
+# define PATTERN_NAME_OR_COMMENT_CHAMPS_FIRST_STAGE 3
+# define PATTERN_HELP_VALIDATION_FIRST_CASE 4
+# define PATTERN_HELP_VALIDATION_SECOND_CASE 5
+# define PATTERN_HELP_VALIDATION_THIRD_CASE 6
+# define PATTERN_HELP_VALIDATION_FOURTH_CASE 7
 # define PATTERN_HELP_VALIDATION_FIFTH_CASE "^[0-9a-z_]+:[#;].*$"
 
 # include "libft.h"
@@ -172,6 +131,7 @@ typedef struct			s_asm_content
 	int					flag_comment;
 	int					flag_pattern;
 	int					memory_code_size;
+	char				*reg[8];
 	char				*line;
 	char				*buf;
 	char				*new_filename;
@@ -225,7 +185,7 @@ t_asm_content **content);
 void					add_string(t_token **tokens,
 t_strings **row, t_asm_content *content);
 void					in_bytecode(t_asm_content **content);
-void					interpretation(t_token *tokens);
+void					interpretation(t_token *tokens, t_asm_content *cozel);
 int						parse(char *str, char *pattern);
 char					*help_check_name_or_comment_champs(t_asm_content
 *content, int fd);
