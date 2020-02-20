@@ -6,11 +6,18 @@
 /*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:12:24 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/20 12:45:05 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/20 13:13:28 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+void		print_output_str(t_asm_content **content)
+{
+	write(1, "Writing output program to ", 26);
+	write(1, (*content)->new_filename, ft_strlen((*content)->new_filename));
+	write(1, "\n", 1);
+}
 
 static int	check_slashn_end(const char *filename, t_asm_content **content)
 {

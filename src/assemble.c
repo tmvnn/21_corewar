@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assemble.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:06:42 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/18 20:27:34 by yperra-f         ###   ########.fr       */
+/*   Updated: 2020/02/20 13:11:30 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ void	assemble(t_asm_content **content)
 	in_bytecode(content);
 	fill_file(rows, content);
 	write((*content)->fd_dst, (*content)->bytecode, (*content)->asm_size);
+	print_output_str(content);
 	clean_memory(content);
 }

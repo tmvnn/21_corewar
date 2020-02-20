@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/18 20:28:18 by yperra-f         ###   ########.fr       */
+/*   Updated: 2020/02/20 13:11:43 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,7 @@ void					parse_chmp_exec_code_size(t_asm_content **content);
 void					clear_buff(char **buff);
 char					**create_buff(char **line, t_asm_content **content);
 void					error(t_asm_content *content);
+void					print_output_str(t_asm_content **content);
 int						file(const char *filename, t_asm_content **content);
 void					what_are_strings(t_strings *rows);
 int						skip_simple_comment_emptyline(char **line);
