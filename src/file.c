@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:12:24 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/20 13:57:13 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/20 19:43:37 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ int			file(const char *filename, t_asm_content **content)
 	only_name_len = filename_len - ft_strlen(ft_strrchr(filename, '.'));
 	if (!ft_strcmp((filename + only_name_len), EXP_ASM) && only_name_len > 0)
 		create_f(filename, only_name_len, EXP_COR, content);
-	else if (!ft_strcmp((filename + only_name_len), EXP_COR) && only_name_len > 0)
+	else if (!ft_strcmp((filename + only_name_len), EXP_COR) && \
+	only_name_len > 0)
 		create_f(filename, only_name_len, EXP_ASM, content);
 	else
 		error(*content);

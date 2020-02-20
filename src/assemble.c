@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assemble.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:06:42 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/20 13:11:30 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/20 19:38:16 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	assemble(t_asm_content **content)
 	while (get_next_line((*content)->fd_src, &(*content)->line) > 0)
 	{
 		if (!((*content)->line = check_valid((*content), (*content)->fd_src)))
-			error(*content);	
+			error(*content);
 		tokenizing(&(*content)->line, &rows, content);
 	}
 	if (!(*content)->flag_pattern || !check_all_label(rows, content))

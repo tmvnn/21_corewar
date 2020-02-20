@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_write_code_instraction.c                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/20 19:39:31 by yperra-f          #+#    #+#             */
+/*   Updated: 2020/02/20 19:42:12 by yperra-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
 void	fill_write_code_instraction(char *instraction, t_asm_content **content)
@@ -21,7 +33,15 @@ void	fill_write_code_instraction(char *instraction, t_asm_content **content)
 		c |= AND;
 	else if (!ft_strcmp(instraction, OR_NAME))
 		c |= OR;
-	else if (!ft_strcmp(instraction, XOR_NAME))
+	c = fill_write_code_instraction_help(instraction, c);
+	bytecode += (*content)->header_size;
+	*bytecode = c;
+	(*content)->header_size += ONE_BYTE;
+}
+
+char	fill_write_code_instraction_help(char *instraction, char c)
+{
+	if (!ft_strcmp(instraction, XOR_NAME))
 		c |= XOR;
 	else if (!ft_strcmp(instraction, ZJMP_NAME))
 		c |= ZJMP;
@@ -41,7 +61,5 @@ void	fill_write_code_instraction(char *instraction, t_asm_content **content)
 		c |= ADD;
 	else if (!ft_strcmp(instraction, AFF_NAME))
 		c |= AFF;
-	bytecode += (*content)->header_size;
-	*bytecode = c;
-	(*content)->header_size += ONE_BYTE;
+	return (c);
 }

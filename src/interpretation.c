@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpretation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:35:43 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/20 12:49:28 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/20 19:43:55 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
