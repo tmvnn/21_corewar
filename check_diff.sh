@@ -974,15 +974,15 @@ fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
 cp champions/* champions_disassemble/
-echo "justen_bee.s"
-./asm champions/justen_bee.s
-hexdump -vC champions/justen_bee.cor > my_file
-./resources/vm_champs/asm champions_disassemble/justen_bee.s
-./asm champions_disassemble/justen_bee.cor
-./resources/vm_champs/asm champions_disassemble/justen_bee.s
-hexdump -vC champions_disassemble/justen_bee.cor > original_after_disassemble
-./resources/vm_champs/asm champions/justen_bee.s
-hexdump -vC champions/justen_bee.cor > original
+echo "justin_bee.s"
+./asm champions/justin_bee.s
+hexdump -vC champions/justin_bee.cor > my_file
+./resources/vm_champs/asm champions_disassemble/justin_bee.s
+./asm champions_disassemble/justin_bee.cor
+./resources/vm_champs/asm champions_disassemble/justin_bee.s
+hexdump -vC champions_disassemble/justin_bee.cor > original_after_disassemble
+./resources/vm_champs/asm champions/justin_bee.s
+hexdump -vC champions/justin_bee.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
     echo "[OK] - diff"
@@ -1318,15 +1318,15 @@ fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
 cp champions/* champions_disassemble/
-echo "Noldea.s"
-./asm champions/Noldea.s
-hexdump -vC champions/Noldea.cor > my_file
-./resources/vm_champs/asm champions_disassemble/Noldea.s
-./asm champions_disassemble/Noldea.cor
-./resources/vm_champs/asm champions_disassemble/Noldea.s
-hexdump -vC champions_disassemble/Noldea.cor > original_after_disassemble
-./resources/vm_champs/asm champions/Noldea.s
-hexdump -vC champions/Noldea.cor > original
+echo "NoIdea.s"
+./asm champions/NoIdea.s
+hexdump -vC champions/NoIdea.cor > my_file
+./resources/vm_champs/asm champions_disassemble/NoIdea.s
+./asm champions_disassemble/NoIdea.cor
+./resources/vm_champs/asm champions_disassemble/NoIdea.s
+hexdump -vC champions_disassemble/NoIdea.cor > original_after_disassemble
+./resources/vm_champs/asm champions/NoIdea.s
+hexdump -vC champions/NoIdea.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
     echo "[OK] - diff"
