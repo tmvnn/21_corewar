@@ -250,5 +250,13 @@ t_asm_content **content);
 void					fill_write_code_instraction(char *instraction,
 t_asm_content **content);
 char					*clean_memory(t_asm_content **content);
+char					*rebase_str_first_case(char *content);
+char					*rebase_str_second_case(char *content);
+char					*rebase_str_third_case(char *content);
+char					*rebase_str_fourth_case(char *content);
+char					*rebase_str_fifth_case(char *content);
+char					*label_validation(t_token *pointer, char *content);
+int						check_all_label_size(t_token *pointer, 
+t_asm_content **struct_content,int flag);
 
 #endif
