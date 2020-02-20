@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_write_arg.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 19:42:32 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/18 19:45:05 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/20 20:04:19 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,27 +81,28 @@ int		check_t_dir_size(t_token *pointer)
 }
 
 void	fill_write_arg(t_token *pointer, t_strings *rows,
-t_asm_content **content)
+t_asm_content **content, int flag)
 {
-	int		flag;
-
-	flag = 0;
 	while (pointer)
 	{
-		if (!ft_strcmp(pointer->type, INSTRACTION_NAME) && check_t_dir_size(pointer))
+		if (!ft_strcmp(pointer->type, INSTRACTION_NAME) && \
+		check_t_dir_size(pointer))
 			flag = 1;
 		else if (!ft_strcmp(pointer->type, REGISTER_NAME))
-			write_args(ONE_BYTE, ft_atoiwcm(ft_strsub(pointer->content, 1, strlen(pointer->content))), content);
+			write_args(ONE_BYTE, ft_atoiwcm(ft_strsub(pointer->content, 1, \
+			strlen(pointer->content))), content);
 		else if (!ft_strcmp(pointer->type, DIRECT_NAME))
-			write_args(flag ? FOUR_BYTE : TWO_BYTE, ft_atoiwcm(ft_strsub(pointer->content, 1, strlen(pointer->content))), content);
+			write_args(flag ? FOUR_BYTE : TWO_BYTE, ft_atoiwcm(ft_strsub(\
+			pointer->content, 1, strlen(pointer->content))), content);
 		else if (!ft_strcmp(pointer->type, DIRECT_LABEL_NAME))
-		{
-			write_args(flag ? FOUR_BYTE : TWO_BYTE, search_instraction(ft_strjoinwcm(ft_strsub(pointer->content, 2, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer), content);
-		}
+			write_args(flag ? FOUR_BYTE : TWO_BYTE, search_instraction(\
+			ft_strjoinwcm(ft_strsub(pointer->content, 2, strlen(\
+			pointer->content)), ":"), rows) - search_instraction_two(\
+			pointer), content);
 		else if (!ft_strcmp(pointer->type, INDIRECT_LABEL_NAME))
-		{
-			write_args(TWO_BYTE, (search_instraction(ft_strjoinwcm(ft_strsub(pointer->content, 1, strlen(pointer->content)), ":"), rows) - search_instraction_two(pointer)), content);
-		}
+			write_args(TWO_BYTE, (search_instraction(ft_strjoinwcm(\
+			ft_strsub(pointer->content, 1, strlen(pointer->content)), \
+			":"), rows) - search_instraction_two(pointer)), content);
 		else if (!ft_strcmp(pointer->type, INDIRECT_NAME))
 			write_args(TWO_BYTE, atoi(pointer->content), content);
 		pointer = pointer->next;
