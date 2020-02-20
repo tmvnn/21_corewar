@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 19:07:20 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/18 19:25:14 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/20 19:38:07 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static void	convert_text(char **dst, char *src, size_t size)
 	}
 }
 
-static void	create_header(char *src, header_t **header, size_t size)
+static void	create_header(char *src, t_header **header, size_t size)
 {
-	header_t	*copy;
+	t_header	*copy;
 	char		*pointer;
 
 	copy = *header;

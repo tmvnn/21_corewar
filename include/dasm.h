@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dasm.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 16:52:05 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/02/19 22:53:44 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/20 19:45:32 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ typedef struct			s_op
 	u_int8_t			oname_size;
 }						t_op;
 
-static t_op				op_tab[17] =
-{
+static t_op				g_tab[17] = {
 	{
 		.op_name = 0,
 		.args_num = 0,

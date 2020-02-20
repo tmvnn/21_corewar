@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 18:08:16 by timuryakubo       #+#    #+#             */
-/*   Updated: 2020/02/18 19:27:05 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/20 19:45:32 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void				get_args_types(t_asm_content **content, int *i,
 	while (j-- > 0)
 	{
 		rbyte >>= 2;
-		op_tab[cur_op].args_types[j] = 3 & rbyte;
+		g_tab[cur_op].args_types[j] = 3 & rbyte;
 	}
 }
 
@@ -69,17 +69,17 @@ void				write_curr_op(t_asm_content **content, int *i,
 	char			*num;
 
 	j = 0;
-	ft_strcpy((*content)->buf + (*content)->b_pos, op_tab[cur_op].op_name);
-	(*content)->b_pos += op_tab[cur_op].oname_size;
+	ft_strcpy((*content)->buf + (*content)->b_pos, g_tab[cur_op].op_name);
+	(*content)->b_pos += g_tab[cur_op].oname_size;
 	(*content)->buf[(*content)->b_pos++] = ' ';
-	while (op_tab[cur_op].args_types[j])
+	while (g_tab[cur_op].args_types[j])
 	{
 		num = 0;
-		if (op_tab[cur_op].args_types[j] == REG_CODE)
+		if (g_tab[cur_op].args_types[j] == REG_CODE)
 			write_reg(content, cur_op, i, j);
-		else if (op_tab[cur_op].args_types[j] == DIR_CODE)
+		else if (g_tab[cur_op].args_types[j] == DIR_CODE)
 			write_dir(content, cur_op, i, j);
-		else if (op_tab[cur_op].args_types[j] == IND_CODE)
+		else if (g_tab[cur_op].args_types[j] == IND_CODE)
 			write_ind(content, cur_op, i, j);
 		j++;
 	}
@@ -96,7 +96,7 @@ void				parse_chmp_exec_code(t_asm_content **content)
 	{
 		if ((cur_op = get_num_from_1byte(content, &i)) > OP_TAB_SIZE - 1)
 			error(*content);
-		if (op_tab[cur_op].args_types_code)
+		if (g_tab[cur_op].args_types_code)
 			get_args_types(content, &i, cur_op);
 		write_curr_op(content, &i, cur_op);
 	}

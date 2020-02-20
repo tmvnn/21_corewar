@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/20 13:11:43 by timuryakubo      ###   ########.fr       */
+/*   Updated: 2020/02/20 19:39:16 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # define PATTERN_T_REG "^r[0-9]{1,2}$"
 # define PATTERN_T_DIR "^%-?0*[0-9]+$|^%:[0-9a-z_]+$"
 # define PATTERN_T_IND "^-?[0-9]+$|^:[0-9a-z_]+$"
-# define INSTRACTION "^live$|^ld$|^st$|^add$|^sub$|^and$|\
-^or$|^xor$|^zjmp$|^ldi$|^sti$|^fork$|^lld$|^lldi$|^lfork$|^aff$"
+# define INSTRACTION "^live$|^ld$|^st$|^add$|^sub$|^and$|^or$|^xor$|^zjmp$\
+|^ldi$|^sti$|^fork$|^lld$|^lldi$|^lfork$|^aff$"
 # define LABEL "^[0-9a-z_]+:$"
 # define REGISTER "^r[0-9]{1,2}$"
 # define DIRECT_LABEL "^%:[0-9a-z_]+$"
@@ -179,7 +179,7 @@ typedef struct			s_asm_content
 	t_strings			**tokens;
 	char				*name;
 	char				*comment;
-	header_t			*header;
+	t_header			*header;
 	char				*bytecode;
 	unsigned int		exec_code_size;
 	unsigned int		asm_size;
@@ -257,7 +257,7 @@ char					*rebase_str_third_case(char *content);
 char					*rebase_str_fourth_case(char *content);
 char					*rebase_str_fifth_case(char *content);
 char					*label_validation(t_token *pointer, char *content);
-int						check_all_label_size(t_token *pointer, 
-t_asm_content **struct_content,int flag);
+int						check_all_label_size(t_token *pointer,
+t_asm_content			**struct_content, int flag);
 
 #endif
