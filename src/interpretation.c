@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpretation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:35:43 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/18 19:26:26 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/20 12:49:28 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		parse(char *str, char *pattern)
 	if (err != 0)
 	{
 		regfree(&reg1);
-		printf("error with regex in file interpretation.c\n");
+		write(1, "error with regex in file interpretation.c\n", 42);
 		return (0);
 	}
 	if (!regexec(&reg1, str, 0, &pm, 0))

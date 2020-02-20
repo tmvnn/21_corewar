@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:12:24 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/18 20:27:55 by yperra-f         ###   ########.fr       */
+/*   Updated: 2020/02/20 12:45:05 by timuryakubo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ static int	check_slashn_end(const char *filename, t_asm_content **content)
 		if (slash_n != ' ' && slash_n != '\f' &&
 			slash_n != '\n' && slash_n != '\t' &&
 			slash_n != '\r' && slash_n != '\v')
-		{
-			printf("not valid file\n");
 			error(*content);
-		}
 	}
 	return (1);
 }
