@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/20 20:04:43 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/20 20:37:44 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,7 +245,7 @@ void					write_args(int length, int num,
 t_asm_content **content);
 int						check_t_dir_size(t_token *pointer);
 void					fill_write_arg(t_token *pointer,
-t_strings *rows, t_asm_content **content);
+t_strings *rows, t_asm_content **content, int flag);
 void					fill_write_code_arg(t_token *pointer,
 t_asm_content **content);
 void					fill_write_code_instraction(char *instraction,
@@ -259,5 +259,9 @@ char					*rebase_str_fifth_case(char *content);
 char					*label_validation(t_token *pointer, char *content);
 int						check_all_label_size(t_token *pointer,
 t_asm_content			**struct_content, int flag);
+char					fill_write_code_instraction_help(char *instraction,
+char c);
+char					*do_w1(t_asm_content *content, char *temp);
+char					*do_w2(t_asm_content *content, char *temp);
 
 #endif

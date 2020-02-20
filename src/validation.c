@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 19:46:06 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/20 20:01:42 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/02/20 20:37:13 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,23 @@ char	*help_check_name_or_comment_champs(t_asm_content *content, int fd)
 	char *temp;
 
 	temp = "\0";
-	do {
+	temp = ft_strjoinwcm(temp, content->line);
+	ft_strdel(&content->line);
+	if (parse(temp, PATTERN_NAME_CHAMPS))
+		return (do_w1(content, temp));
+	else if (parse(temp, PATTERN_COMMENT_CHAMPS))
+		return (do_w2(content, temp));
+	temp = ft_strjoinwcm(temp, "\n");
+	while (get_next_line(fd, &content->line) > 0)
+	{
 		temp = ft_strjoinwcm(temp, content->line);
 		ft_strdel(&content->line);
 		if (parse(temp, PATTERN_NAME_CHAMPS))
-		{
-			if (content->flag_name == 1 || strlen(temp) > PROG_NAME_LENGTH)
-				return (NULL);
-			content->flag_name = 1;
-			return (temp);
-		}
+			return (do_w1(content, temp));
 		else if (parse(temp, PATTERN_COMMENT_CHAMPS))
-		{
-			if (content->flag_comment == 1 || strlen(temp) > COMMENT_LENGTH)
-				return (NULL);
-			content->flag_comment = 1;
-			return (temp);
-		}
+			return (do_w2(content, temp));
 		temp = ft_strjoinwcm(temp, "\n");
 	}
-	while (get_next_line(fd, &content->line) > 0);
 	return (NULL);
 }
 
