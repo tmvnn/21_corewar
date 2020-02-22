@@ -6,7 +6,7 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 18:37:44 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/05 03:33:53 by astanton         ###   ########.fr       */
+/*   Updated: 2020/02/22 02:52:50 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void		get_args(int *args_type, t_game *game, t_carriage *carriage)
 	int	pos;
 
 	i = 0;
-	pos = carriage->position + 1 + g_ops[carriage->operation_code].args_byte;
+	pos = (carriage->position) + 1 + g_ops[carriage->operation_code].args_byte;
 	while (i < g_ops[carriage->operation_code].num_of_args)
 	{
 		carriage->cur_position = pos;

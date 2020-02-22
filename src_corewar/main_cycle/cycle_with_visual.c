@@ -6,7 +6,7 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 23:57:16 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/20 19:38:43 by astanton         ###   ########.fr       */
+/*   Updated: 2020/02/21 21:15:12 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,14 +115,14 @@ void		start_game_cycle(t_game *game, t_keyboard *keyboard)
 	{
 		if (keyboard->quit)
 			break ;
-		game->current_cycle++;
+		(game->current_cycle)++;
 		exec_all_carriages(game);
 		if (game->current_cycle - game->last_check_cycle >= game->cycles_to_die
 			|| game->cycles_to_die <= 0)
 		{
 			game->last_check_cycle = game->current_cycle;
 			check_carriages(game);
-			game->number_of_checks++;
+			(game->number_of_checks)++;
 			if (game->number_of_live_instructions >= NBR_LIVE
 				|| game->number_of_checks == MAX_CHECKS)
 			{

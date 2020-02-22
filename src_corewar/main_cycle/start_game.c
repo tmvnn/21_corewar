@@ -6,7 +6,7 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 18:52:50 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/20 19:50:30 by astanton         ###   ########.fr       */
+/*   Updated: 2020/02/21 21:12:29 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,14 @@ static void	start_game_simple(t_game *game)
 	while (cycle && game->carriages)
 	{
 		cycle -= game->dump;
-		game->current_cycle++;
+		(game->current_cycle)++;
 		exec_all_carriages(game);
 		if (game->current_cycle - game->last_check_cycle >= game->cycles_to_die
 			|| game->cycles_to_die <= 0)
 		{
 			game->last_check_cycle = game->current_cycle;
 			check_carriages(game);
-			game->number_of_checks++;
+			(game->number_of_checks)++;
 			if (game->number_of_live_instructions >= NBR_LIVE
 				|| game->number_of_checks == MAX_CHECKS)
 			{

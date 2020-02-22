@@ -6,7 +6,7 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:12:27 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/11 20:25:13 by astanton         ###   ########.fr       */
+/*   Updated: 2020/02/22 06:08:41 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	check_file(char *name_file)
 {
 	int	fd;
 
-	if (ft_strcmp(ft_strrchr(name_file, '.'), ".cor"))
+	if (ft_strcmp(ft_to_lower_case(ft_strrchr(name_file, '.')), ".cor"))
 		ft_print_usage_and_exit("Wrong type of file.");
 	fd = open(name_file, O_RDONLY);
 	if (fd < 0)

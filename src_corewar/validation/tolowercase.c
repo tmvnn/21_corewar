@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zjmp.c                                             :+:      :+:    :+:   */
+/*   tolowercase.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/28 19:02:34 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/22 06:32:15 by astanton         ###   ########.fr       */
+/*   Created: 2020/02/22 06:09:53 by astanton          #+#    #+#             */
+/*   Updated: 2020/02/22 06:46:33 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	zjmp(t_game *game, t_carriage *carriage)
+char	*ft_to_lower_case(char *str)
 {
-	get_and_check_args(game, carriage);
-	if (!carriage->is_args_valid || !carriage->carry)
-		return ;
-	carriage->offset = carriage->args[0] % (IDX_MOD);
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (NULL);
+	while (str[++i] != '\0')
+	{
+		if (str[i] >= 'A' && str[i] <= 'Z')
+			str[i] = str[i] - 'A' + 'a';
+	}
+	return (str);
 }

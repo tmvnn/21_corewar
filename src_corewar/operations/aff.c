@@ -6,7 +6,7 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 18:59:08 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/11 18:02:19 by astanton         ###   ########.fr       */
+/*   Updated: 2020/02/22 06:30:54 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	aff(t_game *game, t_carriage *carriage)
 	c = carriage->reg[carriage->args[0]] % 256;
 	if (game->visualization)
 	{
-		game->aff++;
+		(game->aff)++;
 		mvprintw(68, 0, "AFF : ");
 		mvprintw(68 + (game->aff / 250), 6 + (game->aff % 250), "%c", c);
 		refresh();

@@ -6,7 +6,7 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 11:35:00 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/11 20:04:42 by astanton         ###   ########.fr       */
+/*   Updated: 2020/02/22 06:39:02 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define BYTE_3				0xff0000
 # define BYTE_4				0xff000000
 # define LINE_LENGTH		64
-# define LINE_LENGTH_DUMP	32
+# define LINE_LENGTH_DUMP	64
 # define TYPE_OPT_N			1
 # define TYPE_OPT_DUMP		2
 # define TYPE_FILE			3
@@ -88,7 +88,7 @@ typedef struct	s_op
 {
 	char	*name;
 	int		num_of_args;
-	int		arg_types[4];
+	int		arg_types[3];
 	int		cycles_to_exec;
 	int		change_carry;
 	int		dir_size;
@@ -98,32 +98,33 @@ typedef struct	s_op
 
 static t_op	g_ops[16] =
 {
-	{"live", 1, {T_DIR, 0, 0, 0}, 10, 0, 4, 0, 0},
-	{"ld", 2, {T_DIR | T_IND, T_REG, 0, 0}, 5, 1, 4, 1, 1},
-	{"st", 2, {T_REG, T_REG | T_IND, 0, 0}, 5, 0, 4, 1, 1},
-	{"add", 3, {T_REG, T_REG, T_REG, 0}, 10, 1, 4, 1, 0},
-	{"sub", 3, {T_REG, T_REG, T_REG, 0}, 10, 1, 4, 1, 1},
-	{"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_DIR | T_IND, T_REG, 0},
+	{"live", 1, {T_DIR, 0, 0}, 10, 0, 4, 0, 0},
+	{"ld", 2, {T_DIR | T_IND, T_REG, 0}, 5, 1, 4, 1, 1},
+	{"st", 2, {T_REG, T_REG | T_IND, 0}, 5, 0, 4, 1, 1},
+	{"add", 3, {T_REG, T_REG, T_REG}, 10, 1, 4, 1, 0},
+	{"sub", 3, {T_REG, T_REG, T_REG}, 10, 1, 4, 1, 1},
+	{"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_DIR | T_IND, T_REG},
 		6, 1, 4, 1, 1},
-	{"or", 3, {T_REG | T_DIR | T_IND, T_REG | T_DIR | T_IND, T_REG, 0},
+	{"or", 3, {T_REG | T_DIR | T_IND, T_REG | T_DIR | T_IND, T_REG},
 		6, 1, 4, 1, 1},
-	{"xor", 3, {T_REG | T_DIR | T_IND, T_REG | T_DIR | T_IND, T_REG, 0},
+	{"xor", 3, {T_REG | T_DIR | T_IND, T_REG | T_DIR | T_IND, T_REG},
 		6, 1, 4, 1, 1},
-	{"zjmp", 1, {T_DIR, 0, 0, 0}, 20, 0, 2, 0, 1},
-	{"ldi", 3, {T_REG | T_DIR | T_IND, T_REG | T_DIR, T_REG, 0},
+	{"zjmp", 1, {T_DIR, 0, 0}, 20, 0, 2, 0, 1},
+	{"ldi", 3, {T_REG | T_DIR | T_IND, T_REG | T_DIR, T_REG},
 		25, 0, 2, 1, 1},
-	{"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_REG | T_DIR, 0},
+	{"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_REG | T_DIR},
 		25, 0, 2, 1, 1},
-	{"fork", 1, {T_DIR, 0, 0, 0}, 800, 0, 2, 0, 1},
-	{"lld", 2, {T_DIR | T_IND, T_REG, 0, 0}, 10, 1, 4, 1, 0},
-	{"lldi", 3, {T_REG | T_DIR | T_IND, T_REG | T_DIR, T_REG, 0},
+	{"fork", 1, {T_DIR, 0, 0}, 800, 0, 2, 0, 1},
+	{"lld", 2, {T_DIR | T_IND, T_REG, 0}, 10, 1, 4, 1, 0},
+	{"lldi", 3, {T_REG | T_DIR | T_IND, T_REG | T_DIR, T_REG},
 		50, 1, 2, 1, 0},
-	{"lfork", 1, {T_DIR, 0, 0, 0}, 1000, 0, 2, 0, 0},
-	{"aff", 1, {T_REG, 0, 0, 0}, 2, 0, 4, 1, 0}
+	{"lfork", 1, {T_DIR, 0, 0}, 1000, 0, 2, 0, 0},
+	{"aff", 1, {T_REG, 0, 0}, 2, 0, 4, 1, 0}
 };
 
 char			*save_name(int fd);
 char			*save_comment(int fd);
+char			*ft_to_lower_case(char *str);
 unsigned char	*save_exec_code(int fd, int size_of_code);
 t_game			init_game();
 t_player		*init_players(int ac, char **av, t_game *game);

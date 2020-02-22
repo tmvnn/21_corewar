@@ -6,7 +6,7 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 19:01:18 by astanton          #+#    #+#             */
-/*   Updated: 2020/01/28 21:17:07 by astanton         ###   ########.fr       */
+/*   Updated: 2020/02/22 06:31:37 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,8 @@ void		lldi(t_game *game, t_carriage *carriage)
 		b = carriage->args[1];
 	carriage->reg[carriage->args[2]] = get_value(game->field,
 									carriage->position + (a + b));
+	if (carriage->reg[carriage->args[2]])
+		carriage->carry = 0;
+	else
+		carriage->carry = 1;
 }

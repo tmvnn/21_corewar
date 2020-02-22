@@ -6,7 +6,7 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 18:59:58 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/07 03:40:16 by astanton         ###   ########.fr       */
+/*   Updated: 2020/02/22 06:31:05 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ static t_carriage	*copy_carriage(t_carriage *carriage)
 	new = (t_carriage *)ft_malloc(sizeof(t_carriage));
 	new->carry = carriage->carry;
 	new->last_live_cycle = carriage->last_live_cycle;
-	new->cycles_till_exec = 0;
-	i = carriage->position + carriage->args[0] % (IDX_MOD);
+	new->cycles_till_exec = carriage->cycles_till_exec;
+	new->is_args_valid = carriage->is_args_valid;
+	new->offset = 0;
+	new->operation_code = carriage->operation_code;
+	i = carriage->position + (carriage->args[0] % (IDX_MOD));
 	if (i >= 0)
 		new->position = i % (MEM_SIZE);
 	else
@@ -46,5 +49,5 @@ void				ft_fork(t_game *game, t_carriage *carriage)
 	new->id = game->carriages->id + 1;
 	new->next = game->carriages;
 	game->carriages = new;
-	game->car_number++;
+	(game->car_number)++;
 }

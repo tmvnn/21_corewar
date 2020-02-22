@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+         #
+#    By: astanton <astanton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/03 16:12:01 by astanton          #+#    #+#              #
-#    Updated: 2020/02/20 22:26:24 by idunaver         ###   ########.fr        #
+#    Updated: 2020/02/22 06:15:06 by astanton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRCS = ./main_cycle/main.c\
 		./print/dump_field.c\
 		./print/print_winner.c\
 		./validation/verification.c\
+		./validation/tolowercase.c\
 		./validation/verification_binary_files.c\
 
 OBJ =  ./main_cycle/main.o\
@@ -92,6 +93,7 @@ OBJ =  ./main_cycle/main.o\
 		./print/dump_field.o\
 		./print/print_winner.o\
 		./validation/verification.o\
+		./validation/tolowercase.o\
 		./validation/verification_binary_files.o\
 
 HDR = ./libft/includes/
@@ -108,7 +110,7 @@ $(NAME): $(OBJ) ./libft/libft.a
 	gcc -o $(NAME) $(OBJ) -L ./libft -lft -lncurses -lpthread
 
 $(OBJ): %.o: %.c ./includes/vm.h ./includes/op.h
-	gcc $(FLAG) -c -I $(HDR) -I $(HDR1) $< -o $@
+	gcc -g $(FLAG) -c -I $(HDR) -I $(HDR1) $< -o $@
 
 clean:
 	make -C libft clean

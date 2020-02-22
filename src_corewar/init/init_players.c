@@ -6,7 +6,7 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 17:43:40 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/11 20:29:16 by astanton         ###   ########.fr       */
+/*   Updated: 2020/02/21 21:14:09 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ t_player		*init_players(int ac, char **av, t_game *game)
 		tmp->next = players;
 		(players) ? players->prev = tmp : 0;
 		players = tmp;
-		game->car_number++;
+		(game->car_number)++;
 		i -= (i > 2 && (!ft_strcmp(av[i - 2], "-n")
 			|| !ft_strcmp(av[i - 2], "-dump"))) ? 3 : 1;
 	}
