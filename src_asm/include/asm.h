@@ -23,7 +23,7 @@
 # define DIRECT "^%-?0*[0-9]+$"
 # define INDIRECT_LABEL "^:[0-9a-z_]+$"
 # define INDIRECT "^-?[0-9]+$"
-# define PATTERN_NAME_CHAMPS "^[ 	]*[.]name[ 	]*\".*\"[ 	]*([#;].*)?$"
+# define PATTERN_NAME_CHAMPS "^[ 	]*[.]name[ 	]*\"[^\"]*\"[ 	]*([#;].*)?$"
 # define PATTERN_COMMENT_CHAMPS 1
 # define PATTERN_COMMENT "^ *[#;].*$"
 # define PATTERN_SPACE_OR_EMPTY_LINE "^[ 	]*$"

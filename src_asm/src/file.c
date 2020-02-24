@@ -60,22 +60,44 @@ int			create_f(const char *filename, int only_name_len, char *file_type,
 	return (1);
 }
 
+char		*check_name_file(const char *str)
+{
+	char	*result_str;
+	int		i;
+	
+	i = 0;
+	if (!(result_str = ft_strdup(str)))
+		return (NULL);
+	while (result_str[i] != '\0')
+	{
+		if (result_str[i] >= 'A' && result_str[i] <= 'Z')
+			result_str[i] = result_str[i] - 'A' + 'a';
+		i++;
+	}
+	if (ft_strcmp(ft_strrchr(result_str, '.'), EXP_ASM) && 
+	ft_strcmp(ft_strrchr(result_str, '.'), EXP_COR))
+	{
+		free(result_str);
+		return (NULL);
+	}
+	return (result_str);
+}
+
 int			file(const char *filename, t_asm_content **content)
 {
 	int		filename_len;
 	int		only_name_len;
+	char	*result_str;
 
-	filename_len = 0;
-	if (!filename || (filename_len = ft_strlen(filename)) == 0 ||
-								ft_strrchr(filename, '.') == NULL)
-		error(*content);
+	result_str = NULL;
+	if (filename && !(result_str = check_name_file(filename)))
+		return (0);
+	filename_len = ft_strlen(result_str);
 	only_name_len = filename_len - ft_strlen(ft_strrchr(filename, '.'));
-	if (!ft_strcmp((filename + only_name_len), EXP_ASM) && only_name_len > 0)
+	if (!ft_strcmp((result_str + only_name_len), EXP_ASM))
 		create_f(filename, only_name_len, EXP_COR, content);
-	else if (!ft_strcmp((filename + only_name_len), EXP_COR) && \
-	only_name_len > 0)
+	else if (!ft_strcmp((result_str + only_name_len), EXP_COR))
 		create_f(filename, only_name_len, EXP_ASM, content);
-	else
-		error(*content);
+	free(result_str);
 	return (1);
 }
