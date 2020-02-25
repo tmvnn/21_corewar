@@ -6,26 +6,27 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:12:27 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/22 06:08:41 by astanton         ###   ########.fr       */
+/*   Updated: 2020/02/25 16:07:43 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static void	check_file(char *name_file)
+static void	check_file(char *name_file, t_game *game)
 {
 	int	fd;
 
 	if (ft_strcmp(ft_to_lower_case(ft_strrchr(name_file, '.')), ".cor"))
-		ft_print_usage_and_exit("Wrong type of file.");
+		ft_print_usage_and_exit("Wrong type of file.", game);
 	fd = open(name_file, O_RDONLY);
 	if (fd < 0)
-		ft_print_usage_and_exit("Can't open file, check filename, please.");
+		ft_print_usage_and_exit("Can't open file, check filename, please.",
+								game);
 	if (close(fd) != 0)
-		ft_print_error_message("Can't close file : ", name_file);
+		ft_print_error_message("Can't close file : ", name_file, game);
 }
 
-static int	ft_isnumber(char *str, int var, int *num)
+static int	ft_isnumber(char *str, int var, int *num, t_game *game)
 {
 	int	i;
 	int	n;
@@ -42,32 +43,34 @@ static int	ft_isnumber(char *str, int var, int *num)
 	{
 		n = ft_atoi(str);
 		if (n < 1 || n > MAX_PLAYERS || (*num >> n & 1))
-			ft_print_usage_and_exit("Wrong champion's id.");
+			ft_print_usage_and_exit("Wrong champion's id.", game);
 		*num = *num | (1 << n);
 	}
 	return (1);
 }
 
-static void	check_arguments(int *types, char **av, int ac, int n)
+static void	check_arguments(int *types, char **av, int ac, t_game *game)
 {
 	int	i;
 
 	i = (types[0] == -1) ? 1 : 0;
-	if ((ac < 4 + i && types[i] != TYPE_FILE) ||
-		(i > 0 && types[i] == TYPE_OPT_DUMP) ||
-		(types[i] == TYPE_OPT_DUMP && types[i + 1] != TYPE_NUMBER))
-		ft_print_usage_and_exit(NULL);
+	if ((ac == 2 && types[0] == -1)
+		|| (ac < 4 + i && types[i] != TYPE_FILE)
+		|| (i > 0 && types[i] == TYPE_OPT_DUMP)
+		|| (types[i] == TYPE_OPT_DUMP && types[i + 1] != TYPE_NUMBER))
+		ft_print_usage_and_exit(NULL, game);
 	if (types[i] == TYPE_OPT_DUMP)
 		i++;
 	while (++i < ac)
 	{
 		if (types[i - 1] == TYPE_FILE)
-			check_file(av[i]);
+			check_file(av[i], game);
 		else if (types[i - 1] == TYPE_OPT_N)
 		{
 			if (types[i] != TYPE_NUMBER
-				|| !ft_isnumber(av[i + 1], 1, &n) || types[i + 1] != TYPE_FILE)
-				ft_print_usage_and_exit("Wrong option input.");
+				|| !ft_isnumber(av[i + 1], 1, &game->num_of_id, game)
+				|| types[i + 1] != TYPE_FILE)
+				ft_print_usage_and_exit("Wrong option input.", game);
 		}
 	}
 }
@@ -81,7 +84,7 @@ static int	choose_type(char *str, int *arg_types, int i, t_game *game)
 		game->dump = i + 1;
 		return (TYPE_OPT_DUMP);
 	}
-	else if (ft_isnumber(str, 0, 0) && (i > 1
+	else if (ft_isnumber(str, 0, 0, game) && (i > 1
 	&& (arg_types[i - 2] == TYPE_OPT_DUMP || arg_types[i - 2] == TYPE_OPT_N)))
 		return (TYPE_NUMBER);
 	else
@@ -96,7 +99,7 @@ void		verification_of_incoming_data(int ac, char **av, t_game *game)
 
 	i = 0;
 	if (ac == 1)
-		ft_print_usage_and_exit(NULL);
+		ft_print_usage_and_exit(NULL, game);
 	if (!ft_strcmp(av[1], "-v"))
 	{
 		i++;
@@ -110,7 +113,8 @@ void		verification_of_incoming_data(int ac, char **av, t_game *game)
 		if (arg_types[i - 1] == TYPE_FILE)
 			files++;
 	}
-	check_arguments(arg_types, av, ac, 0);
+	check_arguments(arg_types, av, ac, game);
 	game->dump_cycles = (game->dump) ? ft_atoi(av[game->dump]) : -1;
-	check_binary_files(arg_types, av, ac, files);
+	game->num_of_files = files;
+	check_binary_files(arg_types, av, ac, game);
 }

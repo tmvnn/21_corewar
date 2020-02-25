@@ -6,13 +6,13 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 22:41:47 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/11 20:24:14 by astanton         ###   ########.fr       */
+/*   Updated: 2020/02/25 15:35:06 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-char			*save_name(int fd)
+char			*save_name(int fd, t_game *game)
 {
 	char	buff[PROG_NAME_LENGTH + 1];
 	char	*name;
@@ -23,11 +23,12 @@ char			*save_name(int fd)
 	buff[ret] = '\0';
 	name = (char *)malloc(sizeof(char) * (ft_strlen(buff) + 1));
 	if (!name)
-		ft_print_error_message("Memory for name is not allocated.", NULL);
+		ft_print_error_message("Memory for name is not allocated.", NULL,
+								game);
 	return (ft_strcpy(name, buff));
 }
 
-char			*save_comment(int fd)
+char			*save_comment(int fd, t_game *game)
 {
 	char	buff[COMMENT_LENGTH + 1];
 	char	*comment;
@@ -37,7 +38,8 @@ char			*save_comment(int fd)
 	buff[ret] = '\0';
 	comment = (char *)malloc(sizeof(char) * (ft_strlen(buff) + 1));
 	if (!comment)
-		ft_print_error_message("Memory for comment is not allocated.", NULL);
+		ft_print_error_message("Memory for comment is not allocated.", NULL,
+								game);
 	return (ft_strcpy(comment, buff));
 }
 
@@ -59,7 +61,7 @@ int				save_size_of_code(int fd)
 	return (cur_res);
 }
 
-unsigned char	*save_exec_code(int fd, int size_of_code)
+unsigned char	*save_exec_code(int fd, int size_of_code, t_game *game)
 {
 	char	buff[size_of_code];
 	char	*code;
@@ -68,7 +70,8 @@ unsigned char	*save_exec_code(int fd, int size_of_code)
 	lseek(fd, sizeof(COREWAR_EXEC_MAGIC), SEEK_CUR);
 	code = (char *)malloc(sizeof(char) * size_of_code);
 	if (!code)
-		ft_print_error_message("Memory for exec_code is not allocated.", NULL);
+		ft_print_error_message("Memory for exec_code is not allocated.", NULL,
+								game);
 	ret = read(fd, buff, size_of_code);
 	return ((unsigned char *)ft_memcpy(code, buff, size_of_code));
 }

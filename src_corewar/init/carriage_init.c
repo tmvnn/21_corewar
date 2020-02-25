@@ -6,19 +6,20 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 19:31:18 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/11 20:18:09 by astanton         ###   ########.fr       */
+/*   Updated: 2020/02/25 15:29:39 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static t_carriage	*create_carriage(void)
+static t_carriage	*create_carriage(t_game *game)
 {
 	t_carriage	*carriage;
 
 	carriage = (t_carriage *)malloc(sizeof(t_carriage));
 	if (!carriage)
-		ft_print_error_message("Memory for carriage is not allocated.", NULL);
+		ft_print_error_message("Memory for carriage is not allocated.", NULL,
+								game);
 	carriage->next = NULL;
 	return (carriage);
 }
@@ -56,7 +57,7 @@ static void			fill_carriage(t_player *players, t_carriage *carriages,
 	carriages->reg[0] = -(players->player_id);
 }
 
-t_carriage			*carriage_init(t_player *players)
+t_carriage			*carriage_init(t_player *players, t_game *game)
 {
 	t_carriage		*carriages;
 	t_carriage		*tmp;
@@ -70,7 +71,7 @@ t_carriage			*carriage_init(t_player *players)
 		players = players->next;
 	while (players)
 	{
-		tmp = create_carriage();
+		tmp = create_carriage(game);
 		fill_carriage(players, tmp, position);
 		position += step;
 		tmp->next = carriages;

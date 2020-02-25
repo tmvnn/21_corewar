@@ -6,7 +6,7 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 11:35:00 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/22 06:39:02 by astanton         ###   ########.fr       */
+/*   Updated: 2020/02/25 17:23:56 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define BYTE_3				0xff0000
 # define BYTE_4				0xff000000
 # define LINE_LENGTH		64
-# define LINE_LENGTH_DUMP	64
+# define LINE_LENGTH_DUMP	32
 # define TYPE_OPT_N			1
 # define TYPE_OPT_DUMP		2
 # define TYPE_FILE			3
@@ -67,6 +67,8 @@ typedef struct	s_carriage
 typedef struct	s_game
 {
 	int					aff;
+	int					num_of_id;
+	int					num_of_files;
 	int					dump;
 	int					dump_cycles;
 	int					visualization;
@@ -122,14 +124,14 @@ static t_op	g_ops[16] =
 	{"aff", 1, {T_REG, 0, 0}, 2, 0, 4, 1, 0}
 };
 
-char			*save_name(int fd);
-char			*save_comment(int fd);
+char			*save_name(int fd, t_game *game);
+char			*save_comment(int fd, t_game *game);
 char			*ft_to_lower_case(char *str);
-unsigned char	*save_exec_code(int fd, int size_of_code);
+unsigned char	*save_exec_code(int fd, int size_of_code, t_game *game);
 t_game			init_game();
 t_player		*init_players(int ac, char **av, t_game *game);
 t_player		*sort_players(t_player *players);
-t_carriage		*carriage_init(t_player *players);
+t_carriage		*carriage_init(t_player *players, t_game *game);
 int				*decode_arg_byte(unsigned char byte, int op_code);
 int				get_offset(int *args, int op_code);
 int				check_args(int *args, int op_code);
@@ -154,9 +156,9 @@ void			ft_xor(t_game *game, t_carriage *carriage);
 void			zjmp(t_game *game, t_carriage *carriage);
 void			debug(void *arg, void *arg2, int var);
 void			verification_of_incoming_data(int ac, char **av, t_game *game);
-void			ft_print_usage_and_exit(char *file);
-void			check_binary_files(int *types, char **av, int ac, int files);
-void			ft_print_error_message(char *msg, char *file);
+void			ft_print_usage_and_exit(char *file, t_game *game);
+void			check_binary_files(int *types, char **av, int ac, t_game *game);
+void			ft_print_error_message(char *msg, char *file, t_game *game);
 void			load_exec_code_in_battle_field(t_game game, t_player *players);
 void			introducing_players(t_player *players);
 void			start_game(t_game *game);

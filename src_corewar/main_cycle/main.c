@@ -6,7 +6,7 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 12:00:46 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/22 06:32:27 by astanton         ###   ########.fr       */
+/*   Updated: 2020/02/25 15:38:25 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int				main(int ac, char **av)
 	game.players = init_players(ac, av, &game);
 	game.players = sort_players(game.players);
 	load_exec_code_in_battle_field(game, game.players);
-	game.carriages = carriage_init(game.players);
+	game.carriages = carriage_init(game.players, &game);
 	game.last_survivor = -game.players->player_id;
 	start_game(&game);
 	free_resources(game);

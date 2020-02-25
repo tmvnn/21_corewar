@@ -6,13 +6,13 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 19:21:05 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/16 17:41:39 by astanton         ###   ########.fr       */
+/*   Updated: 2020/02/25 17:17:09 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static void	check_null(int fd, char *file)
+static void	check_null(int fd, char *file, t_game *game)
 {
 	int				ret;
 	unsigned char	buff[sizeof(unsigned int) + 1];
@@ -24,16 +24,16 @@ static void	check_null(int fd, char *file)
 	check = (unsigned int)(*buff);
 	if (check)
 		ft_print_error_message("Wrong binary format, NULL marker is missing \
-or in the wrong place in file : ", file);
+or in the wrong place in file : ", file, game);
 	lseek(fd, sizeof(unsigned int) + COMMENT_LENGTH, SEEK_CUR);
 	ret = read(fd, buff, sizeof(unsigned int));
 	check = (unsigned int)(*buff);
 	if (check)
 		ft_print_error_message("Wrong binary format, NULL marker is missing \
-or in the wrong place in file : ", file);
+or in the wrong place in file : ", file, game);
 }
 
-static void	check_magic(int fd, char *file)
+static void	check_magic(int fd, char *file, t_game *game)
 {
 	int				ret;
 	unsigned char	buff[sizeof(COREWAR_EXEC_MAGIC) + 1];
@@ -42,6 +42,8 @@ static void	check_magic(int fd, char *file)
 
 	tmp = 0;
 	ret = read(fd, buff, sizeof(COREWAR_EXEC_MAGIC));
+	if (ret < 4)
+		ft_print_error_message("Check file : ", file, game);
 	buff[ret] = '\0';
 	cur_res = *((unsigned int *)ft_memcpy(&tmp, buff,
 				sizeof(COREWAR_EXEC_MAGIC)));
@@ -49,10 +51,10 @@ static void	check_magic(int fd, char *file)
 				| (cur_res & BYTE_3) >> 8 | (cur_res & BYTE_4) >> 24;
 	if (cur_res != COREWAR_EXEC_MAGIC)
 		ft_print_error_message("Magic_number is different from \
-COREWAR_EXEC_MAGIC in file : ", file);
+COREWAR_EXEC_MAGIC in file : ", file, game);
 }
 
-static void	check_exec_code(int fd, char *file)
+static void	check_exec_code(int fd, char *file, t_game *game)
 {
 	int				ret;
 	unsigned int	size;
@@ -72,30 +74,34 @@ static void	check_exec_code(int fd, char *file)
 	while ((ret = read(fd, buff, sizeof(unsigned int) + 1)))
 		tmp += ret;
 	if (tmp != size || size > (CHAMP_MAX_SIZE))
-		ft_print_error_message("Wrong size of exec code in file : ", file);
+		ft_print_error_message("Wrong size of exec code in file : ",
+								file, game);
+	if (size == 0)
+		ft_print_error_message("Too small size of champion's code : ",
+								file, game);
 }
 
-static void	check_binary(char *file)
+static void	check_binary(char *file, t_game *game)
 {
 	int	fd;
 
 	if ((fd = open(file, O_RDONLY)) < 0)
-		ft_print_error_message("Can't open next file : ", file);
-	check_magic(fd, file);
-	check_null(fd, file);
-	check_exec_code(fd, file);
+		ft_print_error_message("Can't open next file : ", file, game);
+	check_magic(fd, file, game);
+	check_null(fd, file, game);
+	check_exec_code(fd, file, game);
 	if (close(fd) != 0)
-		ft_print_error_message("Can't close next file : ", file);
+		ft_print_error_message("Can't close next file : ", file, game);
 }
 
-void		check_binary_files(int *arg_types, char **av, int ac, int files)
+void		check_binary_files(int *arg_types, char **av, int ac, t_game *game)
 {
 	int i;
 
-	if (files > MAX_PLAYERS)
-		ft_print_usage_and_exit("Too many champions.");
+	if (game->num_of_files > MAX_PLAYERS)
+		ft_print_usage_and_exit("Too many champions.", game);
 	i = 0;
 	while (++i < ac)
 		if (arg_types[i - 1] == TYPE_FILE)
-			check_binary(av[i]);
+			check_binary(av[i], game);
 }

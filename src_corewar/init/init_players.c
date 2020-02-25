@@ -6,13 +6,13 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 17:43:40 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/21 21:14:09 by astanton         ###   ########.fr       */
+/*   Updated: 2020/02/25 15:36:39 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static int		open_close_fd(char *file, int var, int close_fd)
+static int		open_close_fd(char *file, int var, int close_fd, t_game *game)
 {
 	int	fd;
 
@@ -20,32 +20,37 @@ static int		open_close_fd(char *file, int var, int close_fd)
 	{
 		fd = open(file, O_RDONLY);
 		if (fd < 0)
-			ft_print_usage_and_exit("Can't open file, check filename, please.");
+			ft_print_usage_and_exit("Can't open file, check filename, please.",
+									game);
 		return (fd);
 	}
 	else if (close(close_fd))
-		ft_print_error_message("Can't close file.", NULL);
+		ft_print_error_message("Can't close file.", NULL, game);
 	return (-1);
 }
 
-static t_player	*fill_player(char *file_name, int id)
+static t_player	*fill_player(char *file_name, int id, t_game *game)
 {
 	t_player	*player;
 	int			fd;
 
-	fd = open_close_fd(file_name, 1, 0);
+	fd = open_close_fd(file_name, 1, 0, game);
 	player = (t_player*)malloc(sizeof(t_player));
 	if (!player)
-		ft_print_error_message("Memory for player is not allocated.", NULL);
-	player->name = save_name(fd);
+		ft_print_error_message("Memory for player is not allocated.", NULL,
+								game);
+	player->name = NULL;
+	player->comment = NULL;
+	player->code = NULL;
+	player->name = save_name(fd, game);
 	player->size_of_code = save_size_of_code(fd);
-	player->comment = save_comment(fd);
-	player->code = save_exec_code(fd, player->size_of_code);
+	player->comment = save_comment(fd, game);
+	player->code = save_exec_code(fd, player->size_of_code, game);
 	player->player_id = id;
 	player->last_live = 0;
 	player->prev = NULL;
 	player->next = NULL;
-	open_close_fd(file_name, 2, fd);
+	open_close_fd(file_name, 2, fd, game);
 	return (player);
 }
 
@@ -105,7 +110,7 @@ t_player		*init_players(int ac, char **av, t_game *game)
 	{
 		champ_id = (i > 2 && !ft_strcmp(av[i - 2], "-n")) ?
 			ft_atoi(av[i - 1]) : 0;
-		tmp = fill_player(av[i], champ_id);
+		tmp = fill_player(av[i], champ_id, game);
 		tmp->next = players;
 		(players) ? players->prev = tmp : 0;
 		players = tmp;
