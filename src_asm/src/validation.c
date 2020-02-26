@@ -34,6 +34,7 @@ char	*help_check_name_or_comment_champs(t_asm_content *content, int fd)
 			return (do_w2(content, temp));
 		temp = ft_strjoinwcm(temp, "\n");
 	}
+	free(temp);
 	return (NULL);
 }
 
@@ -55,9 +56,7 @@ char	*help_validation(t_asm_content *content)
 char	*check_valid(t_asm_content *content, int fd)
 {
 	if (parse(content->line, PATTERN_SPACE_OR_EMPTY_LINE))
-	{
 		return (content->line);
-	}
 	else if (parse(content->line, \
 	content->reg[PATTERN_NAME_OR_COMMENT_CHAMPS_FIRST_STAGE]))
 		return (help_check_name_or_comment_champs(content, fd));

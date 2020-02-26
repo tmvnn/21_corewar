@@ -25,7 +25,7 @@
 # define INDIRECT "^-?[0-9]+$"
 # define PATTERN_NAME_CHAMPS "^[ 	]*[.]name[ 	]*\"[^\"]*\"[ 	]*([#;].*)?$"
 # define PATTERN_COMMENT_CHAMPS 1
-# define PATTERN_COMMENT "^ *[#;].*$"
+# define PATTERN_COMMENT "^[ 	]*[#;].*$"
 # define PATTERN_SPACE_OR_EMPTY_LINE "^[ 	]*$"
 # define PATTERN 2
 # define PATTERN_NAME_OR_COMMENT_CHAMPS_FIRST_STAGE 3

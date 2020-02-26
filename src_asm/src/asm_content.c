@@ -52,6 +52,7 @@ t_asm_content	*init_content(char ad_flag)
 	content->tokens = NULL;
 	content->name = NULL;
 	content->comment = NULL;
+	content->header = NULL;
 	content->exec_code_size = 0;
 	content->bytecode = NULL;
 	content->asm_size = 0;
