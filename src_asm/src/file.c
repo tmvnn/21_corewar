@@ -74,8 +74,8 @@ char		*check_name_file(const char *str)
 			result_str[i] = result_str[i] - 'A' + 'a';
 		i++;
 	}
-	if (ft_strcmp(ft_strrchr(result_str, '.'), EXP_ASM) && 
-	ft_strcmp(ft_strrchr(result_str, '.'), EXP_COR))
+	if (!ft_strrchr(result_str, '.') || (ft_strcmp(ft_strrchr(result_str, '.'), EXP_ASM) && 
+	ft_strcmp(ft_strrchr(result_str, '.'), EXP_COR)))
 	{
 		free(result_str);
 		return (NULL);
