@@ -92,7 +92,7 @@ int			file(const char *filename, t_asm_content **content)
 	result_str = NULL;
 	if (filename && !(result_str = check_name_file(filename)))
 		return (0);
-	filename_len = ft_strlen(result_str);
+	filename_len = ft_strlen(filename);
 	only_name_len = filename_len - ft_strlen(ft_strrchr(filename, '.'));
 	if (!ft_strcmp((result_str + only_name_len), EXP_ASM))
 		create_f(filename, only_name_len, EXP_COR, content);

@@ -65,6 +65,8 @@ static void	clean_content(t_asm_content **content)
 	free_array((*content)->reg);
 	free((*content)->buf);
 	(*content)->buf = NULL;
+	close((*content)->fd_dst);
+	close((*content)->fd_src);
 	free(*content);
 	content = NULL;
 }
