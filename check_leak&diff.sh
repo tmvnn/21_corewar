@@ -1,5 +1,9 @@
 #!/bin/bash
 
+GREEN="\e[32m"
+RED="\e[31m"
+EOC="\e[0m"
+
 echo ""
 echo "batman.s"
 ./asm champions/batman.s
@@ -9,9 +13,9 @@ hexdump -vC champions/batman.cor > my_file
 hexdump -vC champions/batman.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -24,9 +28,9 @@ hexdump -vC champions/bee_gees.cor > my_file
 hexdump -vC champions/bee_gees.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -39,9 +43,9 @@ hexdump -vC champions/bigzork.cor > my_file
 hexdump -vC champions/bigzork.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -54,9 +58,9 @@ hexdump -vC champions/fluttershy.cor > my_file
 hexdump -vC champions/fluttershy.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -69,9 +73,9 @@ hexdump -vC champions/helltrain.cor > my_file
 hexdump -vC champions/helltrain.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -84,9 +88,9 @@ hexdump -vC champions/turtle.cor > my_file
 hexdump -vC champions/turtle.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -99,9 +103,9 @@ hexdump -vC champions/zork.cor > my_file
 hexdump -vC champions/zork.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -114,9 +118,9 @@ hexdump -vC champions/42.cor > my_file
 hexdump -vC champions/42.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -129,9 +133,9 @@ hexdump -vC champions/Backward.cor > my_file
 hexdump -vC champions/Backward.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -144,9 +148,9 @@ hexdump -vC champions/barriere.cor > my_file
 hexdump -vC champions/barriere.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -159,9 +163,9 @@ hexdump -vC champions/Car.cor > my_file
 hexdump -vC champions/Car.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -174,9 +178,9 @@ hexdump -vC champions/Death.cor > my_file
 hexdump -vC champions/Death.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -189,9 +193,9 @@ hexdump -vC champions/ex.cor > my_file
 hexdump -vC champions/ex.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -204,9 +208,9 @@ hexdump -vC champions/Gagnant.cor > my_file
 hexdump -vC champions/Gagnant.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -219,9 +223,9 @@ hexdump -vC champions/jumper.cor > my_file
 hexdump -vC champions/jumper.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -234,9 +238,9 @@ hexdump -vC champions/lde.cor > my_file
 hexdump -vC champions/lde.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -249,9 +253,9 @@ hexdump -vC champions/leeloo.cor > my_file
 hexdump -vC champions/leeloo.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -264,9 +268,9 @@ hexdump -vC champions/mat.cor > my_file
 hexdump -vC champions/mat.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -279,9 +283,9 @@ hexdump -vC champions/maxidef.cor > my_file
 hexdump -vC champions/maxidef.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -294,9 +298,9 @@ hexdump -vC champions/mortel.cor > my_file
 hexdump -vC champions/mortel.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -309,9 +313,9 @@ hexdump -vC champions/new.cor > my_file
 hexdump -vC champions/new.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -324,9 +328,9 @@ hexdump -vC champions/Octobre_Rouge_V4.2.cor > my_file
 hexdump -vC champions/Octobre_Rouge_V4.2.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -339,9 +343,9 @@ hexdump -vC champions/sebc.cor > my_file
 hexdump -vC champions/sebc.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -354,9 +358,9 @@ hexdump -vC champions/slider2.cor > my_file
 hexdump -vC champions/slider2.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -369,9 +373,9 @@ hexdump -vC champions/Survivor.cor > my_file
 hexdump -vC champions/Survivor.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -384,9 +388,9 @@ hexdump -vC champions/tdc2.cor > my_file
 hexdump -vC champions/tdc2.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -399,9 +403,9 @@ hexdump -vC champions/tdc3.cor > my_file
 hexdump -vC champions/tdc3.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -414,9 +418,9 @@ hexdump -vC champions/tdc4.cor > my_file
 hexdump -vC champions/tdc4.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -429,9 +433,9 @@ hexdump -vC champions/Torpille.cor > my_file
 hexdump -vC champions/Torpille.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -444,9 +448,9 @@ hexdump -vC champions/toto.cor > my_file
 hexdump -vC champions/toto.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -459,9 +463,9 @@ hexdump -vC champions/_.cor > my_file
 hexdump -vC champions/_.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -474,9 +478,9 @@ hexdump -vC champions/_honeybadger.cor > my_file
 hexdump -vC champions/_honeybadger.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -489,9 +493,9 @@ hexdump -vC champions/Asombra.cor > my_file
 hexdump -vC champions/Asombra.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -504,9 +508,9 @@ hexdump -vC champions/Bazou.cor > my_file
 hexdump -vC champions/Bazou.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -519,9 +523,9 @@ hexdump -vC champions/big_feet.cor > my_file
 hexdump -vC champions/big_feet.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -534,9 +538,9 @@ hexdump -vC champions/casimir.cor > my_file
 hexdump -vC champions/casimir.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -549,9 +553,9 @@ hexdump -vC champions/champ.cor > my_file
 hexdump -vC champions/champ.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -565,9 +569,9 @@ hexdump -vC champions/Code_eater.cor > my_file
 hexdump -vC champions/Code_eater.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -580,9 +584,9 @@ hexdump -vC champions/corelol.cor > my_file
 hexdump -vC champions/corelol.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -595,9 +599,9 @@ hexdump -vC champions/darksasuke.cor > my_file
 hexdump -vC champions/darksasuke.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -610,9 +614,9 @@ hexdump -vC champions/doge.cor > my_file
 hexdump -vC champions/doge.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -625,9 +629,9 @@ hexdump -vC champions/Douceur_power.cor > my_file
 hexdump -vC champions/Douceur_power.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -640,9 +644,9 @@ hexdump -vC champions/dubo.cor > my_file
 hexdump -vC champions/dubo.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -655,9 +659,9 @@ hexdump -vC champions/echo.cor > my_file
 hexdump -vC champions/echo.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -670,9 +674,9 @@ hexdump -vC champions/Eraser.cor > my_file
 hexdump -vC champions/Eraser.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -685,9 +689,9 @@ hexdump -vC champions/Explosive_Kitty.cor > my_file
 hexdump -vC champions/Explosive_Kitty.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -700,9 +704,9 @@ hexdump -vC champions/fast.cor > my_file
 hexdump -vC champions/fast.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -715,9 +719,9 @@ hexdump -vC champions/ForgottenOne.cor > my_file
 hexdump -vC champions/ForgottenOne.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -730,9 +734,9 @@ hexdump -vC champions/gateau.cor > my_file
 hexdump -vC champions/gateau.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -745,9 +749,9 @@ hexdump -vC champions/gedeon.cor > my_file
 hexdump -vC champions/gedeon.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -760,9 +764,9 @@ hexdump -vC champions/Hidden.cor > my_file
 hexdump -vC champions/Hidden.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -775,9 +779,9 @@ hexdump -vC champions/Horace.cor > my_file
 hexdump -vC champions/Horace.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -790,9 +794,9 @@ hexdump -vC champions/Izi_Miaou.cor > my_file
 hexdump -vC champions/Izi_Miaou.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -805,9 +809,9 @@ hexdump -vC champions/jinx.cor > my_file
 hexdump -vC champions/jinx.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -820,9 +824,9 @@ hexdump -vC champions/justen_bee.cor > my_file
 hexdump -vC champions/justen_bee.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -835,9 +839,9 @@ hexdump -vC champions/kamelkaze.cor > my_file
 hexdump -vC champions/kamelkaze.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -850,9 +854,9 @@ hexdump -vC champions/Kappa.cor > my_file
 hexdump -vC champions/Kappa.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -865,9 +869,9 @@ hexdump -vC champions/katchup.cor > my_file
 hexdump -vC champions/katchup.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -880,9 +884,9 @@ hexdump -vC champions/Kitty_Miaou.cor > my_file
 hexdump -vC champions/Kitty_Miaou.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -895,9 +899,9 @@ hexdump -vC champions/Kittystrophic.cor > my_file
 hexdump -vC champions/Kittystrophic.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -910,9 +914,9 @@ hexdump -vC champions/lapsang.cor > my_file
 hexdump -vC champions/lapsang.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -925,9 +929,9 @@ hexdump -vC champions/le_pet_de_nonne.cor > my_file
 hexdump -vC champions/le_pet_de_nonne.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -940,9 +944,9 @@ hexdump -vC champions/littlepuppy.cor > my_file
 hexdump -vC champions/littlepuppy.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -955,9 +959,9 @@ hexdump -vC champions/live.cor > my_file
 hexdump -vC champions/live.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -970,9 +974,9 @@ hexdump -vC champions/loose.cor > my_file
 hexdump -vC champions/loose.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -985,9 +989,9 @@ hexdump -vC champions/lou_forktologue.cor > my_file
 hexdump -vC champions/lou_forktologue.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1000,9 +1004,9 @@ hexdump -vC champions/Machine-gun.cor > my_file
 hexdump -vC champions/Machine-gun.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1016,9 +1020,9 @@ hexdump -vC champions/mandragore.cor > my_file
 hexdump -vC champions/mandragore.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1031,9 +1035,9 @@ hexdump -vC champions/MarineKing.cor > my_file
 hexdump -vC champions/MarineKing.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1046,9 +1050,9 @@ hexdump -vC champions/master_of_puppets.cor > my_file
 hexdump -vC champions/master_of_puppets.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1061,9 +1065,9 @@ hexdump -vC champions/meowluigi.cor > my_file
 hexdump -vC champions/meowluigi.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1076,9 +1080,9 @@ hexdump -vC champions/Misaka_Mikoto.cor > my_file
 hexdump -vC champions/Misaka_Mikoto.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1091,9 +1095,9 @@ hexdump -vC champions/mise_a_jour_windows95.cor > my_file
 hexdump -vC champions/mise_a_jour_windows95.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1106,9 +1110,9 @@ hexdump -vC champions/Noldea.cor > my_file
 hexdump -vC champions/Noldea.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1121,9 +1125,9 @@ hexdump -vC champions/O-Maley_Miaou.cor > my_file
 hexdump -vC champions/O-Maley_Miaou.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1136,9 +1140,9 @@ hexdump -vC champions/overwatch.cor > my_file
 hexdump -vC champions/overwatch.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1151,9 +1155,9 @@ hexdump -vC champions/pai_mu_tan.cor > my_file
 hexdump -vC champions/pai_mu_tan.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1166,9 +1170,9 @@ hexdump -vC champions/Rainbow_dash.cor > my_file
 hexdump -vC champions/Rainbow_dash.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1181,9 +1185,9 @@ hexdump -vC champions/run_Kitty_RUN.cor > my_file
 hexdump -vC champions/run_Kitty_RUN.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1196,9 +1200,9 @@ hexdump -vC champions/salamahenagalabadoun.cor > my_file
 hexdump -vC champions/salamahenagalabadoun.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1211,9 +1215,9 @@ hexdump -vC champions/sam_2.0.cor > my_file
 hexdump -vC champions/sam_2.0.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1226,9 +1230,9 @@ hexdump -vC champions/sencha.cor > my_file
 hexdump -vC champions/sencha.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1241,9 +1245,9 @@ hexdump -vC champions/skynet.cor > my_file
 hexdump -vC champions/skynet.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1256,9 +1260,9 @@ hexdump -vC champions/Stargate0_1.cor > my_file
 hexdump -vC champions/Stargate0_1.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1271,9 +1275,9 @@ hexdump -vC champions/tchupka.cor > my_file
 hexdump -vC champions/tchupka.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1286,9 +1290,9 @@ hexdump -vC champions/terminator.cor > my_file
 hexdump -vC champions/terminator.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1301,9 +1305,9 @@ hexdump -vC champions/TheHarvester.cor > my_file
 hexdump -vC champions/TheHarvester.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1316,9 +1320,9 @@ hexdump -vC champions/THUNDER.cor > my_file
 hexdump -vC champions/THUNDER.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1331,9 +1335,9 @@ hexdump -vC champions/ultima.cor > my_file
 hexdump -vC champions/ultima.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1346,9 +1350,9 @@ hexdump -vC champions/ultimate-surrender.cor > my_file
 hexdump -vC champions/ultimate-surrender.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1361,9 +1365,9 @@ hexdump -vC champions/Varimathras.cor > my_file
 hexdump -vC champions/Varimathras.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1376,9 +1380,9 @@ hexdump -vC champions/Wall.cor > my_file
 hexdump -vC champions/Wall.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1391,9 +1395,9 @@ hexdump -vC champions/wave.cor > my_file
 hexdump -vC champions/wave.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""
@@ -1406,9 +1410,9 @@ hexdump -vC champions/youforkmytralala.cor > my_file
 hexdump -vC champions/youforkmytralala.cor > not_my_file
 if (diff my_file not_my_file)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 ./check
 echo ""

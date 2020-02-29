@@ -1,5 +1,9 @@
 #!/bin/bash
 
+GREEN="\e[32m"
+RED="\e[31m"
+EOC="\e[0m"
+
 echo ""
 echo "batman.s"
 ./asm champions/batman.s
@@ -12,9 +16,9 @@ hexdump -vC champions_disassemble/batman.cor > original_after_disassemble
 hexdump -vC champions/batman.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original my_file_after_disassemble champions/*.cor 
@@ -29,9 +33,9 @@ hexdump -vC champions_disassemble/bee_gees.cor > original_after_disassemble
 hexdump -vC champions/bee_gees.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -47,9 +51,9 @@ hexdump -vC champions_disassemble/bigzork.cor > original_after_disassemble
 hexdump -vC champions/bigzork.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -65,9 +69,9 @@ hexdump -vC champions_disassemble/fluttershy.cor > original_after_disassemble
 hexdump -vC champions/fluttershy.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -83,9 +87,9 @@ hexdump -vC champions_disassemble/helltrain.cor > original_after_disassemble
 hexdump -vC champions/helltrain.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -101,9 +105,9 @@ hexdump -vC champions_disassemble/turtle.cor > original_after_disassemble
 hexdump -vC champions/turtle.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -119,9 +123,9 @@ hexdump -vC champions_disassemble/zork.cor > original_after_disassemble
 hexdump -vC champions/zork.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -137,9 +141,9 @@ hexdump -vC champions_disassemble/42.cor > original_after_disassemble
 hexdump -vC champions/42.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -155,9 +159,9 @@ hexdump -vC champions_disassemble/Backward.cor > original_after_disassemble
 hexdump -vC champions/Backward.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -173,9 +177,9 @@ hexdump -vC champions_disassemble/barriere.cor > original_after_disassemble
 hexdump -vC champions/barriere.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -191,9 +195,9 @@ hexdump -vC champions_disassemble/Car.cor > original_after_disassemble
 hexdump -vC champions/Car.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -209,9 +213,9 @@ hexdump -vC champions_disassemble/Death.cor > original_after_disassemble
 hexdump -vC champions/Death.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -227,9 +231,9 @@ hexdump -vC champions_disassemble/ex.cor > original_after_disassemble
 hexdump -vC champions/ex.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -245,9 +249,9 @@ hexdump -vC champions_disassemble/Gagnant.cor > original_after_disassemble
 hexdump -vC champions/Gagnant.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -263,9 +267,9 @@ hexdump -vC champions_disassemble/jumper.cor > original_after_disassemble
 hexdump -vC champions/jumper.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -281,9 +285,9 @@ hexdump -vC champions_disassemble/lde.cor > original_after_disassemble
 hexdump -vC champions/lde.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -299,9 +303,9 @@ hexdump -vC champions_disassemble/leeloo.cor > original_after_disassemble
 hexdump -vC champions/leeloo.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -317,9 +321,9 @@ hexdump -vC champions_disassemble/mat.cor > original_after_disassemble
 hexdump -vC champions/mat.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -335,9 +339,9 @@ hexdump -vC champions_disassemble/maxidef.cor > original_after_disassemble
 hexdump -vC champions/maxidef.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -353,9 +357,9 @@ hexdump -vC champions_disassemble/mortel.cor > original_after_disassemble
 hexdump -vC champions/mortel.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -371,9 +375,9 @@ hexdump -vC champions_disassemble/new.cor > original_after_disassemble
 hexdump -vC champions/new.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -389,9 +393,9 @@ hexdump -vC champions_disassemble/Octobre_Rouge_V4.2.cor > original_after_disass
 hexdump -vC champions/Octobre_Rouge_V4.2.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -407,9 +411,9 @@ hexdump -vC champions_disassemble/sebc.cor > original_after_disassemble
 hexdump -vC champions/sebc.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -425,9 +429,9 @@ hexdump -vC champions_disassemble/slider2.cor > original_after_disassemble
 hexdump -vC champions/slider2.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -443,9 +447,9 @@ hexdump -vC champions_disassemble/Survivor.cor > original_after_disassemble
 hexdump -vC champions/Survivor.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -461,9 +465,9 @@ hexdump -vC champions_disassemble/tdc2.cor > original_after_disassemble
 hexdump -vC champions/tdc2.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -479,9 +483,9 @@ hexdump -vC champions_disassemble/tdc3.cor > original_after_disassemble
 hexdump -vC champions/tdc3.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -497,9 +501,9 @@ hexdump -vC champions_disassemble/tdc4.cor > original_after_disassemble
 hexdump -vC champions/tdc4.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -515,9 +519,9 @@ hexdump -vC champions_disassemble/Torpille.cor > original_after_disassemble
 hexdump -vC champions/Torpille.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -533,9 +537,9 @@ hexdump -vC champions_disassemble/toto.cor > original_after_disassemble
 hexdump -vC champions/toto.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -551,9 +555,9 @@ hexdump -vC champions_disassemble/_.cor > original_after_disassemble
 hexdump -vC champions/_.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -569,9 +573,9 @@ hexdump -vC champions_disassemble/_honeybadger.cor > original_after_disassemble
 hexdump -vC champions/_honeybadger.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -587,9 +591,9 @@ hexdump -vC champions_disassemble/Asombra.cor > original_after_disassemble
 hexdump -vC champions/Asombra.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -605,9 +609,9 @@ hexdump -vC champions_disassemble/Bazou.cor > original_after_disassemble
 hexdump -vC champions/Bazou.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -623,9 +627,9 @@ hexdump -vC champions_disassemble/big_feet.cor > original_after_disassemble
 hexdump -vC champions/big_feet.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -641,9 +645,9 @@ hexdump -vC champions_disassemble/casimir.cor > original_after_disassemble
 hexdump -vC champions/casimir.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -659,9 +663,9 @@ hexdump -vC champions_disassemble/champ.cor > original_after_disassemble
 hexdump -vC champions/champ.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -679,9 +683,9 @@ hexdump -vC champions_disassemble/Code_eater.cor > original_after_disassemble
 hexdump -vC champions/Code_eater.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -697,9 +701,9 @@ hexdump -vC champions_disassemble/corelol.cor > original_after_disassemble
 hexdump -vC champions/corelol.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -715,9 +719,9 @@ hexdump -vC champions_disassemble/darksasuke.cor > original_after_disassemble
 hexdump -vC champions/darksasuke.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -733,9 +737,9 @@ hexdump -vC champions_disassemble/doge.cor > original_after_disassemble
 hexdump -vC champions/doge.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -751,9 +755,9 @@ hexdump -vC champions_disassemble/Douceur_power.cor > original_after_disassemble
 hexdump -vC champions/Douceur_power.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -769,9 +773,9 @@ hexdump -vC champions_disassemble/dubo.cor > original_after_disassemble
 hexdump -vC champions/dubo.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -787,9 +791,9 @@ hexdump -vC champions_disassemble/echo.cor > original_after_disassemble
 hexdump -vC champions/echo.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -805,9 +809,9 @@ hexdump -vC champions_disassemble/Eraser.cor > original_after_disassemble
 hexdump -vC champions/Eraser.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -823,9 +827,9 @@ hexdump -vC champions_disassemble/Explosive_Kitty.cor > original_after_disassemb
 hexdump -vC champions/Explosive_Kitty.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -841,9 +845,9 @@ hexdump -vC champions_disassemble/fast.cor > original_after_disassemble
 hexdump -vC champions/fast.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -859,9 +863,9 @@ hexdump -vC champions_disassemble/ForgottenOne.cor > original_after_disassemble
 hexdump -vC champions/ForgottenOne.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -877,9 +881,9 @@ hexdump -vC champions_disassemble/gateau.cor > original_after_disassemble
 hexdump -vC champions/gateau.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -895,9 +899,9 @@ hexdump -vC champions_disassemble/gedeon.cor > original_after_disassemble
 hexdump -vC champions/gedeon.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -913,9 +917,9 @@ hexdump -vC champions_disassemble/Hidden.cor > original_after_disassemble
 hexdump -vC champions/Hidden.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -931,9 +935,9 @@ hexdump -vC champions_disassemble/Horace.cor > original_after_disassemble
 hexdump -vC champions/Horace.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -949,9 +953,9 @@ hexdump -vC champions_disassemble/Izi_Miaou.cor > original_after_disassemble
 hexdump -vC champions/Izi_Miaou.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -967,9 +971,9 @@ hexdump -vC champions_disassemble/jinx.cor > original_after_disassemble
 hexdump -vC champions/jinx.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -985,9 +989,9 @@ hexdump -vC champions_disassemble/justin_bee.cor > original_after_disassemble
 hexdump -vC champions/justin_bee.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1003,9 +1007,9 @@ hexdump -vC champions_disassemble/kamelkaze.cor > original_after_disassemble
 hexdump -vC champions/kamelkaze.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1021,9 +1025,9 @@ hexdump -vC champions_disassemble/Kappa.cor > original_after_disassemble
 hexdump -vC champions/Kappa.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1039,9 +1043,9 @@ hexdump -vC champions_disassemble/katchup.cor > original_after_disassemble
 hexdump -vC champions/katchup.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1057,9 +1061,9 @@ hexdump -vC champions_disassemble/Kitty_Miaou.cor > original_after_disassemble
 hexdump -vC champions/Kitty_Miaou.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1075,9 +1079,9 @@ hexdump -vC champions_disassemble/Kittystrophic.cor > original_after_disassemble
 hexdump -vC champions/Kittystrophic.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1093,9 +1097,9 @@ hexdump -vC champions_disassemble/lapsang.cor > original_after_disassemble
 hexdump -vC champions/lapsang.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1111,9 +1115,9 @@ hexdump -vC champions_disassemble/le_pet_de_nonne.cor > original_after_disassemb
 hexdump -vC champions/le_pet_de_nonne.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1129,9 +1133,9 @@ hexdump -vC champions_disassemble/littlepuppy.cor > original_after_disassemble
 hexdump -vC champions/littlepuppy.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1147,9 +1151,9 @@ hexdump -vC champions_disassemble/live.cor > original_after_disassemble
 hexdump -vC champions/live.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1165,9 +1169,9 @@ hexdump -vC champions_disassemble/loose.cor > original_after_disassemble
 hexdump -vC champions/loose.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1183,9 +1187,9 @@ hexdump -vC champions_disassemble/lou_forktologue.cor > original_after_disassemb
 hexdump -vC champions/lou_forktologue.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1201,9 +1205,9 @@ hexdump -vC champions_disassemble/Machine-gun.cor > original_after_disassemble
 hexdump -vC champions/Machine-gun.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1221,9 +1225,9 @@ hexdump -vC champions_disassemble/mandragore.cor > original_after_disassemble
 hexdump -vC champions/mandragore.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1239,9 +1243,9 @@ hexdump -vC champions_disassemble/MarineKing.cor > original_after_disassemble
 hexdump -vC champions/MarineKing.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1257,9 +1261,9 @@ hexdump -vC champions_disassemble/master_of_puppets.cor > original_after_disasse
 hexdump -vC champions/master_of_puppets.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1275,9 +1279,9 @@ hexdump -vC champions_disassemble/meowluigi.cor > original_after_disassemble
 hexdump -vC champions/meowluigi.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1293,9 +1297,9 @@ hexdump -vC champions_disassemble/Misaka_Mikoto.cor > original_after_disassemble
 hexdump -vC champions/Misaka_Mikoto.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1311,9 +1315,9 @@ hexdump -vC champions_disassemble/mise_a_jour_windows95.cor > original_after_dis
 hexdump -vC champions/mise_a_jour_windows95.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1329,9 +1333,9 @@ hexdump -vC champions_disassemble/NoIdea.cor > original_after_disassemble
 hexdump -vC champions/NoIdea.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1347,9 +1351,9 @@ hexdump -vC champions_disassemble/O-Maley_Miaou.cor > original_after_disassemble
 hexdump -vC champions/O-Maley_Miaou.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1365,9 +1369,9 @@ hexdump -vC champions_disassemble/overwatch.cor > original_after_disassemble
 hexdump -vC champions/overwatch.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1383,9 +1387,9 @@ hexdump -vC champions_disassemble/pai_mu_tan.cor > original_after_disassemble
 hexdump -vC champions/pai_mu_tan.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1401,9 +1405,9 @@ hexdump -vC champions_disassemble/Rainbow_dash.cor > original_after_disassemble
 hexdump -vC champions/Rainbow_dash.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1419,9 +1423,9 @@ hexdump -vC champions_disassemble/run_Kitty_RUN.cor > original_after_disassemble
 hexdump -vC champions/run_Kitty_RUN.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1437,9 +1441,9 @@ hexdump -vC champions_disassemble/salamahenagalabadoun.cor > original_after_disa
 hexdump -vC champions/salamahenagalabadoun.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1455,9 +1459,9 @@ hexdump -vC champions_disassemble/sam_2.0.cor > original_after_disassemble
 hexdump -vC champions/sam_2.0.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1473,9 +1477,9 @@ hexdump -vC champions_disassemble/sencha.cor > original_after_disassemble
 hexdump -vC champions/sencha.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1491,9 +1495,9 @@ hexdump -vC champions_disassemble/skynet.cor > original_after_disassemble
 hexdump -vC champions/skynet.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1509,9 +1513,9 @@ hexdump -vC champions_disassemble/Stargate0_1.cor > original_after_disassemble
 hexdump -vC champions/Stargate0_1.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1527,9 +1531,9 @@ hexdump -vC champions_disassemble/tchupka.cor > original_after_disassemble
 hexdump -vC champions/tchupka.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1545,9 +1549,9 @@ hexdump -vC champions_disassemble/terminator.cor > original_after_disassemble
 hexdump -vC champions/terminator.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1563,9 +1567,9 @@ hexdump -vC champions_disassemble/TheHarvester.cor > original_after_disassemble
 hexdump -vC champions/TheHarvester.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1581,9 +1585,9 @@ hexdump -vC champions_disassemble/THUNDER.cor > original_after_disassemble
 hexdump -vC champions/THUNDER.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1599,9 +1603,9 @@ hexdump -vC champions_disassemble/ultima.cor > original_after_disassemble
 hexdump -vC champions/ultima.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1617,9 +1621,9 @@ hexdump -vC champions_disassemble/ultimate-surrender.cor > original_after_disass
 hexdump -vC champions/ultimate-surrender.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1635,9 +1639,9 @@ hexdump -vC champions_disassemble/Varimathras.cor > original_after_disassemble
 hexdump -vC champions/Varimathras.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1653,9 +1657,9 @@ hexdump -vC champions_disassemble/Wall.cor > original_after_disassemble
 hexdump -vC champions/Wall.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1671,9 +1675,9 @@ hexdump -vC champions_disassemble/wave.cor > original_after_disassemble
 hexdump -vC champions/wave.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
@@ -1689,9 +1693,9 @@ hexdump -vC champions_disassemble/youforkmytralala.cor > original_after_disassem
 hexdump -vC champions/youforkmytralala.cor > original
 if (diff my_file original && diff my_file original_after_disassemble && diff original original_after_disassemble)
 then
-    echo "[OK] - diff"
+    printf "${GREEN}OK - diff${EOC}\n"
 else
-    echo "[KO] - diff"
+    printf "${RED}KO - diff${EOC}\n"
 fi
 echo ""
 rm -rf my_file original original_after_disassemble champions/*.cor champions_disassemble/*
