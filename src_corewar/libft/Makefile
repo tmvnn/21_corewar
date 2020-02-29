@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: astanton <astanton@student.42.fr>          +#+  +:+       +#+         #
+#    By: s39f4lt <s39f4lt@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/29 10:14:35 by astanton          #+#    #+#              #
-#    Updated: 2019/12/03 12:27:17 by astanton         ###   ########.fr        #
+#    Updated: 2020/02/29 11:21:45 by s39f4lt          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ $(NAME): $(OBJ)
 	ar -rc $(NAME) $(OBJ)
 
 $(OBJ): %.o: %.c ./includes/libft.h
-	gcc -g $(FLAG) -c -I $(HDR) $< -o $@
+	gcc $(FLAG) -c -I $(HDR) $< -o $@
 
 clean:
 	rm -f $(OBJ)

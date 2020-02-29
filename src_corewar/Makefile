@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: astanton <astanton@student.42.fr>          +#+  +:+       +#+         #
+#    By: s39f4lt <s39f4lt@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/03 16:12:01 by astanton          #+#    #+#              #
-#    Updated: 2020/02/22 06:15:06 by astanton         ###   ########.fr        #
+#    Updated: 2020/02/29 11:21:52 by s39f4lt          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,7 +110,7 @@ $(NAME): $(OBJ) ./libft/libft.a
 	gcc -o $(NAME) $(OBJ) -L ./libft -lft -lncurses -lpthread
 
 $(OBJ): %.o: %.c ./includes/vm.h ./includes/op.h
-	gcc -g $(FLAG) -c -I $(HDR) -I $(HDR1) $< -o $@
+	gcc $(FLAG) -c -I $(HDR) -I $(HDR1) $< -o $@
 
 clean:
 	make -C libft clean
