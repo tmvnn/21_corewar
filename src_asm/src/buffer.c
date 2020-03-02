@@ -52,7 +52,13 @@ char		**create_buff(char **line, t_asm_content **content)
 	char	c;
 
 	*line = ft_left_trim(line);
-	c = (**line == '.') ? '"' : ',';
+	// 1. Сделать проверку на существование define
+	// 2. Узнать его длинну
+	// 3. Вытащить из лайна длинну
+	// 4. Сделать новую строку
+	// 5. Сравнить новую строку с define
+	// 6. Прими ко вниманию, что define может быть пробелами
+	c = (**line == '.') ? '"' : SEPARATOR_CHAR;
 	space_replacement(line, ft_strlen(*line), c);
 	buff = ft_strsplit(*line, c);
 	if (**line == '.')

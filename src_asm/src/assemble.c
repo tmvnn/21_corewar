@@ -17,6 +17,7 @@ void	assemble(t_asm_content **content)
 	t_strings		*rows;
 
 	rows = NULL;
+	//  Сделать нумерацию строк для вывода ошибки
 	while (get_next_line((*content)->fd_src, &(*content)->line) > 0)
 	{
 		if (!((*content)->line = check_valid((*content), (*content)->fd_src)))

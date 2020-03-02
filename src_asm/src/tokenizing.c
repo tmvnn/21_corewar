@@ -65,6 +65,7 @@ void		tokenizing(char **line, t_strings **row, t_asm_content **content)
 	copy_buff = buff;
 	while (*copy_buff)
 	{
+		// Добавить define
 		if (**copy_buff == ';' || **copy_buff == '#')
 			break ;
 		add_token(&tokens, *copy_buff++, *content);
