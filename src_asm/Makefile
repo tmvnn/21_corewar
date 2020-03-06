@@ -5,7 +5,7 @@ SRCDIR = src
 LIBDIR = libft
 HEADER = -I ./include
 HEADER_LIBFT = -I ./libft/include -I ./libft/src/ft_printf/include
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g
 
 ASM = ../asm
 SRC_ASM_NAME =  asm_content.c \
@@ -42,7 +42,7 @@ all: libft $(ASM)
 $(ASM): $(OBJ_ASM)
 	gcc $(FLAGS) $^ -o $@ $(HEADER_LIBFT) $(HEADER) -L libft -lft
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c include/asm.h include/dasm.h
+$(OBJDIR)/%.o: $(SRCDIR)/%.c include/asm.h include/dasm.h include/op.h
 	@mkdir -p $(OBJDIR)
 	gcc $(FLAGS) $(HEADER_LIBFT) $(HEADER) -o $@ -c $<
 
