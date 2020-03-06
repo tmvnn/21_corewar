@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: s39f4lt <s39f4lt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 20:33:51 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/20 21:48:22 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/03/06 20:22:24 by s39f4lt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ void		tokenizing(char **line, t_strings **row, t_asm_content **content)
 	copy_buff = buff;
 	while (*copy_buff)
 	{
-		// Добавить define
-		if (**copy_buff == ';' || **copy_buff == '#')
+		if (**copy_buff == ALT_COMMENT_CHAR || **copy_buff == COMMENT_CHAR)
 			break ;
 		add_token(&tokens, *copy_buff++, *content);
 	}
