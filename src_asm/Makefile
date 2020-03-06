@@ -5,7 +5,7 @@ SRCDIR = src
 LIBDIR = libft
 HEADER = -I ./include
 HEADER_LIBFT = -I ./libft/include -I ./libft/src/ft_printf/include
-FLAGS = -g
+FLAGS = -Wall -Wextra -Werror
 
 ASM = ../asm
 SRC_ASM_NAME =  asm_content.c \
