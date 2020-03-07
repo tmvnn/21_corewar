@@ -6,7 +6,7 @@
 /*   By: s39f4lt <s39f4lt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:37:38 by idunaver          #+#    #+#             */
-/*   Updated: 2020/03/06 21:40:29 by s39f4lt          ###   ########.fr       */
+/*   Updated: 2020/03/07 13:35:04 by s39f4lt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static void	space_replacement(char **line, int size, char c)
 // 	char	*copy;
 
 // 	name_len = ft_strlen(NAME_CMD_STRING);
-// 	if (ft_strlen(line) <= name_len && ft_isspace(line[name_len] == 0) 
-// 	&& line[name_len] != '"')
+// 	if (ft_strlen(line) <= name_len && (ft_isspace(line[name_len] == 0) 
+// 	|| line[name_len] != '"'))
 // 		return (0);
 // 	possible_name = (char*)ft_memalloc((name_len + 1) * sizeof(char));
 // 	possible_name = ft_strncpy(possible_name, line, name_len);
