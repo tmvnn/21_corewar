@@ -14,15 +14,15 @@ char	*create_pattern(t_asm_content *content)
 	char	*separator;
 	int		length;
 
-	reg = create_reg();
-	dir = create_dir();
-	dir_label = create_dir_label();
-	indir = create_indir();
-	indir_label = create_indir_label();
-	label = create_label_first_stage();
-	separator = screen(SEPARATOR_CHAR);
-	alt_comment_char = screen(ALT_COMMENT_CHAR);
-	comment_char = screen(COMMENT_CHAR);
+	reg = create_reg(content);
+	dir = create_dir(content);
+	dir_label = create_dir_label(content);
+	indir = create_indir(content);
+	indir_label = create_indir_label(content);
+	label = create_label_first_stage(content);
+	separator = screen(SEPARATOR_CHAR, content);
+	alt_comment_char = screen(ALT_COMMENT_CHAR, content);
+	comment_char = screen(COMMENT_CHAR, content);
 	length = ft_strlen(CIRCUMFLEXUS) + ft_strlen(SPACE_OR_TAB) + 
 	ft_strlen(MULTIPLIER) + 
 	ft_strlen(ROUND_BRACKET_OPEN) + ft_strlen(label) + 

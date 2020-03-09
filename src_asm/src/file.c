@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timuryakubov <timuryakubov@student.42.f    +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/18 19:12:24 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/28 22:22:51 by timuryakubo      ###   ########.fr       */
+/*   Created: 2020/02/29 18:55:23 by yperra-f          #+#    #+#             */
+/*   Updated: 2020/02/29 18:56:38 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char		*check_name_file(const char *str)
 {
 	char	*result_str;
 	int		i;
-	
+
 	i = 0;
 	if (!(result_str = ft_strdup(str)))
 		return (NULL);

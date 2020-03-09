@@ -6,7 +6,7 @@
 /*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 19:46:06 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/20 19:48:41 by yperra-f         ###   ########.fr       */
+/*   Updated: 2020/03/09 21:10:06 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*label_validation(t_token *pointer, char *content)
 
 	temp = NULL;
 	temp1 = NULL;
-	if (!ft_strcmp(pointer->type, LABEL_NAME) && parse(content, DIRECT_LABEL) \
+	if (!ft_strcmp(pointer->type, LABEL_NAME) && parse(content, regex_array[DIRECT_LABEL]) \
 	&& !ft_strcmp((temp = ft_strsub(pointer->content, 0, strlen(\
 	pointer->content) - 1)), (temp1 = ft_strsub(content, 2, strlen(content)))))
 	{
@@ -28,7 +28,7 @@ char	*label_validation(t_token *pointer, char *content)
 		return (content);
 	}
 	else if (!ft_strcmp(pointer->type, LABEL_NAME) && parse(content,\
-	INDIRECT_LABEL) && !ft_strcmp((temp = ft_strsub(pointer->content, 0,\
+	regex_array[INDIRECT_LABEL]) && !ft_strcmp((temp = ft_strsub(pointer->content, 0,\
 	strlen(pointer->content) - 1)), (temp1 = ft_strsub(content, 1, \
 	strlen(content)))))
 	{

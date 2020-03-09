@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/20 22:30:16 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/03/09 21:15:46 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,7 +246,7 @@ t_asm_content **content);
 void					add_string(t_token **tokens,
 t_strings **row, t_asm_content *content);
 void					in_bytecode(t_asm_content **content);
-void					interpretation(t_token *tokens, t_asm_content *cozel);
+void					interpretation(t_token *tokens);
 int						parse(char *str, char *pattern);
 char					*help_check_name_or_comment_champs(t_asm_content
 *content, int fd);
@@ -272,11 +272,9 @@ t_asm_content **content);
 void					fill_write_code_instraction(char *instraction,
 t_asm_content **content);
 char					*clean_memory(t_asm_content **content);
-char					*rebase_str_first_case(char *content);
-char					*rebase_str_second_case(char *content);
-char					*rebase_str_third_case(char *content);
-char					*rebase_str_fourth_case(char *content);
-char					*rebase_str_fifth_case(char *content);
+char					*rebase_str_first_case(char *content, t_asm_content *content_asm);
+char					*rebase_str_second_case(char *content, t_asm_content *content_asm);
+char					*rebase_str_third_case(char *content, t_asm_content *content_asm);
 char					*label_validation(t_token *pointer, char *content);
 int						check_all_label_size(t_token *pointer,
 t_asm_content			**struct_content, int flag);
@@ -284,5 +282,30 @@ char					fill_write_code_instraction_help(char *instraction,
 char c);
 char					*do_w1(t_asm_content *content, char *temp);
 char					*do_w2(t_asm_content *content, char *temp);
-
+char					*create_pattern_first(t_asm_content *content);
+char					*create_pattern_second(t_asm_content *content);
+char					*create_pattern_third(t_asm_content *content);
+char					*create_comment_champ(t_asm_content *content);
+char					*create_comment(t_asm_content *content);
+char					*create_pattern_space_or_empty_line(t_asm_content *content);
+char					*create_pattern(t_asm_content *content);
+char					*create_start_and_finish_str(char *str, t_asm_content *content);
+char					*create_label(t_asm_content *content);
+char					*create_t_reg(t_asm_content *content);
+char					*create_t_dir(t_asm_content *content);
+char					*create_t_ind(t_asm_content *content);
+char					*create_pattern_space_or_empty_line(t_asm_content *content);
+void					create_regex(t_asm_content *content);
+char					*create_reg(t_asm_content *content);
+char					*create_label_first_stage(t_asm_content *content);
+char					*create_dir_label(t_asm_content *content);
+char					*create_dir(t_asm_content *content);
+char					*create_indir_label(t_asm_content *content);
+char					*create_indir(t_asm_content *content);
+char					*create_instraction_first_stage(t_asm_content *content);
+char					*create_name_champ(t_asm_content *content);
+char					*create_pattern_name_or_comment_champs(t_asm_content *content);
+char					*screen(char symbol, t_asm_content *content);
+char					*screening(char symbol, t_asm_content *content);
+char					*str_screening(char *str_symbols, t_asm_content *content);
 #endif

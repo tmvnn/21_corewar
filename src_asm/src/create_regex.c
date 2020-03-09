@@ -72,20 +72,15 @@ char    *create_t_ind(t_asm_content *content)
 	return (t_ind);
 }
 
-char	*create_pattern_space_or_empty_line(t_asm_content *content)
+char	*create_instraction(t_asm_content *content)
 {
-	char	*space_or_empty_line;
-	int		length;
+	char	*instraction_first_stage;
+	char	*result;
 
-	length = ft_strlen(CIRCUMFLEXUS) + ft_strlen(SPACE_OR_TAB) + 
-	ft_strlen(MULTIPLIER) + ft_strlen(DOLLAR);
-	if (!(space_or_empty_line = ft_strnew(length)))
-		error(content);
-	ft_strcat(space_or_empty_line, CIRCUMFLEXUS);
-	ft_strcat(space_or_empty_line, SPACE_OR_TAB);
-	ft_strcat(space_or_empty_line, MULTIPLIER);
-	ft_strcat(space_or_empty_line, DOLLAR);
-	return (space_or_empty_line);
+	instraction_first_stage = create_instraction_first_stage(content);
+	result = create_start_and_finish_str(instraction_first_stage, content);
+	ft_strdel(&instraction_first_stage);
+	return (result);
 }
 
 void    create_regex(t_asm_content *content)

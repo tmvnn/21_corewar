@@ -8,9 +8,9 @@ char	*create_pattern_first(t_asm_content *content)
 	char	*dir_label;
 	int		length;
 
-	label = create_label_first_stage();
-	dir = create_dir();
-	dir_label = create_dir_label();
+	label = create_label_first_stage(content);
+	dir = create_dir(content);
+	dir_label = create_dir_label(content);
 	length = ft_strlen(CIRCUMFLEXUS) + ft_strlen(SPACE_OR_TAB) + 
 	ft_strlen(MULTIPLIER) + 
 	ft_strlen(ROUND_BRACKET_OPEN) + ft_strlen(label) + 
@@ -53,7 +53,7 @@ char	*create_pattern_second(t_asm_content *content)
 	char	*label;
 	int		length;
 	
-	label = create_label_first_stage();
+	label = create_label_first_stage(content);
 	length = ft_strlen(CIRCUMFLEXUS) + ft_strlen(SPACE_OR_TAB) + 
 	ft_strlen(MULTIPLIER) + ft_strlen(label) + 
 	ft_strlen(POINT) + ft_strlen(MULTIPLIER) + ft_strlen(DOLLAR);
@@ -84,12 +84,12 @@ char	*create_pattern_third(t_asm_content *content)
 	char	*separator;
 	int		length;
 
-	reg = create_reg();
-	dir = create_dir();
-	dir_label = create_dir_label();
-	indir = create_indir();
-	indir_label = create_indir_label();
-	label = create_label_first_stage();
+	reg = create_reg(content);
+	dir = create_dir(content);
+	dir_label = create_dir_label(content);
+	indir = create_indir(content);
+	indir_label = create_indir_label(content);
+	label = create_label_first_stage(content);
 	separator = screen(SEPARATOR_CHAR, content);
 	alt_comment_char = screen(ALT_COMMENT_CHAR, content);
 	comment_char = screen(COMMENT_CHAR, content);

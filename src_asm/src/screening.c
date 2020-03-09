@@ -68,7 +68,7 @@ char    *str_screening(char *str_symbols, t_asm_content *content)
 		error(content);
 	while (*str_symbols)
 	{
-		result_str = ft_strjoinwcm(result_str, screening(*str_symbols));
+		result_str = ft_strjoinwcm(result_str, screening(*str_symbols, content));
 		str_symbols++;
 	}
 	return (result_str);

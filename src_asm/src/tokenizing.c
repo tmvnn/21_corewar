@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 20:33:51 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/20 21:48:22 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/03/09 20:34:20 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_asm_content *content_asm)
 	if (!(*token = (t_token *)ft_memalloc(sizeof(t_token))))
 		error(content_asm);
 	(*token)->content = ft_strdup(content);
-	interpretation(*token, content_asm);
+	interpretation(*token);
 	(*token)->memory_size = 0;
 	(*token)->next = NULL;
 	(*token)->previous = NULL;
@@ -40,7 +40,7 @@ t_asm_content *content_asm)
 		if (!(new = (t_token *)ft_memalloc(sizeof(t_token))))
 			error(content_asm);
 		new->content = ft_strdup(content);
-		interpretation(new, content_asm);
+		interpretation(new);
 		new->next = NULL;
 		new->memory_size = 0;
 		while (copy->next)

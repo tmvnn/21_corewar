@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpretation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 13:35:43 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/20 21:48:57 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/03/09 20:31:43 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,21 @@ int		parse(char *str, char *pattern)
 	return (0);
 }
 
-void	interpretation(t_token *tokens, t_asm_content *content)
+void	interpretation(t_token *tokens)
 {
-	if (parse(tokens->content, LABEL))
+	if (parse(tokens->content, regex_array[LABEL]))
 		tokens->type = ft_strdup(LABEL_NAME);
-	else if (parse(tokens->content, content->reg[INSTRACTION]))
+	else if (parse(tokens->content, regex_array[INSTRACTION]))
 		tokens->type = ft_strdup(INSTRACTION_NAME);
-	else if (parse(tokens->content, REGISTER))
+	else if (parse(tokens->content, regex_array[REGISTER]))
 		tokens->type = ft_strdup(REGISTER_NAME);
-	else if (parse(tokens->content, DIRECT_LABEL))
+	else if (parse(tokens->content, regex_array[DIRECT_LABEL]))
 		tokens->type = ft_strdup(DIRECT_LABEL_NAME);
-	else if (parse(tokens->content, DIRECT))
+	else if (parse(tokens->content, regex_array[DIRECT]))
 		tokens->type = ft_strdup(DIRECT_NAME);
-	else if (parse(tokens->content, INDIRECT))
+	else if (parse(tokens->content, regex_array[INDIRECT]))
 		tokens->type = ft_strdup(INDIRECT_NAME);
-	else if (parse(tokens->content, INDIRECT_LABEL))
+	else if (parse(tokens->content, regex_array[INDIRECT_LABEL]))
 		tokens->type = ft_strdup(INDIRECT_LABEL_NAME);
 	else
 		tokens->type = ft_strdup(UNCERTAIN_NAME);

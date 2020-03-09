@@ -88,7 +88,7 @@ char	*create_dir(t_asm_content *content)
 	return (dir);
 }
 
-char	*create_indir_label(content)
+char	*create_indir_label(t_asm_content *content)
 {
 	char	*indir_label;
 	char    *label_char;
