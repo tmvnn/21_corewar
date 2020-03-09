@@ -6,7 +6,7 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 23:57:16 by astanton          #+#    #+#             */
-/*   Updated: 2020/03/09 14:28:15 by astanton         ###   ########.fr       */
+/*   Updated: 2020/03/09 14:43:33 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ static void	print_box(void)
 
 	i = 0;
 	fin = MEM_SIZE / 64 + 4;
-	while (i < fin + 1)
+	while (i < fin)
 	{
 		attron(COLOR_PAIR(6));
-		if (i == 0 || i == fin)
+		if (i == 0 || i == fin - 1)
 		{
 			j = -1;
 			while (++j < 245)
