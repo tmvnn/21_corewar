@@ -6,7 +6,7 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 11:35:00 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/25 17:23:56 by astanton         ###   ########.fr       */
+/*   Updated: 2020/03/09 14:32:38 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef struct	s_game
 	int					cycles_to_die;
 	int					number_of_checks;
 	int					car_number;
-	char				players_id;
+	int					players_id;
 	struct s_carriage	*carriages;
 	struct s_player		*players;
 	char				*colors;

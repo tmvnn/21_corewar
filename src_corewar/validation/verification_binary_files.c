@@ -6,7 +6,7 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 19:21:05 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/25 17:17:09 by astanton         ###   ########.fr       */
+/*   Updated: 2020/03/09 13:17:24 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static void	check_null(int fd, char *file, t_game *game)
 	lseek(fd, sizeof(COREWAR_EXEC_MAGIC) + PROG_NAME_LENGTH, SEEK_SET);
 	ret = read(fd, buff, sizeof(unsigned int));
 	buff[ret] = '\0';
-	check = (unsigned int)(*buff);
+	check = *((unsigned int*)(buff));
 	if (check)
 		ft_print_error_message("Wrong binary format, NULL marker is missing \
 or in the wrong place in file : ", file, game);
 	lseek(fd, sizeof(unsigned int) + COMMENT_LENGTH, SEEK_CUR);
 	ret = read(fd, buff, sizeof(unsigned int));
-	check = (unsigned int)(*buff);
+	check = *((unsigned int*)(buff));
 	if (check)
 		ft_print_error_message("Wrong binary format, NULL marker is missing \
 or in the wrong place in file : ", file, game);

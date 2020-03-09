@@ -6,7 +6,7 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 23:57:16 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/21 21:15:12 by astanton         ###   ########.fr       */
+/*   Updated: 2020/03/09 14:28:15 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,14 @@ static void	print_box(void)
 {
 	int	i;
 	int	j;
+	int	fin;
 
 	i = 0;
-	while (i < 68)
+	fin = MEM_SIZE / 64 + 4;
+	while (i < fin + 1)
 	{
 		attron(COLOR_PAIR(6));
-		if (i == 0 || i == 67)
+		if (i == 0 || i == fin)
 		{
 			j = -1;
 			while (++j < 245)
@@ -77,9 +79,9 @@ static int	print_players(t_player *players, int i)
 	{
 		attron(COLOR_PAIR(7));
 		mvprintw(i, 196, "Player -%d : ", tmp->player_id);
-		attron(COLOR_PAIR(tmp->player_id));
+		attron(COLOR_PAIR(tmp->player_id % 4 + 1));
 		mvprintw(i, 209, "%s", tmp->name);
-		attroff(COLOR_PAIR(tmp->player_id));
+		attroff(COLOR_PAIR(tmp->player_id % 4 + 1));
 		attron(COLOR_PAIR(7));
 		mvprintw(i + 2, 198, "Last live : ");
 		i += 4;
