@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   in_bytecode.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: s39f4lt <s39f4lt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 19:07:20 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/20 19:38:07 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/03/06 21:44:01 by s39f4lt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static void	convert_text(char **dst, char *src, size_t size)
 	char	*copy;
 
 	copy = *dst;
+	if (!src)
+		return ;
 	while (size--)
 	{
 		if (*src)
@@ -71,5 +73,7 @@ static void	header(t_asm_content **content)
 
 void		in_bytecode(t_asm_content **content)
 {
+	if (!(*content)->name)
+		error(*content);
 	header(content);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   buffer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: s39f4lt <s39f4lt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:37:38 by idunaver          #+#    #+#             */
-/*   Updated: 2020/02/16 19:46:06 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/03/08 21:40:14 by s39f4lt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,80 @@ static void	space_replacement(char **line, int size, char c)
 	}
 }
 
+static int	name(char *line)
+{
+	int		name_len;
+	char	*possible_name;
+	char	*copy;
+
+	name_len = ft_strlen(NAME_CMD_STRING);
+	if (ft_strlen(line) <= name_len || ft_isspace(line[name_len]) == 0 
+	|| line[name_len] != '"')
+		return (0);
+	possible_name = (char*)ft_memalloc((name_len + 1) * sizeof(char));
+	possible_name = ft_strncpy(possible_name, line, name_len);
+	possible_name[name_len] = '\0';
+	if (ft_strcmp(possible_name, NAME_CMD_STRING) == 0)
+	{
+		ft_strdel(&possible_name);
+		return (1);
+	}
+	ft_strdel(&possible_name);
+	return (0);
+}
+
+static int	comment(char *line)
+{
+	int		comment_len;
+	char	*possible_comment;
+
+	comment_len = ft_strlen(COMMENT_CMD_STRING);
+	if (ft_strlen(line) <= comment_len || ft_isspace(line[comment_len]) == 0 
+	|| line[comment_len] != '"')
+		return (0);
+	possible_comment = (char*)ft_memalloc((comment_len + 1) * sizeof(char));
+	possible_comment = ft_strncpy(possible_comment, line, comment_len);
+	possible_comment[comment_len] = '\0';
+	if (ft_strcmp(possible_comment, COMMENT_CMD_STRING) == 0)
+	{
+		ft_strdel(&possible_comment);
+		return (1);
+	}
+	ft_strdel(&possible_comment);
+	return (0);
+}
+
+static int	check_line_name_or_comment(char *line, t_asm_content **content)
+{
+	char *c_name;
+	char *c_comm;
+
+	c_name = ft_strdup(NAME_CMD_STRING);
+	c_comm = ft_strdup(COMMENT_CMD_STRING);
+	if (!*c_name || !*c_comm)
+	{
+		ft_strdel(&c_name);
+		ft_strdel(&c_comm);
+		error(*content);
+	}
+	ft_strdel(&c_name);
+	ft_strdel(&c_comm);
+	if (name(line) == 1 && !(*content)->name)
+		return (1);
+	else if (comment(line) == 1 && !(*content)->comment)
+		return (1);
+	else
+		return (0);
+}
+
 char		**create_buff(char **line, t_asm_content **content)
 {
 	char	**buff;
 	char	c;
 
 	*line = ft_left_trim(line);
-	// 1. Сделать проверку на существование define
-	// 2. Узнать его длинну
-	// 3. Вытащить из лайна длинну
-	// 4. Сделать новую строку
-	// 5. Сравнить новую строку с define
-	// 6. Прими ко вниманию, что define может быть пробелами
-	c = (**line == '.') ? '"' : SEPARATOR_CHAR;
+	c = (check_line_name_or_comment(*line, content) == 0) ? 
+	SEPARATOR_CHAR : '"';
 	space_replacement(line, ft_strlen(*line), c);
 	buff = ft_strsplit(*line, c);
 	if (**line == '.')

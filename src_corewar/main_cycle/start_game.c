@@ -6,7 +6,7 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 18:52:50 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/25 14:51:28 by astanton         ###   ########.fr       */
+/*   Updated: 2020/03/09 14:27:03 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	*get_colors_field(t_game *game)
 		i = car->position;
 		j = i + tmp->size_of_code;
 		while (i < j)
-			color_field[i++] = tmp->player_id;
+			color_field[i++] = (tmp->player_id) % 4 + 1;
 		tmp = tmp->next;
 		car = car->next;
 	}

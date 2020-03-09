@@ -6,7 +6,7 @@
 /*   By: astanton <astanton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:13:55 by astanton          #+#    #+#             */
-/*   Updated: 2020/02/25 15:20:55 by astanton         ###   ########.fr       */
+/*   Updated: 2020/03/09 13:22:50 by astanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_print_usage_and_exit(char *msg, t_game *game)
 	if (msg)
 	{
 		write(1, "\x1b[35m\n", 6);
-		write(1, msg, ft_strlen(msg));
+		write(2, msg, ft_strlen(msg));
 	}
 	write(1, "\x1b[31m\nUsage: ./corewar [-dump nbr_cycles | -v] [[-n number] \
 champion1.cor] ...\n\n  -v		   : visualization mode\n  \

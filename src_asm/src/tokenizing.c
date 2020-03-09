@@ -6,7 +6,7 @@
 /*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 20:33:51 by idunaver          #+#    #+#             */
-/*   Updated: 2020/03/09 20:34:20 by yperra-f         ###   ########.fr       */
+/*   Updated: 2020/03/09 21:40:17 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ void		tokenizing(char **line, t_strings **row, t_asm_content **content)
 	copy_buff = buff;
 	while (*copy_buff)
 	{
-		// Добавить define
-		if (**copy_buff == ';' || **copy_buff == '#')
+		if (**copy_buff == ALT_COMMENT_CHAR || **copy_buff == COMMENT_CHAR)
 			break ;
 		add_token(&tokens, *copy_buff++, *content);
 	}
