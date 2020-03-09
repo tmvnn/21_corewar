@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: s39f4lt <s39f4lt@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/06 21:45:49 by s39f4lt          ###   ########.fr       */
+/*   Updated: 2020/03/09 21:46:53 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define COMMENT_CHAR			'#'
 # define ALT_COMMENT_CHAR		';'
 # define LABEL_CHAR				':'
-# define DIRECT_CHAR			'\"'
+# define DIRECT_CHAR			'%'
 # define SEPARATOR_CHAR			','
 
 # define LABEL_CHARS			"abcdefghijklmnopqrstuvwxyz_0123456789"

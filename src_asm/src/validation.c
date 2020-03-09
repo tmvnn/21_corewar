@@ -6,7 +6,7 @@
 /*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 19:46:06 by idunaver          #+#    #+#             */
-/*   Updated: 2020/03/09 21:07:29 by yperra-f         ###   ########.fr       */
+/*   Updated: 2020/03/09 21:55:04 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ char	*help_validation(t_asm_content *content)
 
 char	*check_valid(t_asm_content *content, int fd)
 {
-	create_regex(content);
 	if (parse(content->line, regex_array[PATTERN_SPACE_OR_EMPTY_LINE]))
 		return (content->line);
 	else if (parse(content->line, \

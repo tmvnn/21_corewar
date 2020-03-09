@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assemble.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: s39f4lt <s39f4lt@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:06:42 by idunaver          #+#    #+#             */
-/*   Updated: 2020/03/06 22:01:23 by s39f4lt          ###   ########.fr       */
+/*   Updated: 2020/03/09 22:00:40 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	assemble(t_asm_content **content)
 	t_strings		*rows;
 
 	rows = NULL;
+	create_regex(*content);
 	while (get_next_line((*content)->fd_src, &(*content)->line) > 0)
 	{
 		if (!((*content)->line = check_valid((*content), (*content)->fd_src)))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   buffer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: s39f4lt <s39f4lt@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:37:38 by idunaver          #+#    #+#             */
-/*   Updated: 2020/03/08 21:40:14 by s39f4lt          ###   ########.fr       */
+/*   Updated: 2020/03/09 21:45:13 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,8 @@ static void	space_replacement(char **line, int size, char c)
 
 static int	name(char *line)
 {
-	int		name_len;
+	size_t	name_len;
 	char	*possible_name;
-	char	*copy;
 
 	name_len = ft_strlen(NAME_CMD_STRING);
 	if (ft_strlen(line) <= name_len || ft_isspace(line[name_len]) == 0 
@@ -70,7 +69,7 @@ static int	name(char *line)
 
 static int	comment(char *line)
 {
-	int		comment_len;
+	size_t	comment_len;
 	char	*possible_comment;
 
 	comment_len = ft_strlen(COMMENT_CMD_STRING);
