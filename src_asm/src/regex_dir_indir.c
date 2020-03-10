@@ -42,6 +42,17 @@ char	*create_label_first_stage(t_asm_content *content)
 	return (label);
 }
 
+char	*create_dir_label_result(t_asm_content *content)
+{
+	char	*dir_label;
+	char	*result_dir_label;
+
+	dir_label = create_dir_label(content);
+	result_dir_label = create_start_and_finish_str(dir_label, content);
+	ft_strdel(&dir_label);
+	return (result_dir_label);
+}
+
 char	*create_dir_label(t_asm_content *content)
 {
 	char	*dir_label;
@@ -67,6 +78,17 @@ char	*create_dir_label(t_asm_content *content)
 	return (dir_label);
 }
 
+char	*create_dir_result(t_asm_content *content)
+{
+	char	*dir;
+	char	*dir_result;
+
+	dir = create_dir(content);
+	dir_result = create_start_and_finish_str(dir, content);
+	ft_strdel(&dir);
+	return (dir_result);
+}
+
 char	*create_dir(t_asm_content *content)
 {
 	char	*dir;
@@ -86,6 +108,17 @@ char	*create_dir(t_asm_content *content)
 	ft_strcat(dir, PLUS);
 	ft_strdel(&direct_char);
 	return (dir);
+}
+
+char	*create_indir_label_result(t_asm_content *content)
+{
+	char	*indir_label;
+	char	*indir_label_result;
+
+	indir_label = create_indir_label(content);
+	indir_label_result = create_start_and_finish_str(indir_label, content);
+	ft_strdel(&indir_label);
+	return (indir_label_result);
 }
 
 char	*create_indir_label(t_asm_content *content)
@@ -108,6 +141,17 @@ char	*create_indir_label(t_asm_content *content)
 	ft_strcat(indir_label, PLUS);
 	ft_strdel(&label_char);
 	return (indir_label);
+}
+
+char	*create_indir_result(t_asm_content *content)
+{
+	char	*indir;
+	char	*indir_result;
+
+	indir = create_indir(content);
+	indir_result = create_start_and_finish_str(indir, content);
+	ft_strdel(&indir);
+	return (indir_result);
 }
 
 char	*create_indir(t_asm_content *content)

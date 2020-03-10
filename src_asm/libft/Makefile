@@ -23,7 +23,7 @@ OBJ = $(SRC:.c=.o)
 
 HEADERS = -I include -I src/ft_printf/include
 
-IMFLAGS = -Wall -Wextra -Werror
+IMFLAGS = -g -Wall -Wextra -Werror
 
 all: $(NAME)
 

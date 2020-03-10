@@ -25,8 +25,7 @@ char	*create_instraction_first_stage(t_asm_content *content)
 	ft_strlen(DOLLAR) + ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) + 
 	ft_strlen(LLDI_NAME) + ft_strlen(DOLLAR) + ft_strlen(PIPELINE) + 
 	ft_strlen(CIRCUMFLEXUS) + ft_strlen(LFORK_NAME) + ft_strlen(DOLLAR) + 
-	ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) + ft_strlen(AFF_NAME) + 
-	ft_strlen(DOLLAR);
+	ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) + ft_strlen(AFF_NAME);
 	if (!(instraction = ft_strnew(length)))
 		error(content);
 	ft_strcat(instraction, LIVE_NAME);
@@ -90,7 +89,6 @@ char	*create_instraction_first_stage(t_asm_content *content)
 	ft_strcat(instraction, PIPELINE);
 	ft_strcat(instraction, CIRCUMFLEXUS);
 	ft_strcat(instraction, AFF_NAME);
-	ft_strcat(instraction, DOLLAR);
 	return (instraction);
 }
 

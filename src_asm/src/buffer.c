@@ -52,8 +52,8 @@ static int	name(char *line)
 	char	*possible_name;
 
 	name_len = ft_strlen(NAME_CMD_STRING);
-	if (ft_strlen(line) <= name_len || ft_isspace(line[name_len]) == 0 
-	|| line[name_len] != '"')
+	if (ft_strlen(line) <= name_len || (ft_isspace(line[name_len]) == 0 
+	&& line[name_len] != '"'))
 		return (0);
 	possible_name = (char*)ft_memalloc((name_len + 1) * sizeof(char));
 	possible_name = ft_strncpy(possible_name, line, name_len);
@@ -73,8 +73,8 @@ static int	comment(char *line)
 	char	*possible_comment;
 
 	comment_len = ft_strlen(COMMENT_CMD_STRING);
-	if (ft_strlen(line) <= comment_len || ft_isspace(line[comment_len]) == 0 
-	|| line[comment_len] != '"')
+	if (ft_strlen(line) <= comment_len || (ft_isspace(line[comment_len]) == 0 
+	&& line[comment_len] != '"'))
 		return (0);
 	possible_comment = (char*)ft_memalloc((comment_len + 1) * sizeof(char));
 	possible_comment = ft_strncpy(possible_comment, line, comment_len);

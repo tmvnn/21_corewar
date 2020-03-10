@@ -1330,7 +1330,7 @@ int main(int ac, char **av){
 
 	// parse("\'\"\\[!");
 	// printf("%s\n", create_pattern_name_or_comment_champs());
-	printf("%s\n", create_pattern_third());
-	parse(*(av + 1), create_pattern_third());
+	printf("%s\n", create_name_champ());
+	parse(*(av + 1), create_name_champ());
 	return (0);
 }

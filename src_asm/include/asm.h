@@ -142,8 +142,6 @@
 # define INDIRECT_LABEL_NAME "INDIRECT_LABEL"
 # define INDIRECT_NAME "INDIRECT"
 
-static char *regex_array[19];
-
 typedef enum			s_enum
 {
 	PATTERN_T_REG,
@@ -206,6 +204,8 @@ typedef struct			s_asm_content
 	unsigned int		asm_size;
 	unsigned int		header_size;
 }						t_asm_content;
+
+char					*regex_array[19];
 
 t_asm_content			*init_content(char ad_flag);
 void					assemble(t_asm_content **content);
@@ -308,4 +308,8 @@ char					*create_pattern_name_or_comment_champs(t_asm_content *content);
 char					*screen(char symbol, t_asm_content *content);
 char					*screening(char symbol, t_asm_content *content);
 char					*str_screening(char *str_symbols, t_asm_content *content);
+char					*create_dir_label_result(t_asm_content *content);
+char					*create_dir_result(t_asm_content *content);
+char					*create_indir_label_result(t_asm_content *content);
+char					*create_indir_result(t_asm_content *content);
 #endif

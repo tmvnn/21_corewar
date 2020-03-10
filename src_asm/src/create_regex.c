@@ -15,14 +15,25 @@ char	*create_start_and_finish_str(char *str, t_asm_content *content)
 	return (result);
 }
 
-char	*create_label(t_asm_content *content)
+char	*create_label_result(t_asm_content *content)
 {
-	return (create_start_and_finish_str(create_label_first_stage(content), content));
+	char	*label;
+	char	*result_label;
+
+	label = create_label_first_stage(content);
+	result_label = create_start_and_finish_str(label, content);
+	return (result_label);
 }
 
 char	*create_t_reg(t_asm_content *content)
 {
-	return (create_start_and_finish_str(create_reg(content), content));
+	char	*reg;
+	char	*t_reg;
+	
+	reg = create_reg(content);
+	t_reg = create_start_and_finish_str(reg, content);
+	ft_strdel(&reg);
+	return (t_reg);
 }
 
 char    *create_t_dir(t_asm_content *content)
@@ -89,12 +100,12 @@ void    create_regex(t_asm_content *content)
 	regex_array[PATTERN_T_DIR] = create_t_dir(content);
 	regex_array[PATTERN_T_IND] = create_t_ind(content);
 	regex_array[INSTRACTION] = create_instraction(content);
-	regex_array[LABEL] = create_label(content);
+	regex_array[LABEL] = create_label_result(content);
 	regex_array[REGISTER] = create_t_reg(content);
-	regex_array[DIRECT_LABEL] = create_dir_label(content);
-	regex_array[DIRECT] = create_dir(content);
-	regex_array[INDIRECT_LABEL] = create_indir_label(content);
-	regex_array[INDIRECT] = create_indir(content);
+	regex_array[DIRECT_LABEL] = create_dir_label_result(content);
+	regex_array[DIRECT] = create_dir_result(content);
+	regex_array[INDIRECT_LABEL] = create_indir_label_result(content);
+	regex_array[INDIRECT] = create_indir_result(content);
 	regex_array[PATTERN_NAME_CHAMPS] = create_name_champ(content);
 	regex_array[PATTERN_COMMENT_CHAMPS] = create_comment_champ(content);
 	regex_array[PATTERN_COMMENT] = create_comment(content);
