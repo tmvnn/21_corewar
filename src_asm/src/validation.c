@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 19:46:06 by idunaver          #+#    #+#             */
-/*   Updated: 2020/03/09 21:55:04 by yperra-f         ###   ########.fr       */
+/*   Updated: 2020/03/11 18:51:43 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,14 @@ char	*help_check_name_or_comment_champs(t_asm_content *content, int fd)
 
 char	*help_validation(t_asm_content *content)
 {
-	if (parse(content->line, content->regex_array[PATTERN_HELP_VALIDATION_FIRST_CASE]))
+	if (parse(content->line,
+	content->regex_array[PATTERN_HELP_VALIDATION_FIRST_CASE]))
 		content->line = rebase_str_first_case(content->line);
-	if (parse(content->line, content->regex_array[PATTERN_HELP_VALIDATION_SECOND_CASE]))
+	if (parse(content->line,
+	content->regex_array[PATTERN_HELP_VALIDATION_SECOND_CASE]))
 		content->line = rebase_str_second_case(content->line);
-	if (parse(content->line, content->regex_array[PATTERN_HELP_VALIDATION_THIRD_CASE]))
+	if (parse(content->line,
+	content->regex_array[PATTERN_HELP_VALIDATION_THIRD_CASE]))
 		content->line = rebase_str_third_case(content->line);
 	return (content->line);
 }
@@ -68,7 +71,8 @@ char	*check_valid(t_asm_content *content, int fd)
 	return (NULL);
 }
 
-char	*search_label(t_strings *rows, char *content, t_asm_content *struct_content)
+char	*search_label(t_strings *rows, char *content,
+t_asm_content *struct_content)
 {
 	t_token		*pointer;
 	t_strings	*struct_pointer;
