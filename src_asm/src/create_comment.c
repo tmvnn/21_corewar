@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_comment.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/11 19:14:55 by idunaver          #+#    #+#             */
+/*   Updated: 2020/03/11 19:17:48 by idunaver         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
 void	create_comment_champ_strcat(char *comment, t_norminette *struct_norme)
@@ -46,18 +58,18 @@ char	*create_comment_champ(t_asm_content *content)
 	content);
 	struct_norme.alt_comment_char = screen(ALT_COMMENT_CHAR, content);
 	struct_norme.comment_char = screen(COMMENT_CHAR, content);
-	length = ft_strlen(CIRCUMFLEXUS) + ft_strlen(SPACE_OR_TAB) + 
-	ft_strlen(MULTIPLIER) + ft_strlen(struct_norme.comment_cmd_string) + 
-	ft_strlen(SPACE_OR_TAB) + ft_strlen(MULTIPLIER) + 
-	ft_strlen(QUOTATION_MARK) + ft_strlen(SQUARE_BRACKET_OPEN) + 
-	ft_strlen(CIRCUMFLEXUS) + ft_strlen(QUOTATION_MARK) + 
-	ft_strlen(SQUARE_BRACKET_CLOSE) + ft_strlen(MULTIPLIER) + 
-	ft_strlen(QUOTATION_MARK) + ft_strlen(SPACE_OR_TAB) + 
-	ft_strlen(MULTIPLIER) + ft_strlen(ROUND_BRACKET_OPEN) + 
-	ft_strlen(SQUARE_BRACKET_OPEN) + ft_strlen(struct_norme.alt_comment_char) + 
-	ft_strlen(struct_norme.comment_char) + ft_strlen(SQUARE_BRACKET_CLOSE) + 
-	ft_strlen(POINT) + 
-	ft_strlen(MULTIPLIER) + ft_strlen(ROUND_BRACKET_CLOSE) + 
+	length = ft_strlen(CIRCUMFLEXUS) + ft_strlen(SPACE_OR_TAB) +
+	ft_strlen(MULTIPLIER) + ft_strlen(struct_norme.comment_cmd_string) +
+	ft_strlen(SPACE_OR_TAB) + ft_strlen(MULTIPLIER) +
+	ft_strlen(QUOTATION_MARK) + ft_strlen(SQUARE_BRACKET_OPEN) +
+	ft_strlen(CIRCUMFLEXUS) + ft_strlen(QUOTATION_MARK) +
+	ft_strlen(SQUARE_BRACKET_CLOSE) + ft_strlen(MULTIPLIER) +
+	ft_strlen(QUOTATION_MARK) + ft_strlen(SPACE_OR_TAB) +
+	ft_strlen(MULTIPLIER) + ft_strlen(ROUND_BRACKET_OPEN) +
+	ft_strlen(SQUARE_BRACKET_OPEN) + ft_strlen(struct_norme.alt_comment_char) +
+	ft_strlen(struct_norme.comment_char) + ft_strlen(SQUARE_BRACKET_CLOSE) +
+	ft_strlen(POINT) +
+	ft_strlen(MULTIPLIER) + ft_strlen(ROUND_BRACKET_CLOSE) +
 	ft_strlen(QUESTION) + ft_strlen(DOLLAR);
 	if (!(comment = ft_strnew(length)))
 		error(content);
@@ -88,10 +100,11 @@ char	*create_comment(t_asm_content *content)
 
 	struct_norme.alt_comment_char = screen(ALT_COMMENT_CHAR, content);
 	struct_norme.comment_char = screen(COMMENT_CHAR, content);
-	length = ft_strlen(CIRCUMFLEXUS) + ft_strlen(SPACE_OR_TAB) + 
-	ft_strlen(MULTIPLIER) + ft_strlen(SQUARE_BRACKET_OPEN) + 
-    ft_strlen(struct_norme.alt_comment_char) + ft_strlen(struct_norme.comment_char) + 
-	ft_strlen(SQUARE_BRACKET_CLOSE) + ft_strlen(POINT) + 
+	length = ft_strlen(CIRCUMFLEXUS) + ft_strlen(SPACE_OR_TAB) +
+	ft_strlen(MULTIPLIER) + ft_strlen(SQUARE_BRACKET_OPEN) +
+	ft_strlen(struct_norme.alt_comment_char) +
+	ft_strlen(struct_norme.comment_char) +
+	ft_strlen(SQUARE_BRACKET_CLOSE) + ft_strlen(POINT) +
 	ft_strlen(MULTIPLIER) + ft_strlen(DOLLAR);
 	if (!(comment = ft_strnew(length)))
 		error(content);
@@ -106,7 +119,7 @@ char	*create_pattern_space_or_empty_line(t_asm_content *content)
 	char	*space_or_empty_line;
 	int		length;
 
-	length = ft_strlen(CIRCUMFLEXUS) + ft_strlen(SPACE_OR_TAB) + 
+	length = ft_strlen(CIRCUMFLEXUS) + ft_strlen(SPACE_OR_TAB) +
 	ft_strlen(MULTIPLIER) + ft_strlen(DOLLAR);
 	if (!(space_or_empty_line = ft_strnew(length)))
 		error(content);

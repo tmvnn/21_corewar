@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   regex_name_instraction.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/11 19:26:50 by idunaver          #+#    #+#             */
+/*   Updated: 2020/03/11 19:34:48 by idunaver         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
 char	*create_instraction_first_stage(t_asm_content *content)
@@ -5,26 +17,26 @@ char	*create_instraction_first_stage(t_asm_content *content)
 	char	*instraction;
 	int		length;
 
-	length = ft_strlen(LIVE_NAME) + 
-	ft_strlen(DOLLAR) + ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) + 
-	ft_strlen(LD_NAME) + ft_strlen(DOLLAR) + ft_strlen(PIPELINE) + 
-	ft_strlen(CIRCUMFLEXUS) + ft_strlen(ST_NAME) + ft_strlen(DOLLAR) + 
-	ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) + ft_strlen(ADD_NAME) + 
-	ft_strlen(DOLLAR) + ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) + 
-	ft_strlen(SUB_NAME) + ft_strlen(DOLLAR) + ft_strlen(PIPELINE) + 
-	ft_strlen(CIRCUMFLEXUS) + ft_strlen(AND_NAME) + ft_strlen(DOLLAR) + 
-	ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) + ft_strlen(OR_NAME) + 
-	ft_strlen(DOLLAR) + ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) + 
-	ft_strlen(XOR_NAME) + ft_strlen(DOLLAR) + ft_strlen(PIPELINE) + 
-	ft_strlen(CIRCUMFLEXUS) + ft_strlen(ZJMP_NAME) + ft_strlen(DOLLAR) + 
-	ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) + ft_strlen(LDI_NAME) + 
-	ft_strlen(DOLLAR) + ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) + 
-	ft_strlen(STI_NAME) + ft_strlen(DOLLAR) + ft_strlen(PIPELINE) + 
-	ft_strlen(CIRCUMFLEXUS) + ft_strlen(FORK_NAME) + ft_strlen(DOLLAR) + 
-	ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) + ft_strlen(LLD_NAME) + 
-	ft_strlen(DOLLAR) + ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) + 
-	ft_strlen(LLDI_NAME) + ft_strlen(DOLLAR) + ft_strlen(PIPELINE) + 
-	ft_strlen(CIRCUMFLEXUS) + ft_strlen(LFORK_NAME) + ft_strlen(DOLLAR) + 
+	length = ft_strlen(LIVE_NAME) +
+	ft_strlen(DOLLAR) + ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) +
+	ft_strlen(LD_NAME) + ft_strlen(DOLLAR) + ft_strlen(PIPELINE) +
+	ft_strlen(CIRCUMFLEXUS) + ft_strlen(ST_NAME) + ft_strlen(DOLLAR) +
+	ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) + ft_strlen(ADD_NAME) +
+	ft_strlen(DOLLAR) + ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) +
+	ft_strlen(SUB_NAME) + ft_strlen(DOLLAR) + ft_strlen(PIPELINE) +
+	ft_strlen(CIRCUMFLEXUS) + ft_strlen(AND_NAME) + ft_strlen(DOLLAR) +
+	ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) + ft_strlen(OR_NAME) +
+	ft_strlen(DOLLAR) + ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) +
+	ft_strlen(XOR_NAME) + ft_strlen(DOLLAR) + ft_strlen(PIPELINE) +
+	ft_strlen(CIRCUMFLEXUS) + ft_strlen(ZJMP_NAME) + ft_strlen(DOLLAR) +
+	ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) + ft_strlen(LDI_NAME) +
+	ft_strlen(DOLLAR) + ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) +
+	ft_strlen(STI_NAME) + ft_strlen(DOLLAR) + ft_strlen(PIPELINE) +
+	ft_strlen(CIRCUMFLEXUS) + ft_strlen(FORK_NAME) + ft_strlen(DOLLAR) +
+	ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) + ft_strlen(LLD_NAME) +
+	ft_strlen(DOLLAR) + ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) +
+	ft_strlen(LLDI_NAME) + ft_strlen(DOLLAR) + ft_strlen(PIPELINE) +
+	ft_strlen(CIRCUMFLEXUS) + ft_strlen(LFORK_NAME) + ft_strlen(DOLLAR) +
 	ft_strlen(PIPELINE) + ft_strlen(CIRCUMFLEXUS) + ft_strlen(AFF_NAME);
 	if (!(instraction = ft_strnew(length)))
 		error(content);
@@ -95,27 +107,27 @@ char	*create_instraction_first_stage(t_asm_content *content)
 char	*create_name_champ(t_asm_content *content)
 {
 	char	*name;
-	char    *name_cmd_string;
-	char    *alt_comment_char;
+	char	*name_cmd_string;
+	char	*alt_comment_char;
 	char	*comment_char;
 	int		length;
 
 	name_cmd_string = str_screening(NAME_CMD_STRING, content);
 	alt_comment_char = screen(ALT_COMMENT_CHAR, content);
 	comment_char = screen(COMMENT_CHAR, content);
-	length = ft_strlen(CIRCUMFLEXUS) + ft_strlen(SPACE_OR_TAB) + 
-	ft_strlen(MULTIPLIER) + 
-	ft_strlen(name_cmd_string) + 
-	ft_strlen(SPACE_OR_TAB) + ft_strlen(MULTIPLIER) + 
-	ft_strlen(QUOTATION_MARK) + ft_strlen(SQUARE_BRACKET_OPEN) + 
-	ft_strlen(CIRCUMFLEXUS) + ft_strlen(QUOTATION_MARK) + 
-	ft_strlen(SQUARE_BRACKET_CLOSE) + ft_strlen(MULTIPLIER) + 
-	ft_strlen(QUOTATION_MARK) + ft_strlen(SPACE_OR_TAB) + 
-	ft_strlen(MULTIPLIER) + ft_strlen(ROUND_BRACKET_OPEN) + 
-	ft_strlen(SQUARE_BRACKET_OPEN) + ft_strlen(alt_comment_char) + 
-	ft_strlen(comment_char) + ft_strlen(SQUARE_BRACKET_CLOSE) +  
-	ft_strlen(POINT) + 
-	ft_strlen(MULTIPLIER) + ft_strlen(ROUND_BRACKET_CLOSE) + 
+	length = ft_strlen(CIRCUMFLEXUS) + ft_strlen(SPACE_OR_TAB) +
+	ft_strlen(MULTIPLIER) +
+	ft_strlen(name_cmd_string) +
+	ft_strlen(SPACE_OR_TAB) + ft_strlen(MULTIPLIER) +
+	ft_strlen(QUOTATION_MARK) + ft_strlen(SQUARE_BRACKET_OPEN) +
+	ft_strlen(CIRCUMFLEXUS) + ft_strlen(QUOTATION_MARK) +
+	ft_strlen(SQUARE_BRACKET_CLOSE) + ft_strlen(MULTIPLIER) +
+	ft_strlen(QUOTATION_MARK) + ft_strlen(SPACE_OR_TAB) +
+	ft_strlen(MULTIPLIER) + ft_strlen(ROUND_BRACKET_OPEN) +
+	ft_strlen(SQUARE_BRACKET_OPEN) + ft_strlen(alt_comment_char) +
+	ft_strlen(comment_char) + ft_strlen(SQUARE_BRACKET_CLOSE) +
+	ft_strlen(POINT) +
+	ft_strlen(MULTIPLIER) + ft_strlen(ROUND_BRACKET_CLOSE) +
 	ft_strlen(QUESTION) + ft_strlen(DOLLAR);
 	if (!(name = ft_strnew(length)))
 		error(content);
@@ -159,15 +171,15 @@ char	*create_pattern_name_or_comment_champs(t_asm_content *content)
 
 	name_cmd_string = str_screening(NAME_CMD_STRING, content);
 	comment_cmd_string = str_screening(COMMENT_CMD_STRING, content);
-	length = ft_strlen(CIRCUMFLEXUS) + ft_strlen(SPACE_OR_TAB) + 
-	ft_strlen(MULTIPLIER) + 
-	ft_strlen(ROUND_BRACKET_OPEN) + 
-	ft_strlen(name_cmd_string) + 
-	ft_strlen(PIPELINE) + 
-	ft_strlen(comment_cmd_string) + 
-	ft_strlen(ROUND_BRACKET_CLOSE) + ft_strlen(SPACE_OR_TAB) + 
-	ft_strlen(MULTIPLIER) + 
-	ft_strlen(QUOTATION_MARK) + ft_strlen(POINT) + 
+	length = ft_strlen(CIRCUMFLEXUS) + ft_strlen(SPACE_OR_TAB) +
+	ft_strlen(MULTIPLIER) +
+	ft_strlen(ROUND_BRACKET_OPEN) +
+	ft_strlen(name_cmd_string) +
+	ft_strlen(PIPELINE) +
+	ft_strlen(comment_cmd_string) +
+	ft_strlen(ROUND_BRACKET_CLOSE) + ft_strlen(SPACE_OR_TAB) +
+	ft_strlen(MULTIPLIER) +
+	ft_strlen(QUOTATION_MARK) + ft_strlen(POINT) +
 	ft_strlen(MULTIPLIER) + ft_strlen(DOLLAR);
 	if (!(pattern_name_or_comment = ft_strnew(length)))
 		error(content);

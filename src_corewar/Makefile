@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: astanton <astanton@student.42.fr>          +#+  +:+       +#+         #
+#    By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/03 16:12:01 by astanton          #+#    #+#              #
-#    Updated: 2020/03/09 14:31:32 by astanton         ###   ########.fr        #
+#    Updated: 2020/03/11 19:08:09 by idunaver         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,7 @@ OBJ =  ./main_cycle/main.o\
 HDR = ./libft/includes/
 HDR1 = ./includes
 
-FLAG = -Wall -Wextra -Werror
+FLAG = -Wall -Wextra -Werror -O2
 
 all: lib $(NAME)
 

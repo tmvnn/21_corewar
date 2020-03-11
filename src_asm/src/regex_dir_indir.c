@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   regex_dir_indir.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/11 19:35:55 by idunaver          #+#    #+#             */
+/*   Updated: 2020/03/11 19:40:57 by idunaver         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
 char	*create_reg(t_asm_content *content)
@@ -5,9 +17,9 @@ char	*create_reg(t_asm_content *content)
 	char	*t_reg;
 	int		length;
 
-	length = ft_strlen(REG_SYMBOL) + ft_strlen(NUMBERS) + 
-	ft_strlen(CURLY_BRACKET_OPEN) + ft_strlen(ONE) + 
-	ft_strlen(COMMA) + ft_strlen(TWO) + 
+	length = ft_strlen(REG_SYMBOL) + ft_strlen(NUMBERS) +
+	ft_strlen(CURLY_BRACKET_OPEN) + ft_strlen(ONE) +
+	ft_strlen(COMMA) + ft_strlen(TWO) +
 	ft_strlen(CURLY_BRACKET_CLOSE);
 	if (!(t_reg = ft_strnew(length)))
 		error(content);
@@ -28,8 +40,8 @@ char	*create_label_first_stage(t_asm_content *content)
 	int		length;
 
 	label_char = screening(LABEL_CHAR, content);
-	length = ft_strlen(SQUARE_BRACKET_OPEN) + ft_strlen(LABEL_CHARS) + 
-	ft_strlen(SQUARE_BRACKET_CLOSE) + ft_strlen(PLUS) + 
+	length = ft_strlen(SQUARE_BRACKET_OPEN) + ft_strlen(LABEL_CHARS) +
+	ft_strlen(SQUARE_BRACKET_CLOSE) + ft_strlen(PLUS) +
 	ft_strlen(label_char);
 	if (!(label = ft_strnew(length)))
 		error(content);
@@ -56,14 +68,14 @@ char	*create_dir_label_result(t_asm_content *content)
 char	*create_dir_label(t_asm_content *content)
 {
 	char	*dir_label;
-	char    *direct_char;
-	char    *label_char;
+	char	*direct_char;
+	char	*label_char;
 	int		length;
 
 	direct_char = screening(DIRECT_CHAR, content);
 	label_char = screening(LABEL_CHAR, content);
-	length = ft_strlen(direct_char) + ft_strlen(label_char) + 
-	ft_strlen(SQUARE_BRACKET_OPEN) + ft_strlen(LABEL_CHARS) + 
+	length = ft_strlen(direct_char) + ft_strlen(label_char) +
+	ft_strlen(SQUARE_BRACKET_OPEN) + ft_strlen(LABEL_CHARS) +
 	ft_strlen(SQUARE_BRACKET_CLOSE) + ft_strlen(PLUS);
 	if (!(dir_label = ft_strnew(length)))
 		error(content);
