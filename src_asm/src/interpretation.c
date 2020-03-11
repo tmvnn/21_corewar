@@ -34,21 +34,21 @@ int		parse(char *str, char *pattern)
 	return (0);
 }
 
-void	interpretation(t_token *tokens)
+void	interpretation(t_token *tokens, t_asm_content *content)
 {
-	if (parse(tokens->content, regex_array[LABEL]))
+	if (parse(tokens->content, content->regex_array[LABEL]))
 		tokens->type = ft_strdup(LABEL_NAME);
-	else if (parse(tokens->content, regex_array[INSTRACTION]))
+	else if (parse(tokens->content, content->regex_array[INSTRACTION]))
 		tokens->type = ft_strdup(INSTRACTION_NAME);
-	else if (parse(tokens->content, regex_array[REGISTER]))
+	else if (parse(tokens->content, content->regex_array[REGISTER]))
 		tokens->type = ft_strdup(REGISTER_NAME);
-	else if (parse(tokens->content, regex_array[DIRECT_LABEL]))
+	else if (parse(tokens->content, content->regex_array[DIRECT_LABEL]))
 		tokens->type = ft_strdup(DIRECT_LABEL_NAME);
-	else if (parse(tokens->content, regex_array[DIRECT]))
+	else if (parse(tokens->content, content->regex_array[DIRECT]))
 		tokens->type = ft_strdup(DIRECT_NAME);
-	else if (parse(tokens->content, regex_array[INDIRECT]))
+	else if (parse(tokens->content, content->regex_array[INDIRECT]))
 		tokens->type = ft_strdup(INDIRECT_NAME);
-	else if (parse(tokens->content, regex_array[INDIRECT_LABEL]))
+	else if (parse(tokens->content, content->regex_array[INDIRECT_LABEL]))
 		tokens->type = ft_strdup(INDIRECT_LABEL_NAME);
 	else
 		tokens->type = ft_strdup(UNCERTAIN_NAME);

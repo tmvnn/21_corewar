@@ -18,7 +18,7 @@ t_asm_content *content_asm)
 	if (!(*token = (t_token *)ft_memalloc(sizeof(t_token))))
 		error(content_asm);
 	(*token)->content = ft_strdup(content);
-	interpretation(*token);
+	interpretation(*token, content_asm);
 	(*token)->memory_size = 0;
 	(*token)->next = NULL;
 	(*token)->previous = NULL;
@@ -40,7 +40,7 @@ t_asm_content *content_asm)
 		if (!(new = (t_token *)ft_memalloc(sizeof(t_token))))
 			error(content_asm);
 		new->content = ft_strdup(content);
-		interpretation(new);
+		interpretation(new, content_asm);
 		new->next = NULL;
 		new->memory_size = 0;
 		while (copy->next)

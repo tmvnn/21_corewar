@@ -40,6 +40,17 @@ static void	clean_t_strings(t_strings **tokens)
 	}
 }
 
+static void free_array(char **array)
+{
+	int i;
+
+	i = 18;
+	while (i >= 0)
+	{
+		ft_strdel(&array[i--]);
+	}
+}
+
 static void	clean_content(t_asm_content **content)
 {
 	clean_t_strings((*content)->tokens);
@@ -57,6 +68,7 @@ static void	clean_content(t_asm_content **content)
 	(*content)->buf = NULL;
 	close((*content)->fd_dst);
 	close((*content)->fd_src);
+	free_array((*content)->regex_array);
 	free(*content);
 	content = NULL;
 }

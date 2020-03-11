@@ -12,14 +12,14 @@
 
 #include "asm.h"
 
-char	*label_validation(t_token *pointer, char *content)
+char	*label_validation(t_token *pointer, char *content, t_asm_content *struct_content)
 {
 	char		*temp;
 	char		*temp1;
 
 	temp = NULL;
 	temp1 = NULL;
-	if (!ft_strcmp(pointer->type, LABEL_NAME) && parse(content, regex_array[DIRECT_LABEL]) \
+	if (!ft_strcmp(pointer->type, LABEL_NAME) && parse(content, struct_content->regex_array[DIRECT_LABEL]) \
 	&& !ft_strcmp((temp = ft_strsub(pointer->content, 0, strlen(\
 	pointer->content) - 1)), (temp1 = ft_strsub(content, 2, strlen(content)))))
 	{
@@ -28,7 +28,7 @@ char	*label_validation(t_token *pointer, char *content)
 		return (content);
 	}
 	else if (!ft_strcmp(pointer->type, LABEL_NAME) && parse(content,\
-	regex_array[INDIRECT_LABEL]) && !ft_strcmp((temp = ft_strsub(pointer->content, 0,\
+	struct_content->regex_array[INDIRECT_LABEL]) && !ft_strcmp((temp = ft_strsub(pointer->content, 0,\
 	strlen(pointer->content) - 1)), (temp1 = ft_strsub(content, 1, \
 	strlen(content)))))
 	{

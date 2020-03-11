@@ -200,12 +200,11 @@ typedef struct			s_asm_content
 	char				*comment;
 	t_header			*header;
 	char				*bytecode;
+	char				*regex_array[19];
 	unsigned int		exec_code_size;
 	unsigned int		asm_size;
 	unsigned int		header_size;
 }						t_asm_content;
-
-char					*regex_array[19];
 
 t_asm_content			*init_content(char ad_flag);
 void					assemble(t_asm_content **content);
@@ -246,12 +245,12 @@ t_asm_content **content);
 void					add_string(t_token **tokens,
 t_strings **row, t_asm_content *content);
 void					in_bytecode(t_asm_content **content);
-void					interpretation(t_token *tokens);
+void					interpretation(t_token *tokens, t_asm_content *content);
 int						parse(char *str, char *pattern);
 char					*help_check_name_or_comment_champs(t_asm_content
 *content, int fd);
 char					*check_valid(t_asm_content *content, int fd);
-char					*search_label(t_strings *rows, char *content);
+char					*search_label(t_strings *rows, char *content, t_asm_content *content_asm);
 char					*check_all_label(t_strings *rows, t_asm_content
 **struct_content);
 int						check(t_token *pointer);
@@ -275,7 +274,7 @@ char					*clean_memory(t_asm_content **content);
 char					*rebase_str_first_case(char *content, t_asm_content *content_asm);
 char					*rebase_str_second_case(char *content, t_asm_content *content_asm);
 char					*rebase_str_third_case(char *content, t_asm_content *content_asm);
-char					*label_validation(t_token *pointer, char *content);
+char					*label_validation(t_token *pointer, char *content, t_asm_content *content_asm);
 int						check_all_label_size(t_token *pointer,
 t_asm_content			**struct_content, int flag);
 char					fill_write_code_instraction_help(char *instraction,

@@ -51,6 +51,7 @@ char	*create_comment_champ(t_asm_content *content)
 	ft_strcat(comment, ROUND_BRACKET_CLOSE);
 	ft_strcat(comment, QUESTION);
 	ft_strcat(comment, DOLLAR);
+	ft_strdel(&comment_cmd_string);
 	ft_strdel(&alt_comment_char);
 	ft_strdel(&comment_char);
 	return (comment);

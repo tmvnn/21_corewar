@@ -402,5 +402,14 @@ char	*create_pattern_third(t_asm_content *content)
 	ft_strcat(pattern_third, POINT);
 	ft_strcat(pattern_third, MULTIPLIER);
 	ft_strcat(pattern_third, DOLLAR);
+	ft_strdel(&reg);
+	ft_strdel(&dir);
+	ft_strdel(&dir_label);
+	ft_strdel(&indir);
+	ft_strdel(&indir_label);
+	ft_strdel(&label);
+	ft_strdel(&separator);
+	ft_strdel(&alt_comment_char);
+	ft_strdel(&comment_char);
 	return (pattern_third);
 }

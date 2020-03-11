@@ -22,6 +22,7 @@ char	*create_label_result(t_asm_content *content)
 
 	label = create_label_first_stage(content);
 	result_label = create_start_and_finish_str(label, content);
+	ft_strdel(&label);
 	return (result_label);
 }
 
@@ -40,12 +41,16 @@ char    *create_t_dir(t_asm_content *content)
 {
 	char	*t_dir;
 	char	*dir;
+	char	*dir_result;
 	char	*dir_label;
+	char	*dir_label_result;
 	int		length;
 
 
-	dir = create_start_and_finish_str(create_dir(content), content);
-	dir_label = create_start_and_finish_str(create_dir_label(content), content);
+	dir = create_dir(content);
+	dir_result = create_start_and_finish_str(dir, content);
+	dir_label = create_dir_label(content);
+	dir_label_result = create_start_and_finish_str(dir_label, content);
 	length = ft_strlen(dir) + ft_strlen(PIPELINE) + ft_strlen(dir_label);
 	if (!(t_dir = ft_strnew(length)))
 		error(content);
@@ -53,7 +58,9 @@ char    *create_t_dir(t_asm_content *content)
 	ft_strcat(t_dir, PIPELINE);
 	ft_strcat(t_dir, dir_label);
 	ft_strdel(&dir);
+	ft_strdel(&dir_result);
 	ft_strdel(&dir_label);
+	ft_strdel(&dir_label_result);
 	return (t_dir);
 }
 
@@ -96,23 +103,23 @@ char	*create_instraction(t_asm_content *content)
 
 void    create_regex(t_asm_content *content)
 {
-	regex_array[PATTERN_T_REG] = create_t_reg(content);
-	regex_array[PATTERN_T_DIR] = create_t_dir(content);
-	regex_array[PATTERN_T_IND] = create_t_ind(content);
-	regex_array[INSTRACTION] = create_instraction(content);
-	regex_array[LABEL] = create_label_result(content);
-	regex_array[REGISTER] = create_t_reg(content);
-	regex_array[DIRECT_LABEL] = create_dir_label_result(content);
-	regex_array[DIRECT] = create_dir_result(content);
-	regex_array[INDIRECT_LABEL] = create_indir_label_result(content);
-	regex_array[INDIRECT] = create_indir_result(content);
-	regex_array[PATTERN_NAME_CHAMPS] = create_name_champ(content);
-	regex_array[PATTERN_COMMENT_CHAMPS] = create_comment_champ(content);
-	regex_array[PATTERN_COMMENT] = create_comment(content);
-	regex_array[PATTERN_SPACE_OR_EMPTY_LINE] = create_pattern_space_or_empty_line(content);
-	regex_array[PATTERN] = create_pattern(content);
-	regex_array[PATTERN_NAME_OR_COMMENT_CHAMPS] = create_pattern_name_or_comment_champs(content);
-	regex_array[PATTERN_HELP_VALIDATION_FIRST_CASE] = create_pattern_first(content);
-	regex_array[PATTERN_HELP_VALIDATION_SECOND_CASE] = create_pattern_second(content);
-	regex_array[PATTERN_HELP_VALIDATION_THIRD_CASE] = create_pattern_third(content);
+	content->regex_array[PATTERN_T_REG] = create_t_reg(content);
+	content->regex_array[PATTERN_T_DIR] = create_t_dir(content);
+	content->regex_array[PATTERN_T_IND] = create_t_ind(content);
+	content->regex_array[INSTRACTION] = create_instraction(content);
+	content->regex_array[LABEL] = create_label_result(content);
+	content->regex_array[REGISTER] = create_t_reg(content);
+	content->regex_array[DIRECT_LABEL] = create_dir_label_result(content);
+	content->regex_array[DIRECT] = create_dir_result(content);
+	content->regex_array[INDIRECT_LABEL] = create_indir_label_result(content);
+	content->regex_array[INDIRECT] = create_indir_result(content);
+	content->regex_array[PATTERN_NAME_CHAMPS] = create_name_champ(content);
+	content->regex_array[PATTERN_COMMENT_CHAMPS] = create_comment_champ(content);
+	content->regex_array[PATTERN_COMMENT] = create_comment(content);
+	content->regex_array[PATTERN_SPACE_OR_EMPTY_LINE] = create_pattern_space_or_empty_line(content);
+	content->regex_array[PATTERN] = create_pattern(content);
+	content->regex_array[PATTERN_NAME_OR_COMMENT_CHAMPS] = create_pattern_name_or_comment_champs(content);
+	content->regex_array[PATTERN_HELP_VALIDATION_FIRST_CASE] = create_pattern_first(content);
+	content->regex_array[PATTERN_HELP_VALIDATION_SECOND_CASE] = create_pattern_second(content);
+	content->regex_array[PATTERN_HELP_VALIDATION_THIRD_CASE] = create_pattern_third(content);
 }

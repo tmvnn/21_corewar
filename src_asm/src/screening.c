@@ -61,14 +61,17 @@ char    *screening(char symbol, t_asm_content *content)
 char    *str_screening(char *str_symbols, t_asm_content *content)
 {
 	char	*result_str;
+	char	*temp;
 
 	if (!*str_symbols)
 		return (ft_strnew(0));
-	if (!(result_str = ft_strnew(1)))
+	if (!(result_str = ft_strnew(0)))
 		error(content);
 	while (*str_symbols)
 	{
-		result_str = ft_strjoinwcm(result_str, screening(*str_symbols, content));
+		temp = screening(*str_symbols, content);
+		result_str = ft_strjoinwcm(result_str, temp);
+		ft_strdel(&temp);
 		str_symbols++;
 	}
 	return (result_str);

@@ -146,6 +146,7 @@ char	*create_name_champ(t_asm_content *content)
 	ft_strcat(name, DOLLAR);
 	ft_strdel(&alt_comment_char);
 	ft_strdel(&comment_char);
+	ft_strdel(&name_cmd_string);
 	return (name);
 }
 

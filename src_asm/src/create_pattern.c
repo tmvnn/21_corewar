@@ -341,5 +341,14 @@ char	*create_pattern(t_asm_content *content)
 	ft_strcat(pattern, ROUND_BRACKET_CLOSE);
 	ft_strcat(pattern, QUESTION);
 	ft_strcat(pattern, DOLLAR);
+	ft_strdel(&reg);
+	ft_strdel(&dir);
+	ft_strdel(&dir_label);
+	ft_strdel(&indir);
+	ft_strdel(&indir_label);
+	ft_strdel(&label);
+	ft_strdel(&separator);
+	ft_strdel(&alt_comment_char);
+	ft_strdel(&comment_char);
 	return (pattern);
 }
