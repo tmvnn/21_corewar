@@ -39,7 +39,19 @@ SRC_ASM_NAME =  asm_content.c \
 				regex_dir_indir.c \
 				regex_name_instraction.c \
 				screening.c \
-				check_line_name_or_comment.c
+				check_line_name_or_comment.c \
+				create_indir.c \
+				create_instraction_strlen.c \
+				create_pattern_first_length.c \
+				create_pattern_length_fifth.c \
+				create_pattern_space_or_empty_line.c \
+				create_pattern_third_length_first.c \
+				create_start_and_finish_str.c \
+				init_create_pattern.c \
+				init_name_champ.c \
+				pattern_third_strcat_first.c \
+				pattern_third_strcat_sixth.c \
+				strcat_pattern_sixth.c
 
 OBJ_ASM_NAME = $(SRC_ASM_NAME:.c=.o);
 SRC_ASM = $(addprefix $(OBJDIR)/, $(SRC_ASM_NAME))

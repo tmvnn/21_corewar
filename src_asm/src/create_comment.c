@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 19:14:55 by idunaver          #+#    #+#             */
-/*   Updated: 2020/03/11 19:17:48 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/03/11 20:34:17 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ char	*create_comment_champ(t_asm_content *content)
 	ft_strlen(POINT) +
 	ft_strlen(MULTIPLIER) + ft_strlen(ROUND_BRACKET_CLOSE) +
 	ft_strlen(QUESTION) + ft_strlen(DOLLAR);
-	if (!(comment = ft_strnew(length)))
-		error(content);
+	(!(comment = ft_strnew(length))) ? error(content) : 0;
 	create_comment_champ_strcat(comment, &struct_norme);
 	strdel_comment_champ(&struct_norme);
 	return (comment);
@@ -112,20 +111,4 @@ char	*create_comment(t_asm_content *content)
 	ft_strdel(&struct_norme.alt_comment_char);
 	ft_strdel(&struct_norme.comment_char);
 	return (comment);
-}
-
-char	*create_pattern_space_or_empty_line(t_asm_content *content)
-{
-	char	*space_or_empty_line;
-	int		length;
-
-	length = ft_strlen(CIRCUMFLEXUS) + ft_strlen(SPACE_OR_TAB) +
-	ft_strlen(MULTIPLIER) + ft_strlen(DOLLAR);
-	if (!(space_or_empty_line = ft_strnew(length)))
-		error(content);
-	ft_strcat(space_or_empty_line, CIRCUMFLEXUS);
-	ft_strcat(space_or_empty_line, SPACE_OR_TAB);
-	ft_strcat(space_or_empty_line, MULTIPLIER);
-	ft_strcat(space_or_empty_line, DOLLAR);
-	return (space_or_empty_line);
 }

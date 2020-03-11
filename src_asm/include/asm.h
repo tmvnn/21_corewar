@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/03/11 20:04:16 by yperra-f         ###   ########.fr       */
+/*   Updated: 2020/03/11 21:09:57 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,4 +315,81 @@ char					*create_indir_label_result(t_asm_content *content);
 char					*create_indir_result(t_asm_content *content);
 int						check_line_name_or_comment(char *line,
 t_asm_content **content);
+int						create_instraction_strlen(void);
+void					strcat_instraction(char *instraction);
+void					strcat_instraction_first(char *instraction);
+void					strcat_instraction_second(char *instraction);
+char					*create_instraction_first_stage(t_asm_content *content);
+int						create_pattern_first_length(t_norminette *struct_norme);
+void					create_pattern_first_strcat(t_norminette *struct_norme,
+char *first_case);
+char					*create_pattern_first(t_asm_content *content);
+char					*create_pattern_second(t_asm_content *content);
+void					init_struct_norme_for_pattern_third(t_norminette
+*struct_norme, t_asm_content *content);
+int						create_pattern_length_fifth(t_norminette *struct_norme);
+void					strcat_pattern_first(char *pattern,
+t_norminette *struct_norme);
+void					strcat_pattern_second(char *pattern,
+t_norminette *struct_norme);
+void					strcat_pattern_third(char *pattern,
+t_norminette *struct_norme);
+void					strcat_pattern_fourth(char *pattern,
+t_norminette *struct_norme);
+char					*create_pattern_space_or_empty_line(t_asm_content
+*content);
+int						create_pattern_third_length_first(t_norminette
+*struct_norme);
+int						create_pattern_third_length_second(t_norminette
+*struct_norme);
+int						create_pattern_third_length_third(t_norminette
+*struct_norme);
+int						create_pattern_third_length_fourth(t_norminette
+*struct_norme);
+int						create_pattern_third_length_fifth(t_norminette
+*struct_norme);
+void					init_create_pattern(t_norminette *struct_norme,
+t_asm_content *content);
+int						create_pattern_length_first(t_norminette
+*struct_norme);
+int						create_pattern_length_second(t_norminette
+*struct_norme);
+int						create_pattern_length_third(t_norminette
+*struct_norme);
+int						create_pattern_length_fourth(t_norminette
+*struct_norme);
+void					init_name_champ(t_norminette *struct_norme,
+t_asm_content *content);
+int						strlen_name_champ(t_norminette *struct_norme);
+void					strcat_name_champ(char *name, t_norminette
+*struct_norme);
+char					*create_name_champ(t_asm_content *content);
+int						strlen_pattern_name_or_comment_champs(char
+*name_cmd_string, char *comment_cmd_string);
+void					pattern_third_strcat_first(char *pattern_third,
+t_norminette *struct_norme);
+void					pattern_third_strcat_second(char *pattern_third,
+t_norminette *struct_norme);
+void					pattern_third_strcat_third(char *pattern_third,
+t_norminette *struct_norme);
+void					pattern_third_strcat_fourth(char *pattern_third,
+t_norminette *struct_norme);
+void					pattern_third_strcat_fifth(char *pattern_third,
+t_norminette *struct_norme);
+void					pattern_third_strcat_sixth(char *pattern_third,
+t_norminette *struct_norme);
+void					pattern_third_strcat_seventh(char *pattern_third,
+t_norminette *struct_norme);
+void					strcat_pattern_sixth(char *pattern,
+t_norminette *struct_norme);
+void					strcat_pattern_seventh(char *pattern,
+t_norminette *struct_norme);
+void					strcat_pattern_eigth(char *pattern,
+t_norminette *struct_norme);
+void					strcat_pattern_ninth(char *pattern,
+t_norminette *struct_norme);
+void					strcat_pattern_ten(char *pattern,
+t_norminette *struct_norme);
+char					*create_label_result(t_asm_content *content);
+
 #endif

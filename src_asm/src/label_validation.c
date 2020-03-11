@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   label_validation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 19:46:06 by idunaver          #+#    #+#             */
-/*   Updated: 2020/03/09 21:10:06 by yperra-f         ###   ########.fr       */
+/*   Updated: 2020/03/11 20:23:18 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-char	*label_validation(t_token *pointer, char *content, t_asm_content *struct_content)
+char	*label_validation(t_token *pointer, char *content,
+							t_asm_content *struct_content)
 {
 	char		*temp;
 	char		*temp1;
@@ -20,8 +21,8 @@ char	*label_validation(t_token *pointer, char *content, t_asm_content *struct_co
 	temp = NULL;
 	temp1 = NULL;
 	if (!ft_strcmp(pointer->type, LABEL_NAME) && parse(content, struct_content->regex_array[DIRECT_LABEL]) \
-	&& !ft_strcmp((temp = ft_strsub(pointer->content, 0, strlen(\
-	pointer->content) - 1)), (temp1 = ft_strsub(content, 2, strlen(content)))))
+	&& !ft_strcmp((temp = ft_strsub(pointer->content, 0, ft_strlen(\
+	pointer->content) - 1)), (temp1 = ft_strsub(content, 2, ft_strlen(content)))))
 	{
 		ft_strdel(&temp);
 		ft_strdel(&temp1);
@@ -29,8 +30,8 @@ char	*label_validation(t_token *pointer, char *content, t_asm_content *struct_co
 	}
 	else if (!ft_strcmp(pointer->type, LABEL_NAME) && parse(content,\
 	struct_content->regex_array[INDIRECT_LABEL]) && !ft_strcmp((temp = ft_strsub(pointer->content, 0,\
-	strlen(pointer->content) - 1)), (temp1 = ft_strsub(content, 1, \
-	strlen(content)))))
+	ft_strlen(pointer->content) - 1)), (temp1 = ft_strsub(content, 1, \
+	ft_strlen(content)))))
 	{
 		ft_strdel(&temp);
 		ft_strdel(&temp1);
