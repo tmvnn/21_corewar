@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   screening.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/11 19:36:22 by yperra-f          #+#    #+#             */
+/*   Updated: 2020/03/11 19:37:38 by yperra-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
 char	*screen(char symbol, t_asm_content *content)
@@ -10,55 +22,67 @@ char	*screen(char symbol, t_asm_content *content)
 	return (result);
 }
 
-char    *screening(char symbol, t_asm_content *content)
+char	*screening_first_stage(char symbol,
+char *str, t_asm_content *content)
+{
+	int		length;
+	char	*result_str;
+
+	length = ft_strlen(SQUARE_BRACKET_OPEN) +
+	ft_strlen(BACK_SLASH) + ft_strlen(BACK_SLASH) +
+	ft_strlen(str) + ft_strlen(SQUARE_BRACKET_CLOSE);
+	if (!(result_str = ft_strnew(length)))
+		error(content);
+	ft_strcat(result_str, SQUARE_BRACKET_OPEN);
+	if (symbol != ']' && symbol != '[')
+		ft_strcat(result_str, BACK_SLASH);
+	if (symbol != ']' && symbol != '[')
+		ft_strcat(result_str, BACK_SLASH);
+	ft_strcat(result_str, str);
+	ft_strcat(result_str, SQUARE_BRACKET_CLOSE);
+	ft_strdel(&str);
+	return (result_str);
+}
+
+char	*screening_second_stage(char *str, t_asm_content *content)
+{
+	int		length;
+	char	*result_str;
+
+	length = ft_strlen(SQUARE_BRACKET_OPEN) + ft_strlen(BACK_SLASH) +
+	ft_strlen(str) + ft_strlen(SQUARE_BRACKET_CLOSE);
+	if (!(result_str = ft_strnew(length)))
+		error(content);
+	ft_strcat(result_str, SQUARE_BRACKET_OPEN);
+	ft_strcat(result_str, BACK_SLASH);
+	ft_strcat(result_str, str);
+	ft_strcat(result_str, SQUARE_BRACKET_CLOSE);
+	ft_strdel(&str);
+	return (result_str);
+}
+
+char	*screening(char symbol, t_asm_content *content)
 {
 	char	*result_str;
 	char	*str;
-	int     length;
 
-	if(!(str = ft_strnew(1)))
+	if (!(str = ft_strnew(1)))
 		error(content);
 	str[0] = symbol;
-	if (symbol == '*' || symbol == '+' || symbol == '?' 
-	|| symbol == '.' || symbol == '[' || symbol == ']' 
-	|| symbol == '|' || symbol == '^' || symbol == '$' 
-	|| symbol == '{' || symbol == '}' || symbol == '(' 
+	if (symbol == '*' || symbol == '+' || symbol == '?'
+	|| symbol == '.' || symbol == '[' || symbol == ']'
+	|| symbol == '|' || symbol == '^' || symbol == '$'
+	|| symbol == '{' || symbol == '}' || symbol == '('
 	|| symbol == ')')
-	{
-		length = ft_strlen(SQUARE_BRACKET_OPEN) + 
-		ft_strlen(BACK_SLASH) + ft_strlen(BACK_SLASH) + 
-		ft_strlen(str) + ft_strlen(SQUARE_BRACKET_CLOSE);
-		if (!(result_str = ft_strnew(length)))
-			error(content);
-		ft_strcat(result_str, SQUARE_BRACKET_OPEN);
-		if (symbol != ']' && symbol != '[')
-			ft_strcat(result_str, BACK_SLASH);
-		if (symbol != ']' && symbol != '[')
-			ft_strcat(result_str, BACK_SLASH);
-		ft_strcat(result_str, str);
-		ft_strcat(result_str, SQUARE_BRACKET_CLOSE);
-		ft_strdel(&str);
-	}
+		result_str = screening_first_stage(symbol, str, content);
 	else if (symbol == '\\' || symbol == '\'' || symbol == '\"')
-	{
-		length = ft_strlen(SQUARE_BRACKET_OPEN) + ft_strlen(BACK_SLASH) + 
-		ft_strlen(str) + ft_strlen(SQUARE_BRACKET_CLOSE);
-		if (!(result_str = ft_strnew(length)))
-			error(content);
-		ft_strcat(result_str, SQUARE_BRACKET_OPEN);
-		ft_strcat(result_str, BACK_SLASH);
-		ft_strcat(result_str, str);
-		ft_strcat(result_str, SQUARE_BRACKET_CLOSE);
-		ft_strdel(&str);
-		// printf("%s\n", result_str);
-		// printf("%lu\n", strlen(result_str));
-	}
+		result_str = screening_second_stage(str, content);
 	else
 		result_str = str;
 	return (result_str);
 }
 
-char    *str_screening(char *str_symbols, t_asm_content *content)
+char	*str_screening(char *str_symbols, t_asm_content *content)
 {
 	char	*result_str;
 	char	*temp;
