@@ -41,11 +41,11 @@ char	*help_check_name_or_comment_champs(t_asm_content *content, int fd)
 char	*help_validation(t_asm_content *content)
 {
 	if (parse(content->line, content->regex_array[PATTERN_HELP_VALIDATION_FIRST_CASE]))
-		content->line = rebase_str_first_case(content->line, content);
+		content->line = rebase_str_first_case(content->line);
 	if (parse(content->line, content->regex_array[PATTERN_HELP_VALIDATION_SECOND_CASE]))
-		content->line = rebase_str_second_case(content->line, content);
+		content->line = rebase_str_second_case(content->line);
 	if (parse(content->line, content->regex_array[PATTERN_HELP_VALIDATION_THIRD_CASE]))
-		content->line = rebase_str_third_case(content->line, content);
+		content->line = rebase_str_third_case(content->line);
 	return (content->line);
 }
 

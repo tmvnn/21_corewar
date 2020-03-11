@@ -78,6 +78,8 @@
 # define CURLY_BRACKET_OPEN "{"
 # define CURLY_BRACKET_CLOSE "}"
 # define REG_SYMBOL "r"
+# define SPACE " "
+# define TAB "	"
 # define COMMA ","
 # define ONE "1"
 # define TWO "2"
@@ -271,9 +273,9 @@ t_asm_content **content);
 void					fill_write_code_instraction(char *instraction,
 t_asm_content **content);
 char					*clean_memory(t_asm_content **content);
-char					*rebase_str_first_case(char *content, t_asm_content *content_asm);
-char					*rebase_str_second_case(char *content, t_asm_content *content_asm);
-char					*rebase_str_third_case(char *content, t_asm_content *content_asm);
+char					*rebase_str_first_case(char *content);
+char					*rebase_str_second_case(char *content);
+char					*rebase_str_third_case(char *content);
 char					*label_validation(t_token *pointer, char *content, t_asm_content *content_asm);
 int						check_all_label_size(t_token *pointer,
 t_asm_content			**struct_content, int flag);

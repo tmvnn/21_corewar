@@ -56,7 +56,8 @@ char	*create_pattern_second(t_asm_content *content)
 	label = create_label_first_stage(content);
 	length = ft_strlen(CIRCUMFLEXUS) + ft_strlen(SPACE_OR_TAB) + 
 	ft_strlen(MULTIPLIER) + ft_strlen(label) + 
-	ft_strlen(POINT) + ft_strlen(MULTIPLIER) + ft_strlen(DOLLAR);
+	ft_strlen(POINT) + 
+	ft_strlen(MULTIPLIER) + ft_strlen(DOLLAR);
 	if (!(second_case = ft_strnew(length)))
 		error(content);
 	ft_strcat(second_case, CIRCUMFLEXUS);
@@ -190,7 +191,7 @@ char	*create_pattern_third(t_asm_content *content)
 	ft_strlen(ROUND_BRACKET_CLOSE) + ft_strlen(PIPELINE) + 
 	ft_strlen(AFF_NAME) + ft_strlen(SPACE_OR_TAB) + 
 	ft_strlen(PLUS) + ft_strlen(reg) + 
-	ft_strlen(ROUND_BRACKET_CLOSE) + ft_strlen(QUESTION) +  
+	ft_strlen(ROUND_BRACKET_CLOSE) +  
 	ft_strlen(SQUARE_BRACKET_OPEN) + ft_strlen(comment_char) + 
 	ft_strlen(alt_comment_char) + ft_strlen(SQUARE_BRACKET_CLOSE) + 
 	ft_strlen(POINT) + ft_strlen(MULTIPLIER) + ft_strlen(DOLLAR);
@@ -394,7 +395,6 @@ char	*create_pattern_third(t_asm_content *content)
 	ft_strcat(pattern_third, PLUS);
 	ft_strcat(pattern_third, reg);
 	ft_strcat(pattern_third, ROUND_BRACKET_CLOSE);
-	ft_strcat(pattern_third, QUESTION);
 	ft_strcat(pattern_third, SQUARE_BRACKET_OPEN);
 	ft_strcat(pattern_third, comment_char);
 	ft_strcat(pattern_third, alt_comment_char);
