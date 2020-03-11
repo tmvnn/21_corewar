@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_memory.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 19:15:51 by idunaver          #+#    #+#             */
-/*   Updated: 2020/03/09 20:43:50 by yperra-f         ###   ########.fr       */
+/*   Updated: 2020/03/11 18:31:48 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,13 @@ static void	clean_t_strings(t_strings **tokens)
 	}
 }
 
-static void free_array(char **array)
+static void	free_array(char **array)
 {
 	int i;
 
 	i = 18;
 	while (i >= 0)
-	{
 		ft_strdel(&array[i--]);
-	}
 }
 
 static void	clean_content(t_asm_content **content)

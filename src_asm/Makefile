@@ -38,7 +38,8 @@ SRC_ASM_NAME =  asm_content.c \
 				create_regex.c \
 				regex_dir_indir.c \
 				regex_name_instraction.c \
-				screening.c 
+				screening.c \
+				check_line_name_or_comment.c
 
 OBJ_ASM_NAME = $(SRC_ASM_NAME:.c=.o);
 SRC_ASM = $(addprefix $(OBJDIR)/, $(SRC_ASM_NAME))
