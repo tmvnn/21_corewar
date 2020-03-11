@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 19:21:29 by idunaver          #+#    #+#             */
-/*   Updated: 2020/03/11 18:59:26 by idunaver         ###   ########.fr       */
+/*   Updated: 2020/03/11 20:04:16 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ typedef struct			s_norminette
 	char				*label;
 	char				*separator;
 	char				*comment_cmd_string;
+	char				*name_cmd_string;
 }						t_norminette;
 
 typedef	struct			s_token
