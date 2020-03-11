@@ -17,8 +17,8 @@ int		create_pattern_length_first(t_norminette *struct_norme)
 {
 	int length;
 
-	length = ft_strlen(CIRCUMFLEXUS) + ft_strlen(SPACE_OR_TAB) + 
-	ft_strlen(MULTIPLIER) + 
+	length = ft_strlen(CIRCUMFLEXUS) + ft_strlen(SPACE_OR_TAB) +
+	ft_strlen(MULTIPLIER) +
 	ft_strlen(ROUND_BRACKET_OPEN) + ft_strlen(struct_norme->label) + 
 	ft_strlen(ROUND_BRACKET_CLOSE) + ft_strlen(QUESTION) + 
 	ft_strlen(SPACE_OR_TAB) + ft_strlen(MULTIPLIER) + 
@@ -71,82 +71,95 @@ int		create_pattern_length_second(t_norminette *struct_norme)
 	return (length);
 }
 
-char	*create_pattern(t_asm_content *content)
+int		create_pattern_length_third(t_norminette *struct_norme)
 {
-	char			*pattern;
-	int				length;
-	t_norminette	struct_norme;
+	int	length;
 
-	init_create_pattern(&struct_norme, content);
-	length = create_pattern_length_first(&struct_norme) + 
-	
-	ft_strlen(PIPELINE) + ft_strlen(SPACE_OR_TAB) + 
+	length = ft_strlen(PIPELINE) + ft_strlen(SPACE_OR_TAB) + 
 	ft_strlen(MULTIPLIER) + ft_strlen(ROUND_BRACKET_OPEN) + 
-	ft_strlen(struct_norme.dir) + ft_strlen(PIPELINE) + 
-	ft_strlen(struct_norme.dir_label) + ft_strlen(ROUND_BRACKET_CLOSE) + 
+	ft_strlen(struct_norme->dir) + ft_strlen(PIPELINE) + 
+	ft_strlen(struct_norme->dir_label) + ft_strlen(ROUND_BRACKET_CLOSE) + 
 	ft_strlen(ROUND_BRACKET_CLOSE) + ft_strlen(SPACE_OR_TAB) + 
-	ft_strlen(MULTIPLIER) + ft_strlen(struct_norme.separator) + 
+	ft_strlen(MULTIPLIER) + ft_strlen(struct_norme->separator) + 
 	ft_strlen(SPACE_OR_TAB) + ft_strlen(MULTIPLIER) + 
-	ft_strlen(ROUND_BRACKET_OPEN) + ft_strlen(struct_norme.reg) + 
-	ft_strlen(PIPELINE) + ft_strlen(struct_norme.dir) + 
-	ft_strlen(PIPELINE) + ft_strlen(struct_norme.dir_label) + 
-	ft_strlen(PIPELINE) + ft_strlen(struct_norme.indir) + 
-	ft_strlen(PIPELINE) + ft_strlen(struct_norme.indir_label) + 
+	ft_strlen(ROUND_BRACKET_OPEN) + ft_strlen(struct_norme->reg) + 
+	ft_strlen(PIPELINE) + ft_strlen(struct_norme->dir) + 
+	ft_strlen(PIPELINE) + ft_strlen(struct_norme->dir_label) + 
+	ft_strlen(PIPELINE) + ft_strlen(struct_norme->indir) + 
+	ft_strlen(PIPELINE) + ft_strlen(struct_norme->indir_label) + 
 	ft_strlen(ROUND_BRACKET_CLOSE) + ft_strlen(SPACE_OR_TAB) + 
-	ft_strlen(MULTIPLIER) + ft_strlen(struct_norme.separator) + 
+	ft_strlen(MULTIPLIER) + ft_strlen(struct_norme->separator) + 
 	ft_strlen(SPACE_OR_TAB) + ft_strlen(MULTIPLIER) + 
-	ft_strlen(struct_norme.reg) + ft_strlen(PIPELINE) + ft_strlen(INSTRACTION_FIFTH) + 
+	ft_strlen(struct_norme->reg) + ft_strlen(PIPELINE) + 
+	ft_strlen(INSTRACTION_FIFTH) + 
 	ft_strlen(ROUND_BRACKET_OPEN) + ft_strlen(SPACE_OR_TAB) + 
 	ft_strlen(PLUS) + ft_strlen(ROUND_BRACKET_OPEN) + 
-	ft_strlen(struct_norme.reg) + ft_strlen(PIPELINE) + 
-	ft_strlen(struct_norme.indir) + ft_strlen(PIPELINE) + 
-	ft_strlen(struct_norme.indir_label) + 
-	ft_strlen(ROUND_BRACKET_CLOSE) + ft_strlen(PIPELINE) + 
-	ft_strlen(SPACE_OR_TAB) + ft_strlen(MULTIPLIER) + 
-	ft_strlen(ROUND_BRACKET_OPEN) + ft_strlen(struct_norme.dir) + 
-	ft_strlen(PIPELINE) + ft_strlen(struct_norme.dir_label) + 
+	ft_strlen(struct_norme->reg) + ft_strlen(PIPELINE) + 
+	ft_strlen(struct_norme->indir) + ft_strlen(PIPELINE) + 
+	ft_strlen(struct_norme->indir_label) + 
+	ft_strlen(ROUND_BRACKET_CLOSE) + ft_strlen(PIPELINE);
+	return (length);
+}
+
+int		create_pattern_length_fourth(t_norminette *struct_norme)
+{
+	int length;
+
+	length = ft_strlen(SPACE_OR_TAB) + ft_strlen(MULTIPLIER) + 
+	ft_strlen(ROUND_BRACKET_OPEN) + ft_strlen(struct_norme->dir) + 
+	ft_strlen(PIPELINE) + ft_strlen(struct_norme->dir_label) + 
 	ft_strlen(ROUND_BRACKET_CLOSE) + ft_strlen(ROUND_BRACKET_CLOSE) + 
 	ft_strlen(SPACE_OR_TAB) + ft_strlen(MULTIPLIER) + 
-	ft_strlen(struct_norme.separator) + ft_strlen(SPACE_OR_TAB) + 
+	ft_strlen(struct_norme->separator) + ft_strlen(SPACE_OR_TAB) + 
 	ft_strlen(MULTIPLIER) + ft_strlen(ROUND_BRACKET_OPEN) + 
-	ft_strlen(struct_norme.reg) + ft_strlen(PIPELINE) + ft_strlen(struct_norme.dir) + 
-	ft_strlen(PIPELINE) + ft_strlen(struct_norme.dir_label) + 
+	ft_strlen(struct_norme->reg) + ft_strlen(PIPELINE) + ft_strlen(struct_norme->dir) + 
+	ft_strlen(PIPELINE) + ft_strlen(struct_norme->dir_label) + 
 	ft_strlen(ROUND_BRACKET_CLOSE) + ft_strlen(SPACE_OR_TAB) + 
-	ft_strlen(MULTIPLIER) + ft_strlen(struct_norme.separator) + 
+	ft_strlen(MULTIPLIER) + ft_strlen(struct_norme->separator) + 
 	ft_strlen(SPACE_OR_TAB) + ft_strlen(MULTIPLIER) + 
-	ft_strlen(struct_norme.reg) + ft_strlen(PIPELINE) + ft_strlen(STI_NAME) + 
+	ft_strlen(struct_norme->reg) + ft_strlen(PIPELINE) + ft_strlen(STI_NAME) + 
 	ft_strlen(SPACE_OR_TAB) + ft_strlen(PLUS) + 
-	ft_strlen(struct_norme.reg) + ft_strlen(SPACE_OR_TAB) + ft_strlen(MULTIPLIER) + 
-	ft_strlen(struct_norme.separator) + ft_strlen(SPACE_OR_TAB) + 
+	ft_strlen(struct_norme->reg) + ft_strlen(SPACE_OR_TAB) + ft_strlen(MULTIPLIER) + 
+	ft_strlen(struct_norme->separator) + ft_strlen(SPACE_OR_TAB) + 
 	ft_strlen(MULTIPLIER) + ft_strlen(ROUND_BRACKET_OPEN) + 
-	ft_strlen(struct_norme.reg) + ft_strlen(PIPELINE) + 
-	ft_strlen(struct_norme.dir) + ft_strlen(PIPELINE) + 
-	ft_strlen(struct_norme.dir_label) + ft_strlen(PIPELINE) + 
-	ft_strlen(struct_norme.indir) + ft_strlen(PIPELINE) + 
-	ft_strlen(struct_norme.indir_label) + ft_strlen(ROUND_BRACKET_CLOSE) + 
-	ft_strlen(SPACE_OR_TAB) + ft_strlen(MULTIPLIER) + 
-	ft_strlen(struct_norme.separator) + ft_strlen(SPACE_OR_TAB) + 
+	ft_strlen(struct_norme->reg) + ft_strlen(PIPELINE) + 
+	ft_strlen(struct_norme->dir) + ft_strlen(PIPELINE) + 
+	ft_strlen(struct_norme->dir_label) + ft_strlen(PIPELINE) + 
+	ft_strlen(struct_norme->indir) + ft_strlen(PIPELINE) + 
+	ft_strlen(struct_norme->indir_label) + ft_strlen(ROUND_BRACKET_CLOSE);
+	return (length);
+}
+
+int		create_pattern_length_fifth(t_norminette *struct_norme)
+{
+	int length;
+
+	length = ft_strlen(SPACE_OR_TAB) + ft_strlen(MULTIPLIER) + 
+	ft_strlen(struct_norme->separator) + ft_strlen(SPACE_OR_TAB) + 
 	ft_strlen(MULTIPLIER) + ft_strlen(ROUND_BRACKET_OPEN) + 
-	ft_strlen(struct_norme.reg) + ft_strlen(PIPELINE) + ft_strlen(struct_norme.dir) + 
-	ft_strlen(PIPELINE) + ft_strlen(struct_norme.dir_label) + 
+	ft_strlen(struct_norme->reg) + ft_strlen(PIPELINE) + ft_strlen(struct_norme->dir) + 
+	ft_strlen(PIPELINE) + ft_strlen(struct_norme->dir_label) + 
 	ft_strlen(ROUND_BRACKET_CLOSE) + ft_strlen(PIPELINE) + 
 	ft_strlen(AFF_NAME) + 
 	ft_strlen(SPACE_OR_TAB) + ft_strlen(PLUS) + 
-	ft_strlen(struct_norme.reg) + ft_strlen(ROUND_BRACKET_CLOSE) + 
+	ft_strlen(struct_norme->reg) + ft_strlen(ROUND_BRACKET_CLOSE) + 
 	ft_strlen(QUESTION) + ft_strlen(SPACE_OR_TAB) + 
 	ft_strlen(MULTIPLIER) + ft_strlen(ROUND_BRACKET_OPEN) + 
-	ft_strlen(SQUARE_BRACKET_OPEN) + ft_strlen(struct_norme.comment_char) + 
-	ft_strlen(struct_norme.alt_comment_char) + ft_strlen(SQUARE_BRACKET_CLOSE) + 
+	ft_strlen(SQUARE_BRACKET_OPEN) + ft_strlen(struct_norme->comment_char) + 
+	ft_strlen(struct_norme->alt_comment_char) + ft_strlen(SQUARE_BRACKET_CLOSE) + 
 	ft_strlen(POINT) + ft_strlen(MULTIPLIER) + 
 	ft_strlen(ROUND_BRACKET_CLOSE) + ft_strlen(QUESTION) + 
 	ft_strlen(DOLLAR);
-	if (!(pattern = ft_strnew(length)))
-		error(content);
+	return (length);
+}
+
+void	strcat_pattern_first(char *pattern, t_norminette *struct_norme)
+{
 	ft_strcat(pattern, CIRCUMFLEXUS);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
 	ft_strcat(pattern, ROUND_BRACKET_OPEN);
-	ft_strcat(pattern, struct_norme.label);
+	ft_strcat(pattern, struct_norme->label);
 	ft_strcat(pattern, ROUND_BRACKET_CLOSE);
 	ft_strcat(pattern, QUESTION);
 	ft_strcat(pattern, SPACE_OR_TAB);
@@ -156,9 +169,9 @@ char	*create_pattern(t_asm_content *content)
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
 	ft_strcat(pattern, ROUND_BRACKET_OPEN);
-	ft_strcat(pattern, struct_norme.dir);
+	ft_strcat(pattern, struct_norme->dir);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.dir_label);
+	ft_strcat(pattern, struct_norme->dir_label);
 	ft_strcat(pattern, ROUND_BRACKET_CLOSE);
 	ft_strcat(pattern, PIPELINE);
 	ft_strcat(pattern, INSTRACTION_SECOND);
@@ -166,201 +179,263 @@ char	*create_pattern(t_asm_content *content)
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
 	ft_strcat(pattern, ROUND_BRACKET_OPEN);
-	ft_strcat(pattern, struct_norme.dir);
+}
+
+void	strcat_pattern_second(char *pattern, t_norminette *struct_norme)
+{
+	ft_strcat(pattern, struct_norme->dir);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.dir_label);
+	ft_strcat(pattern, struct_norme->dir_label);
 	ft_strcat(pattern, ROUND_BRACKET_CLOSE);
 	ft_strcat(pattern, PIPELINE);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, PLUS);
 	ft_strcat(pattern, ROUND_BRACKET_OPEN);
-	ft_strcat(pattern, struct_norme.indir);
+	ft_strcat(pattern, struct_norme->indir);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.indir_label);
+	ft_strcat(pattern, struct_norme->indir_label);
 	ft_strcat(pattern, ROUND_BRACKET_CLOSE);
 	ft_strcat(pattern, ROUND_BRACKET_CLOSE);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
-	ft_strcat(pattern, struct_norme.separator);
+	ft_strcat(pattern, struct_norme->separator);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
-	ft_strcat(pattern, struct_norme.reg);
+	ft_strcat(pattern, struct_norme->reg);
 	ft_strcat(pattern, PIPELINE);
 	ft_strcat(pattern, ST_NAME);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, PLUS);
-	ft_strcat(pattern, struct_norme.reg);
+	ft_strcat(pattern, struct_norme->reg);
+}
+
+void	strcat_pattern_third(char *pattern, t_norminette *struct_norme)
+{
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
-	ft_strcat(pattern, struct_norme.separator);
+	ft_strcat(pattern, struct_norme->separator);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
 	ft_strcat(pattern, ROUND_BRACKET_OPEN);
-	ft_strcat(pattern, struct_norme.reg);
+	ft_strcat(pattern, struct_norme->reg);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.indir);
+	ft_strcat(pattern, struct_norme->indir);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.indir_label);
+	ft_strcat(pattern, struct_norme->indir_label);
 	ft_strcat(pattern, ROUND_BRACKET_CLOSE);
 	ft_strcat(pattern, PIPELINE);
 	ft_strcat(pattern, INSTRACTION_THIRD);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, PLUS);
-	ft_strcat(pattern, struct_norme.reg);
+	ft_strcat(pattern, struct_norme->reg);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
-	ft_strcat(pattern, struct_norme.separator);
+	ft_strcat(pattern, struct_norme->separator);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
-	ft_strcat(pattern, struct_norme.reg);
+	ft_strcat(pattern, struct_norme->reg);
+	ft_strcat(pattern, SPACE_OR_TAB);
+}
+
+void	strcat_pattern_fourth(char *pattern, t_norminette *struct_norme)
+{
+	ft_strcat(pattern, MULTIPLIER);
+	ft_strcat(pattern, struct_norme->separator);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
-	ft_strcat(pattern, struct_norme.separator);
-	ft_strcat(pattern, SPACE_OR_TAB);
-	ft_strcat(pattern, MULTIPLIER);
-	ft_strcat(pattern, struct_norme.reg);
+	ft_strcat(pattern, struct_norme->reg);
 	ft_strcat(pattern, PIPELINE);
 	ft_strcat(pattern, INSTRACTION_FOURTH);
 	ft_strcat(pattern, ROUND_BRACKET_OPEN);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, PLUS);
 	ft_strcat(pattern, ROUND_BRACKET_OPEN);
-	ft_strcat(pattern, struct_norme.reg);
+	ft_strcat(pattern, struct_norme->reg);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.indir);
+	ft_strcat(pattern, struct_norme->indir);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.indir_label);
+	ft_strcat(pattern, struct_norme->indir_label);
 	ft_strcat(pattern, ROUND_BRACKET_CLOSE);
 	ft_strcat(pattern, PIPELINE);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
 	ft_strcat(pattern, ROUND_BRACKET_OPEN);
-	ft_strcat(pattern, struct_norme.dir);
+	ft_strcat(pattern, struct_norme->dir);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.dir_label);
+	ft_strcat(pattern, struct_norme->dir_label);
+}
+
+void	strcat_pattern_sixth(char *pattern, t_norminette *struct_norme)
+{
 	ft_strcat(pattern, ROUND_BRACKET_CLOSE);
 	ft_strcat(pattern, ROUND_BRACKET_CLOSE);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
-	ft_strcat(pattern, struct_norme.separator);
+	ft_strcat(pattern, struct_norme->separator);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
 	ft_strcat(pattern, ROUND_BRACKET_OPEN);
-	ft_strcat(pattern, struct_norme.reg);
+	ft_strcat(pattern, struct_norme->reg);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.dir);
+	ft_strcat(pattern, struct_norme->dir);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.dir_label);
+	ft_strcat(pattern, struct_norme->dir_label);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.indir);
+	ft_strcat(pattern, struct_norme->indir);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.indir_label);
+	ft_strcat(pattern, struct_norme->indir_label);
 	ft_strcat(pattern, ROUND_BRACKET_CLOSE);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
-	ft_strcat(pattern, struct_norme.separator);
+	ft_strcat(pattern, struct_norme->separator);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
-	ft_strcat(pattern, struct_norme.reg);
+	ft_strcat(pattern, struct_norme->reg);
 	ft_strcat(pattern, PIPELINE);
+}
+
+void	strcat_pattern_seventh(char *pattern, t_norminette *struct_norme)
+{
 	ft_strcat(pattern, INSTRACTION_FIFTH);
 	ft_strcat(pattern, ROUND_BRACKET_OPEN);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, PLUS);
 	ft_strcat(pattern, ROUND_BRACKET_OPEN);
-	ft_strcat(pattern, struct_norme.reg);
+	ft_strcat(pattern, struct_norme->reg);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.indir);
+	ft_strcat(pattern, struct_norme->indir);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.indir_label);
+	ft_strcat(pattern, struct_norme->indir_label);
 	ft_strcat(pattern, ROUND_BRACKET_CLOSE);
 	ft_strcat(pattern, PIPELINE);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
 	ft_strcat(pattern, ROUND_BRACKET_OPEN);
-	ft_strcat(pattern, struct_norme.dir);
+	ft_strcat(pattern, struct_norme->dir);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.dir_label);
+	ft_strcat(pattern, struct_norme->dir_label);
 	ft_strcat(pattern, ROUND_BRACKET_CLOSE);
 	ft_strcat(pattern, ROUND_BRACKET_CLOSE);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
-	ft_strcat(pattern, struct_norme.separator);
+	ft_strcat(pattern, struct_norme->separator);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
+}
+
+void	strcat_pattern_eigth(char *pattern, t_norminette *struct_norme)
+{
 	ft_strcat(pattern, ROUND_BRACKET_OPEN);
-	ft_strcat(pattern, struct_norme.reg);
+	ft_strcat(pattern, struct_norme->reg);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.dir);
+	ft_strcat(pattern, struct_norme->dir);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.dir_label);
+	ft_strcat(pattern, struct_norme->dir_label);
 	ft_strcat(pattern, ROUND_BRACKET_CLOSE);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
-	ft_strcat(pattern, struct_norme.separator);
+	ft_strcat(pattern, struct_norme->separator);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
-	ft_strcat(pattern, struct_norme.reg);
+	ft_strcat(pattern, struct_norme->reg);
 	ft_strcat(pattern, PIPELINE);
 	ft_strcat(pattern, STI_NAME);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, PLUS);
-	ft_strcat(pattern, struct_norme.reg);
+	ft_strcat(pattern, struct_norme->reg);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
-	ft_strcat(pattern, struct_norme.separator);
+	ft_strcat(pattern, struct_norme->separator);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
 	ft_strcat(pattern, ROUND_BRACKET_OPEN);
-	ft_strcat(pattern, struct_norme.reg);
+	ft_strcat(pattern, struct_norme->reg);
+}
+
+void	strcat_pattern_ninth(char *pattern, t_norminette *struct_norme)
+{
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.dir);
+	ft_strcat(pattern, struct_norme->dir);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.dir_label);
+	ft_strcat(pattern, struct_norme->dir_label);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.indir);
+	ft_strcat(pattern, struct_norme->indir);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.indir_label);
+	ft_strcat(pattern, struct_norme->indir_label);
 	ft_strcat(pattern, ROUND_BRACKET_CLOSE);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
-	ft_strcat(pattern, struct_norme.separator);
+	ft_strcat(pattern, struct_norme->separator);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
 	ft_strcat(pattern, ROUND_BRACKET_OPEN);
-	ft_strcat(pattern, struct_norme.reg);
+	ft_strcat(pattern, struct_norme->reg);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.dir);
+	ft_strcat(pattern, struct_norme->dir);
 	ft_strcat(pattern, PIPELINE);
-	ft_strcat(pattern, struct_norme.dir_label);
+	ft_strcat(pattern, struct_norme->dir_label);
 	ft_strcat(pattern, ROUND_BRACKET_CLOSE);
 	ft_strcat(pattern, PIPELINE);
 	ft_strcat(pattern, AFF_NAME);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, PLUS);
-	ft_strcat(pattern, struct_norme.reg);
+}
+
+void	strcat_pattern_ten(char *pattern, t_norminette *struct_norme)
+{
+	ft_strcat(pattern, struct_norme->reg);
 	ft_strcat(pattern, ROUND_BRACKET_CLOSE);
 	ft_strcat(pattern, QUESTION);
 	ft_strcat(pattern, SPACE_OR_TAB);
 	ft_strcat(pattern, MULTIPLIER);
 	ft_strcat(pattern, ROUND_BRACKET_OPEN);
 	ft_strcat(pattern, SQUARE_BRACKET_OPEN);
-	ft_strcat(pattern, struct_norme.comment_char);
-	ft_strcat(pattern, struct_norme.alt_comment_char);
+	ft_strcat(pattern, struct_norme->comment_char);
+	ft_strcat(pattern, struct_norme->alt_comment_char);
 	ft_strcat(pattern, SQUARE_BRACKET_CLOSE);
 	ft_strcat(pattern, POINT);
 	ft_strcat(pattern, MULTIPLIER);
 	ft_strcat(pattern, ROUND_BRACKET_CLOSE);
 	ft_strcat(pattern, QUESTION);
 	ft_strcat(pattern, DOLLAR);
-	ft_strdel(&struct_norme.reg);
-	ft_strdel(&struct_norme.dir);
-	ft_strdel(&struct_norme.dir_label);
-	ft_strdel(&struct_norme.indir);
-	ft_strdel(&struct_norme.indir_label);
-	ft_strdel(&struct_norme.label);
-	ft_strdel(&struct_norme.separator);
-	ft_strdel(&struct_norme.alt_comment_char);
-	ft_strdel(&struct_norme.comment_char);
+}
+
+void	strdel_create_pattern(t_norminette *struct_norme)
+{
+	ft_strdel(&struct_norme->reg);
+	ft_strdel(&struct_norme->dir);
+	ft_strdel(&struct_norme->dir_label);
+	ft_strdel(&struct_norme->indir);
+	ft_strdel(&struct_norme->indir_label);
+	ft_strdel(&struct_norme->label);
+	ft_strdel(&struct_norme->separator);
+	ft_strdel(&struct_norme->alt_comment_char);
+	ft_strdel(&struct_norme->comment_char);
+}
+
+char	*create_pattern(t_asm_content *content)
+{
+	char			*pattern;
+	int				length;
+	t_norminette	struct_norme;
+
+	init_create_pattern(&struct_norme, content);
+	length = create_pattern_length_first(&struct_norme) + 
+	create_pattern_length_second(&struct_norme) + 
+	create_pattern_length_third(&struct_norme) + 
+	create_pattern_length_fourth(&struct_norme) + 
+	create_pattern_length_fifth(&struct_norme);
+	if (!(pattern = ft_strnew(length)))
+		error(content);
+	strcat_pattern_first(pattern, &struct_norme);
+	strcat_pattern_second(pattern, &struct_norme);
+	strcat_pattern_third(pattern, &struct_norme);
+	strcat_pattern_fourth(pattern, &struct_norme);
+	strcat_pattern_sixth(pattern, &struct_norme);
+	strcat_pattern_seventh(pattern, &struct_norme);
+	strcat_pattern_eigth(pattern, &struct_norme);
+	strcat_pattern_ninth(pattern, &struct_norme);
+	strcat_pattern_ten(pattern, &struct_norme);
+	strdel_create_pattern(&struct_norme);
 	return (pattern);
 }
