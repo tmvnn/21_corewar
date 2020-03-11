@@ -169,6 +169,20 @@ typedef enum			s_enum
 	PATTERN_HELP_VALIDATION_FIFTH_CASE
 }						t_enum;
 
+typedef struct			s_norminette
+{
+	char				*alt_comment_char;
+	char				*comment_char;
+	char				*reg;
+	char				*dir;
+	char				*dir_label;
+	char				*indir;
+	char				*indir_label;
+	char				*label;
+	char				*separator;
+	char				*comment_cmd_string;
+}						t_norminette;
+
 typedef	struct			s_token
 {
 	int					memory_size;
